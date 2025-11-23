@@ -64,7 +64,7 @@ CREATE TABLE Modele (
 
 CREATE TABLE Exemplaire (
     ID_Exemplaire INT PRIMARY KEY AUTO_INCREMENT,
-    Etat VARCHAR(150), --------------------------------------------------
+    Etat ENUM ('sad', 'ok', 'happy');, --------------------------------------------------
     Disponibilite VARCHAR(50),-----------------------------------------------------
     ID_Modele INT,
     Date_Retrait DATE,
