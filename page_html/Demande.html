@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-    <html>
-        <head>
-            <title> Formulaire de demande </title>
-            <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../css/Demande.css?v=1">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        </head>
-        <body class = "elms-sans-text">
-        <main>
+
             <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
             
             <form action = "../page_interactive/Demande.php" method = "post">
@@ -29,6 +18,10 @@
                         <input type = "date" id = "date_retour" name = "date_retour" required = "required">
                     </div>
                     <div class = "survey">
+                        <label for = "projet"> Nom du projet : </label>
+                        <input type = "text" id = "projet" name = "projet" required = "required">
+                    </div>
+                    <div class = "survey">
                         <label for = "raison_emprunt"> Raison derrière l'emprunt : </label>
                         <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea>
                     </div>    
@@ -36,11 +29,3 @@
                         <input type = "submit" name = "submit" value = "Valider"> 
                     </div>
             </form>
-        </main>
-            <footer>
-                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil </a> </p>
-                <p> - Faire <a href = "../page_interactive/Demande.php"> une demande </a></p>
-                <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
-            </footer>
-        </body>
-    </html>
