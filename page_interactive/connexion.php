@@ -1,15 +1,35 @@
 <?php
     session_start(); 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (!empty($_POST["Email"])) {
-        $_SESSION["Email"] = filter_input(INPUT_POST, "Email", FILTER_SANITIZE_EMAIL);  
-        $_SESSION["logged"] = true; 
-        header("Location: Home.php");  
-        exit(); 
-        } else {
-        $erreur = "Adresse mail non reconnue dans la DB";
+        $_Matricule = $_POST["Matricule"]; 
+        $_MDP = $_POST["MDP"];  
+        if (preg_match('/^\d{6}$/', $_Matricule) ) { /*permet de vérifier si $_Matricule est une chaîne de 6 entier // = limiteur du motf, ^ = début chaîne, $ = fin chaîne, \d = char est un entier, {6} = \d répété six fois */ 
+            include 'Connexion_DB.php'; 
+            $sql = "SELECT * FROM etudiant WHERE etudiant.E_Matricule = '$_Matricule'"; 
+            $result = mysqli_query($conn, $sql); 
+                if (mysqli_num_rows($result) > 0) {
+                    if($row = mysqli_fetch_assoc($result)) {
+                        if (password_verify($_MDP, $row["Mot_de_passe"])) {/*nécessaire d'utiliser cette condition car $result retourne un array de donnée et la fonction empty ne vérifie que si une variable est vide pas le tableau*/ 
+                            $_SESSION["Nom"] = $row["Nom"]; 
+                            $_SESSION["Prenom"] = $row["Prenom"]; 
+                            $_SESSION["Email"] = $row["E_mail"]; 
+                            $_SESSION["Matricule"] = $row["E_Matricule"];   
+                            $_SESSION["logged"] = true;
+                            mysqli_close($conn);  
+                            header("Location: Home.php");  
+                            exit(); 
+                        }
+                        else {
+                            $erreur = "Mot de passe invalide";
+                        }   
+                    }
+                }else {
+                    $erreur = "Etudiant non enregistré dans la DB"; 
+                }  
+        } else { 
+            $erreur = "Un matricule contient 6 chiffres";
         }
-    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +45,7 @@
             <h1>Login</h1>
 
         <div class="entree-login">
-            <input type="email" name="Email" placeholder="Email" required>
+            <input type="number" name="Matricule" placeholder="Matricule" required>
             <i class='bx  bxs-user'    ></i> 
         </div> 
             <?php if(!empty($erreur)) {?>

@@ -92,10 +92,11 @@ form .survey input {
     margin-right : 10%; 
 }
 form .soumettre {
+    display : flex; 
+    flex-direction : row; 
    justify-content: center;
     margin-top: 30px;             /* petit espace avant le bouton */
-    position : relative;
-    left : 50%;   
+  
 }
 form .soumettre input[type="submit"] { 
     background-color : white; 

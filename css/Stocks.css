@@ -5,12 +5,53 @@ html, body {
 }
 body {
     min-height : 100vh; 
-    background-image : url(../image/Stocks.jpg); 
-    background-repeat: no-repeat;
-    background-size : cover; 
+    background-color : black; 
     color : white; 
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
     flex-direction: column;
+}
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+h2 {
+    margin-left : 5%; 
+    font-size : 2.5rem; 
+}
+form {
+    margin : 1rem 5%; 
+    display : flex; 
+    flex-direction : column; 
+    justify-content : space-evenly; 
+    box-sizing : border-box;  
+    background-color : rgba(150,150,150,0.7);
+    border-radius : 20px; 
+    border : 5px solid black; 
+}
+form .champ {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : flex-start; 
+    gap : 20px; 
+    font-size : 2rem;
+    align-items : center; 
+    padding-left : 15%; 
+}
+form .boutton {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : center;
+    margin-bottom : 20px; 
+}
+form .boutton input[type = "submit"] {
+    border-radius : 20px;  
+    font-size : 1rem; 
+    background-color : white; 
+}
+form .boutton input[type = "submit"]:hover {
+    background-color : whitesmoke; 
 }
 footer {
     flex-shrink : 0; 
@@ -25,12 +66,7 @@ footer {
 main {
     flex : 1; 
 }
-.elms-sans-text { /*permet uniquement de modifier la police du texte*/
-  font-family : "Elms Sans", sans-serif;
-  font-optical-sizing : auto;
-  font-weight : normal;
-  font-style : normal;
-}
+
 a:link {
     color : rgba(000,255,255,1); 
 }
@@ -60,8 +96,8 @@ h1 {
     display : flex; 
     align-items : center; 
     height : 20%; 
-    flex-wrap : nowrap; 
-    font-size : 2.5rem;  
+    font-size : 2rem;  
     flex : 1;
     padding-left : 10%; 
+
 }
