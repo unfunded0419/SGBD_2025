@@ -15,28 +15,28 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "Stocks.css">
+    <link rel = "stylesheet" href = "../css/Stocks.css?v=1.2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Inventaire</title>
 </head>
 <body class ="elms-sans-text">
-    <h1> Liste du materiel : </h1>
-    <div>
+<main>    
+<h1> Liste du materiel : </h1>
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
         <div class = "Appareil">
-        <?php echo "Categorie : {$row["Nom"]} <br>"; ?> 
-        <?php echo "Nom Produit : {$row["Reference"]} <br>"; ?>  
-        <?php echo "Description : {$row["Description"]} <br>"; ?> 
-        <?php echo "Quantite disponible en stock : {$row["En_Stocks"]}"; ?> 
-        </div> <br>
+            <div class = "contenu"><?php echo "Categorie : {$row["Nom"]}"; ?> </div>
+            <div class = "contenu"><?php echo "Nom Produit : {$row["Reference"]}"; ?>  </div>
+            <div class = "contenu"><?php echo "Description : {$row["Description"]}"; ?>  </div>
+            <div class = "contenu"><?php echo "Quantite disponible en stock : {$row["En_Stocks"]}"; ?> </div>
+        </div>
     <?php }?>
-    </div>
+    </main>  
     <footer>
-                <p> Revenir à la page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
-                <p> Allez sur la page <a href = "../page_interactive/Demande.php"> de demande </a></p>
-                <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
+                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
+                <p> - Faire une <a href = "../page_interactive/Demande.php"> demande </a></p>
+                <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
     </footer>
 </body>
 </html>

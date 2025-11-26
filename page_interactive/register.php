@@ -1,9 +1,7 @@
 <?php
 session_start(); 
-include "../page_html/register.html"; 
 if (isset($_POST["submit"])) {
     if (strlen($_POST["Matricule"]) == 6) {
-         
         $Matricule = filter_input(INPUT_POST, "Matricule", FILTER_VALIDATE_INT);
         if ($Matricule != null) { 
         include "Connexion_DB.php"; 
@@ -17,10 +15,57 @@ if (isset($_POST["submit"])) {
         mysqli_close($conn);
         header ("Location: connexion.php");  
         } else {
-            echo "Erreur rencontree au moment du traitement de votre matricule"; 
+            $erreur_caractere = "Erreur rencontree au moment du traitement de votre matricule"; 
         }
     } else {
-        echo "Un matricule est constitué d'exactement 6 chiffres"; 
+       $erreur_nombre = "Un matricule est constitué d'exactement 6 chiffres"; 
     }
 } 
 ?>
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title> Inscription </title>
+            <meta charset = "utf-8">
+            <link rel = "stylesheet" href = "../css/register.css?v=1.2">
+             <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        </head>
+        <body class = "elms-sans-text">
+            <form action = "../page_interactive/register.php" method = "post">  
+                <div class = "align">
+                    <h1> Remplissez le formulaire suivant </h1>
+                </div>
+                <div class = "align">
+                <label for = "Matricule"> Matricule  : </label>
+                <input type = "number"  id = "Matricule" name = "Matricule" required = "required">
+                </div>
+                <?php if(!empty($erreur_nombre)) { ?>
+                  <p> <?php echo $erreur_nombre ?> </p> 
+                <?php } ?>
+                <?php if(!empty($erreur_caractere)) { ?>
+                    <p> <?php echo $erreur_caractere ?> </p> 
+                <?php } ?>
+                <div class = "align">
+                <label for = "Nom"> Nom : </label>
+                <input type = "text" id ="Nom" name = "Nom" required = "required">
+                </div>
+                <div class = "align">
+                <label for = "Prenom"> Prenom : </label>
+                <input type = "text" id ="Prenom" name ="Prenom" required = "required">
+                </div>
+                <div class = "align"> 
+                <label for = "Email"> Email : </label>
+                <input type ="email" id = "Email" name = "Email" required ="required">
+                </div>
+                <div class = "align">
+                <label for = "MDP"> Mot de Passe : </label>
+                <input type = "password" id ="MDP" name = "MDP" required="required">
+                </div>
+                <div class = "bouton">
+                <input type ="submit" name = "submit" value = "submit">
+                </div>
+            </form>
+        </body>
+    </html>

@@ -3,35 +3,44 @@
         <head>
             <title> Formulaire de demande </title>
             <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../page_html/Demande.css">
+            <link rel = "stylesheet" href = "../css/Demande.css?v=1.2">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         </head>
         <body class = "elms-sans-text">
+        <main>
             <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
-            <div class = "formulaire">
-                <div class = "contenu">
+            
+            <form action = "../page_interactive/Demande.php" method = "post">
+                <div class = "survey">
                     <h2> Remplisser le formulaire suivant : </h2>
-                    <form action = "../page_interactive/Demande.php" method = "post">
-                        <div class = "survey">
-                            <label for = "nom_article"> Nom de l'article  : </label> <br>
-                            <input type = "text" id = "nom_article" name = "nom_article" required = "required"> <br>
-                            <label for = "date_debut"> Date début  : </label> <br>
-                            <input type = "date" id = "date_debut" name = "date_debut" required = "required"> <br>
-                            <label for = "date_retour"> Date retour : </label> <br>
-                            <input type = "date" id = "date_retour" name = "date_retour" required = "required"> <br>
-                            <label for = "raison_emprunt"> Raison derrière l'emprunt : </label> <br> 
-                            <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea> <br> <br>
-                        </div>
-                        <input type = "submit" name = "submit" value = "Valider"> <br>
-                    </form>
-                </div>
-            </div>
+                    </div>
+                    <div class = "survey">
+                        <label for = "nom_article"> Nom de l'article  : </label>
+                        <input type = "text" id = "nom_article" name = "nom_article" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_debut"> Date début  : </label>
+                        <input type = "date" id = "date_debut" name = "date_debut" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_retour"> Date retour : </label>
+                        <input type = "date" id = "date_retour" name = "date_retour" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "raison_emprunt"> Raison derrière l'emprunt : </label>
+                        <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea>
+                    </div>    
+                    <div class = "soumettre">
+                        <input type = "submit" name = "submit" value = "Valider"> 
+                    </div>
+            </form>
+        </main>
             <footer>
-                <p> Revenir à la page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
-                <p> Allez sur la page <a href = "../page_interactive/Demande.php"> de demande </a></p>
-                <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
+                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil </a> </p>
+                <p> - Faire <a href = "../page_interactive/Demande.php"> une demande </a></p>
+                <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
             </footer>
         </body>
     </html>

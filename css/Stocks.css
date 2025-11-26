@@ -1,15 +1,29 @@
 html, body {
-   height : 100%; 
+    height : 100%; 
     margin : 0; 
     padding : 0;  
 }
 body {
+    min-height : 100vh; 
     background-image : url(../image/Stocks.jpg); 
     background-repeat: no-repeat;
     background-size : cover; 
     color : white; 
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
     flex-direction: column;
+}
+footer {
+    flex-shrink : 0; 
+    background-color : black;
+    width : 100%;   
+    font-size : 1.2rem; 
+    display : flex; 
+    flex-direction : row; 
+    justify-content :flex-start; 
+    gap : 20px; 
+}
+main {
+    flex : 1; 
 }
 .elms-sans-text { /*permet uniquement de modifier la police du texte*/
   font-family : "Elms Sans", sans-serif;
@@ -26,29 +40,28 @@ a:visited {
 a:hover {
     color : rgba(255,255,255,1); ;  
 }
-footer {
-    background-color : black;
-    display : block;
-    width : 100%;   
-    position : fixed; 
-    bottom : 0; 
-    left : 0;  
-}
+
 h1 {
-    font-size : 50px;  
+    font-size : 4rem;  
     text-align : center; 
 }
 .Appareil {
-    margin-left : 5%; 
-    margin-right : 5%;
-    margin-top : 25px; 
-    margin-bottom : 125px;  
-    height : 100px; 
+    display : flex; 
+    flex-direction : column; 
+    box-sizing : border-box; 
+    justify-content: space-evenly;
+    height : 15rem; 
+    margin : 1rem 5%; 
     border : 5px solid black; 
-    border-radius : 20px; 
-    padding : 2% 7.5%; 
+    border-radius : 20px;  
     background-color : rgba(150,150,150,0.7);
 }
-.Appareil {
-    font-size : 20px; 
+.Appareil .contenu{
+    display : flex; 
+    align-items : center; 
+    height : 20%; 
+    flex-wrap : nowrap; 
+    font-size : 2.5rem;  
+    flex : 1;
+    padding-left : 10%; 
 }
