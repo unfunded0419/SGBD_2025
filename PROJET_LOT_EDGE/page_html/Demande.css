@@ -1,0 +1,93 @@
+html, body { /*Impose au body d'occuper toute la hauteur de la page => adaptation dynamique*/
+    height : 100%; 
+    margin : 0; 
+    padding : 0; 
+}
+body {
+   background-image : url("../image/Formulaire.jpg");  
+   background-repeat: no-repeat;
+   background-size : cover;  /*cover à utiliser et non 100%, 100% pour couvrir toute la hauteur de la page*/
+   color : white; 
+   display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
+   flex-direction: column;
+}
+a:link{
+    color : rgba(000,255,255,1); 
+}
+a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
+    color : rgba(255,000,255,1); 
+}
+a:hover {
+    color : rgba(255,255,255,1); 
+}
+.elms-sans-text { /*permet uniquement de modifier la police du texte*/
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+h1 {
+    text-align : center;
+    margin-left : 10%; 
+    margin-right : 10%; 
+    font-size : 50px; 
+}
+.formulaire { /*création de la box pour le formulaire*/
+    position : relative; 
+    background-color: rgba(150,150,150,0.5);
+    border : 5px solid black;
+    border-radius : 20px; 
+    margin : 5% 5%; 
+    padding : 10px; 
+}
+.contenu h2 {  
+    text-align : center; 
+    font-size : 45px; 
+    font-weight : bold; 
+}
+.contenu {
+    position : relative; 
+}
+.contenu input {
+    position : absolute; 
+    left : 5%; 
+
+}
+.survey {
+
+margin  : 0% 5%;  
+padding : 10px; 
+font-size : 35px;
+/*height : 275px; /*à modifier en fonction du nombre de critère supplémentaire à ajouter dans le formulaire*/ 
+}
+.survey label {
+    position : absolute; 
+    left : 25%; 
+    display : inline-block;  
+}
+.survey input {
+    position : absolute; 
+    right : 25%;
+    left : 25%; 
+    display : inline-block; 
+}
+.survey textarea { /*dimensionnement du textarea et interdiction de le modifier en tirant sur le coin*/
+    position : absolute; 
+    right : 25%;
+    left : 25%;  
+    height : 65px;  
+    display : inline-block; 
+    resize : none; 
+}
+.contenu input[type = "submit"] {
+    height : 25px; 
+}
+footer {
+    background-color : black;
+    display : block;
+    width : 100%;   
+    height : 50px; 
+    position : absolute; 
+    bottom : 0; 
+    left : 0;  
+}

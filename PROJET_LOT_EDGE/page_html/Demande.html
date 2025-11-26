@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title> Formulaire de demande </title>
+            <meta charset = "utf-8">
+            <link rel = "stylesheet" href = "../page_html/Demande.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        </head>
+        <body class = "elms-sans-text">
+            <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
+            <div class = "formulaire">
+                <div class = "contenu">
+                    <h2> Remplisser le formulaire suivant : </h2>
+                    <form action = "../page_interactive/Demande.php" method = "post">
+                        <div class = "survey">
+                            <label for = "nom_article"> Nom de l'article  : </label> <br>
+                            <input type = "text" id = "nom_article" name = "nom_article" required = "required"> <br>
+                            <label for = "date_debut"> Date début  : </label> <br>
+                            <input type = "date" id = "date_debut" name = "date_debut" required = "required"> <br>
+                            <label for = "date_retour"> Date retour : </label> <br>
+                            <input type = "date" id = "date_retour" name = "date_retour" required = "required"> <br>
+                            <label for = "raison_emprunt"> Raison derrière l'emprunt : </label> <br> 
+                            <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea> <br> <br>
+                        </div>
+                        <input type = "submit" name = "submit" value = "Valider"> <br>
+                    </form>
+                </div>
+            </div>
+            <footer>
+                <p> Revenir à la page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
+            </footer>
+        </body>
+    </html>

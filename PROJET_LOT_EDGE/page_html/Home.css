@@ -1,0 +1,48 @@
+html, body {
+    height : 100%; 
+    margin : 0; 
+    padding : 0; 
+}
+body {
+    background-image : url("../image/Etagères.jpg");
+    background-repeat : no-repeat; 
+    background-size : cover;  
+    color : rgba(255,255,255, 1); 
+}
+
+a:link{
+    color : rgba(000,255,255,1); 
+}
+a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
+    color : rgba(255,000,255,1); 
+}
+a:hover {
+    color : rgba(255,255,255,1); 
+}
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+h1 {
+    text-align : center;
+    font-size : 50px;  
+
+}
+.table h2 {
+    text-align : justify;
+    font-size : 40px;  
+}
+.table {
+    position : relative; 
+    background-color : rgba(150,150,150,0.7);
+    padding : 5px 5%;
+    margin : 5px 5%;   
+    border-radius : 20px; 
+    border : 5px solid black; 
+}
+.choix {
+    text-indent : 75px;
+    font-size : 30px; 
+}
