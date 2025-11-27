@@ -1,15 +1,10 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    
-    $utilisateur = $_POST['utilisateur'] ?? '';
-    $motdepasse = $_POST['motdepasse'] ?? '';
-
-    echo "<h1>Informations saisies :</h1>";
-    echo "<p>Utilisateur : " . htmlspecialchars($utilisateur) . "</p>";
-    echo "<p>Mot de passe : " . htmlspecialchars($motdepasse) . "</p>";
-} else {
-    echo "Aucune donnée reçue.";
+$utilisateur = $_POST['utilisateur'];
+$motdepasse = $_POST['motdepasse'];
+try{
+    $base = new PDO('mysql:host=localhost;port=8888;dbname=db_IOT','root', 'root')
+    echo "Connexion réussie à la base de données <br>";
+}catch(Exception $e){
+die('Erreur : '.$e->getMessage());
 }
 ?>
