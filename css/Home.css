@@ -14,12 +14,15 @@ body {
 
 a:link{
     color : rgba(000,255,255,1); 
+    font-weight : bold; 
 }
 a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
     color : rgba(255,000,255,1); 
+    font-weight : bold; 
 }
 a:hover {
     color : rgba(255,255,255,1); 
+    font-weight : bold; 
 }
 .elms-sans-text {
   font-family : "Elms Sans", sans-serif;
@@ -32,12 +35,8 @@ h1 {
     font-size : 3rem;  
 }
 .table {
-    position : absolute; 
-    background-color : rgba(150,150,150,0.8);
-    top : 30%; 
-    height : 50%;
-    left : 5%; 
-    right : 5%;     
+    background-color : rgba(150,150,150,0.8); 
+    margin : 30px 5%;
     border-radius : 20px; 
     border : 5px solid black; 
     display : flex; 
@@ -47,12 +46,11 @@ h1 {
 }
 .table .choix {
     display : flex; 
-    flex : 1; 
-    height : 10%; 
+    flex : 1;  
     flex-wrap : nowrap; 
 }
 .table .choix p {
-    font-size : 1.8rem; 
+    font-size : 2rem; 
     text-align : left; 
     margin-left : 10%; 
 }

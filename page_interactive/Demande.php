@@ -10,7 +10,7 @@ if ($_SESSION["logged"]) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.2">
             <title>Formulaire de Demande </title>
-            <link rel = "stylesheet" href = "../css/Demande.css?v=1">
+            <link rel = "stylesheet" href = "../css/Demande.css?v=1.1">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -58,6 +58,7 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                     <p> Page <a href = "../page_interactive/Home.php"> d'acceuil </a> </p>
                     <p> - Faire <a href = "../page_interactive/Demande.php"> une demande </a></p>
                     <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
+                    <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
             </footer>
         </body>
     </html>

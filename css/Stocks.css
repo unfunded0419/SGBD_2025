@@ -5,8 +5,8 @@ html, body {
 }
 body {
     min-height : 100vh; 
-    background-color : black; 
-    color : white; 
+    background-color : whitesmoke; 
+    color : black; 
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
     flex-direction: column;
 }
@@ -55,9 +55,9 @@ form .boutton input[type = "submit"]:hover {
 }
 footer {
     flex-shrink : 0; 
-    background-color : black;
+    background-color : rgba(150,150,150,0.7);
     width : 100%;   
-    font-size : 1.2rem; 
+    font-size : 1.5rem; 
     display : flex; 
     flex-direction : row; 
     justify-content :flex-start; 
@@ -69,12 +69,15 @@ main {
 
 a:link {
     color : rgba(000,255,255,1); 
+    font-weight : bold; 
 }
 a:visited {
     color : rgba(255,000,255,1);
+    font-weight : bold; 
 }
 a:hover {
-    color : rgba(255,255,255,1); ;  
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
 }
 
 h1 {
