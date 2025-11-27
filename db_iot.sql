@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 23 nov. 2025 à 17:16
+-- Généré le : jeu. 27 nov. 2025 à 11:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -71,7 +71,7 @@ CREATE TABLE `cours` (
 --
 
 CREATE TABLE `emprunt` (
-  `ID_Emprunt` int(11) NOT NULL,
+  `ID_Emprunt` int(6) NOT NULL,
   `Date_debut` date DEFAULT NULL,
   `Date_fin_prevue` date DEFAULT NULL,
   `Raison_Emprunt` text DEFAULT NULL,
@@ -99,7 +99,7 @@ INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Em
 --
 
 CREATE TABLE `etudiant` (
-  `E_Matricule` int(11) NOT NULL,
+  `E_Matricule` int(6) NOT NULL,
   `Nom` varchar(150) DEFAULT NULL,
   `Prenom` varchar(150) DEFAULT NULL,
   `E_mail` varchar(150) DEFAULT NULL,
@@ -111,8 +111,7 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`E_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`) VALUES
-(240223, 'Clone', 'Moi', 'gwendehon4@gmail.com', '$2y$10$oDoqEfX49g6QEer9pvDjOuJkSroas7e.DywMQQppvhkpnEfJHEC4K'),
-(240227, 'De Hon', 'Gwenaël', 'gwendehon4@gmail.com', '$2y$10$pear8ytdYOV6KynrxBUuAujT66FiZfFf/wHA3gFKRo7CQMa3Bg0Q2');
+(242424, 'user', 'user', 'user', 'user');
 
 -- --------------------------------------------------------
 
@@ -204,7 +203,7 @@ CREATE TABLE `projet` (
 --
 
 CREATE TABLE `reparer` (
-  `RE_Matricule` int(11) NOT NULL,
+  `RE_Matricule` int(6) NOT NULL,
   `ID_Exemplaire` int(11) NOT NULL,
   `Date_Reparation` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -216,12 +215,19 @@ CREATE TABLE `reparer` (
 --
 
 CREATE TABLE `responsable_des_equipements` (
-  `RE_Matricule` int(11) NOT NULL,
+  `RE_Matricule` int(6) NOT NULL,
   `Nom` varchar(150) DEFAULT NULL,
   `Prenom` varchar(150) DEFAULT NULL,
   `E_mail` varchar(150) DEFAULT NULL,
   `Mot_de_passe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `responsable_des_equipements`
+--
+
+INSERT INTO `responsable_des_equipements` (`RE_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`) VALUES
+(252525, 'admin', 'admin', 'admin', 'admin');
 
 --
 -- Index pour les tables déchargées

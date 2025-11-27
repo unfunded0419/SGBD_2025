@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-if ($_SESSION["logged"]) {
+if (isset($_SESSION["connecté"]) && $_SESSION["connecté"] == true) {
 include '../page_html/Demande.html'; 
 include("Connexion_DB.php");
 if (isset($_POST["submit"])) {

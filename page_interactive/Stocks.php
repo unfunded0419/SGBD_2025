@@ -1,7 +1,12 @@
 <?php
 session_start(); 
-if ($_SESSION["logged"]) {
+if (!isset($_SESSION["connecté"]) || $_SESSION["role"] != "etudiant") {
+    header("Location: connexion.php");
+    exit();
+}
+
 include 'Connexion_DB.php'; 
+
 $sql = "SELECT DISTINCT categorie.Nom as Nom, modele.Reference as Reference, modele.Description as Description, SUM(CASE WHEN exemplaire.Etat = 'utilisable' AND exemplaire.Disponibilite = 'disponible' THEN 1 ELSE 0 END) as En_Stocks
 FROM modele
 JOIN categorie ON categorie.ID_Categorie = modele.ID_Categorie
@@ -34,7 +39,7 @@ $result = mysqli_query($conn, $sql);
     <?php }?>
     </div>
     <footer>
-                <p> Revenir à la page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
+                <p> Revenir à la page <a href = "../page_interactive/Home_Projet.php"> d'acceuil</a> </p>
                 <p> Allez sur la page <a href = "../page_interactive/Demande.php"> de demande </a></p>
                 <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
     </footer>
@@ -43,7 +48,5 @@ $result = mysqli_query($conn, $sql);
 
 <?php
 mysqli_close($conn); 
-} else {
-    header("Location: connexion.php"); 
-}
+
 ?>

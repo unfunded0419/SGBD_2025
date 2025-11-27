@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Ajout Etudiants </title>
+        <meta charset = "utf-8">
+        <link rel = "stylesheet" href = "../page_html/Home_Etudiant.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+    </head>
+    <body>
+        <h1>Projet #<?php echo $_SESSION['id_projet']; ?> - <?php echo $nomprojet['Nom']; ?>  </h1> <br>
+        <h3><a href = "../page_interactive/Home_Projet.php"> Retour </a></h3>
+    <form action="../page_interactive/Ajout_Etud_Projet.php" method="post">
+        
+
+        <hr>
+        <h3>Ajout d'un étudiant</h3> <br>
+
+        <?php 
+            if (!empty($erreur)) {
+            echo "<p class='erreur'>$erreur</p>";
+            }
+        ?>
+        <label>Matricule :</label>
+        <input type="text" name="matricule" pattern="\d{6}" title="matricule (6 chiffres)" required>
+        <button type="submit" name="ajouter" >Ajouter</button>
+        <hr>
+    </form>
+    
+        <h3>Participants : </h3> <br>
+
+        <?php
+        if($nbre_lignes_participants == 0){
+         echo "<h4>Aucun participants</h4>";
+        }else{
+            while($ligne = mysqli_fetch_assoc($resultat_participants)){
+                echo "<h4>";
+                echo "Prénom : " . $ligne['Prenom']. "<br>" . " Nom : ". $ligne['Nom'] . "<br>" . " Matricule : " . $ligne['E_Matricule'];
+                echo "<h4>";
+            }
+        } 
+        ?>
+       
+       
+
+
+    
+    </body>
+
+
+</html>

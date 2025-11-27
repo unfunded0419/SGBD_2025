@@ -9,15 +9,26 @@
 </head>
 
 <body>
+    
+
+
    <div class="boite-login">
     <form action="../page_interactive/connexion.php" method="post">
         <h1>Login</h1>
+        <!-- j'injecte un peu de php dans ma page html pour afficher un message d'erreur sur le mdp ou l'email est pas bon -->
+        
+        <?php 
+            if (!empty($erreur)) {
+            echo "<p class='erreur'>$erreur</p>";
+            }
+        ?>
+
 
        <div class="entree-login">
         <input type="text" name="utilisateur" placeholder="Utilisateur" required>
         <i class='bx  bxs-user'    ></i> 
        </div> 
-
+       
        <div class="entree-login">
         <input type="password" name="motdepasse" placeholder="Mot de passe" required>
         <i class='bx  bxs-lock'    ></i> 

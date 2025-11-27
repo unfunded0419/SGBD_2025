@@ -1,59 +1,116 @@
-html, body { /*A continuer je déteste le front-end*/
-    height : 100%; 
-    margin : 0; 
-    padding : 0; 
-}
-body {
-background-image: url("../image/Umons_background.jpg");
-background-repeat : no-repeat; 
-background-size : cover; 
-background-position : center; 
-display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
-flex-direction: column;
-}
-.elms-sans-text {
-  font-family : "Elms Sans", sans-serif;
-  font-optical-sizing : auto;
-  font-weight : normal;
-  font-style : normal;
-}
-h1 {
-    font-size : 50px ; 
-    text-align : center; 
-    font-weight : bold; 
-}
-form {
-    position : absolute; 
-    top : 25%;
-    bottom : 25%;  
-    left : 10%; 
-    right : 10%; 
-    background-color : rgba(150,150,150, 0.8); 
-    border : 5px solid black;  
-    border-radius : 20px; 
-    padding : 5%;  
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-form label {
-    display : inline-block;
-    border : 5px solid black;  
-    width : 50%; 
-    height : 15%; 
-    font-size : 30px;  
-    position : relative; 
-    left : 10%;  
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../image/Umons_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
 }
-form input {
-    position : relative; 
-    display : block; 
-    border : 5px solid black; 
-    right : 0%; 
-    height : 10%;  
+
+.boite-register {
+    width: 600px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 30px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
-form input[type = "submit"] {
-    display : inline-block; 
-    position : absolute; 
-    left : 50%; 
-    width : 60px; 
-    height : 30px; 
+
+.boite-register h1 {
+    font-size: 28px;
+    text-align: center;
+}
+.boite-register .nom_et_champ {
+    position:relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+
+.nom_et_champ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nom_et_champ label {
+    width: 40%;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.nom_et_champ input[type="text"],
+.nom_et_champ input[type="number"],
+.nom_et_champ input[type="email"],
+.nom_et_champ input[type="password"] {
+    width: 55%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+.nom_et_champ input::placeholder {
+    color: white;
+}
+
+button.submit {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 40px;
+    background-color: whitesmoke;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button.submit:hover {
+    background-color: rgb(158, 173, 192);
+    transform: scale(1.05);
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;  /* aligne la checkbox et le texte verticalement */
+    justify-content: space-between; /* texte à gauche, checkbox à droite */
+    width: 100%;
+    gap: 10px;                     /* petit espace si nécessaire */
+    
+}
+.checkbox-row input[type="checkbox"] {
+    width: auto; /* taille normale */
+}
+.nom_champ texte_checkbox {
+    
+    align-items: center;
+    width: 100%;
+    
+
+
+}
+
+.boite-register .erreur{
+    color: red;
+    font-size: 12px;
+    text-align: center;
 }

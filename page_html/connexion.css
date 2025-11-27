@@ -1,5 +1,4 @@
 
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 *{
@@ -24,7 +23,7 @@ body {
 
 .boite-login{
     width: 350px;
-    height: 400px;
+    height: 420px;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.183);
     border-radius: 30px;
@@ -38,7 +37,7 @@ body {
 
 .boite-login .entree-login{
 
-    position: relative;
+    position:relative;
     width: 100%;
     height: 50px;
     margin: 30px 0;
@@ -92,4 +91,15 @@ body {
 
     background-color: rgb(158, 173, 192);
     height: 55px;
+}
+.boite-login .erreur{
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+a:link{
+    color : rgb(0, 0, 0); 
+}
+a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
+    color : rgb(0, 0, 0); 
 }

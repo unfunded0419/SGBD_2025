@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Page d'accueil Etudiant </title>
+        <meta charset = "utf-8">
+        <link rel = "stylesheet" href = "../page_html/Home_Etudiant.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1> Page de l'étudiant #<?php echo $_SESSION["matricule"]; ?>  </h1> <br>
+    <form action="../page_interactive/Home_Etudiant.php" method="post">
+        
+
+        <hr>
+        <h3>Créer un projet</h3> <br>
+
+        <?php 
+            if (!empty($erreur)) {
+            echo "<p class='erreur'>$erreur</p>";
+            }
+        ?>
+        <label>Nom du projet :</label>
+        <input type="text" name="nom_projet" title="Nom du projet" required>
+        <button type="submit" name="creer" >Créer</button>
+        <hr>
+    </form>
+    
+        <h3>Liste de vos projets : </h3> <br>
+        <?php
+        if($nbre_lignes_projet == 0){
+         echo "<h4>Aucun projets en cours</h4>";
+        }else{
+            while($ligne = mysqli_fetch_assoc($resultat_projet)){
+                echo "<h4>";
+                echo "Nom : " . $ligne['Nom']. "<br>" . " id projet : ". $ligne['ID_Projet'] . "<br>";
+                
+                echo '<a id="acceder" href="Home_Projet.php?id_projet=' . $ligne['ID_Projet'] . '">Accéder</a> <br>'; 
+                echo '<form action="../page_interactive/Home_Etudiant.php" method="post">';
+                echo '<input type="hidden" name="id_projet" value="' . $ligne['ID_Projet'] . '">';
+                echo '<button type="submit" name="quitter">Quitter le projet</button>';
+                echo '</form>';
+            }
+
+        } 
+        
+        
+        ?>
+       
+       
+
+
+    
+    </body>
+
+
+</html>

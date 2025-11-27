@@ -1,29 +1,57 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title> Inscription </title>
-            <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../page_html/register.css">
-             <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        </head>
-        <body class = "elms-sans-text">
-            <h1> Remplissez le formulaire suivant </h1>
-            <form action = "../page_interactive/register.php" method = "post">
-                <div class = "content">
-                <label for = "Matricule"> Matricule  : </label>
-                <input type = "number"  id = "Matricule" name = "Matricule" required = "required"> <br>
-                <label for = "Nom"> Nom : </label>
-                <input type = "text" id ="Nom" name = "Nom" required = "required"> <br>
-                <label for = "Prenom"> Prenom : </label>
-                <input type = "text" id ="Prenom" name ="Prenom" required = "required"> <br>
-                <label for = "Email"> Email : </label>
-                <input type ="email" id = "Email" name = "Email" required ="required"> <br> 
-                <label for = "MDP"> Mot de Passe : </label>
-                <input type = "password" id ="MDP" name = "MDP" required="required"><br>
-                <input type ="submit" name = "submit" value = "submit"><br>
-                </div>
-            </form>
-        </body>
-    </html>
+<html>
+<head>
+    <title>Inscription</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../page_html/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="boite-register">
+    <h1>Remplissez le formulaire suivant</h1>
+        <?php 
+            if (!empty($erreur)) {
+            echo "<p class='erreur'>$erreur</p>";
+            }
+        ?>
+    <form action="../page_interactive/register.php" method="post">
+        <div class="nom_et_champ">
+            <label for="Matricule">Matricule :</label>
+            <input type="text" name="Matricule" pattern="\d{6}" title="Votre matricule (6 chiffres)" required>
+        </div>
+
+        <div class="nom_et_champ">
+            <label for="Nom">Nom :</label>
+            <input type="text" id="Nom" name="Nom" required>
+        </div>
+
+        <div class="nom_et_champ">
+            <label for="Prenom">Prénom :</label>
+            <input type="text" id="Prenom" name="Prenom" required>
+        </div>
+
+        <div class="nom_et_champ">
+            <label for="Email">Email :</label>
+            <input type="email" id="Email" name="Email" required>
+        </div>
+
+        <div class="nom_et_champ">
+            <label for="MDP">Mot de Passe :</label>
+            <input type="password" id="MDP" name="MDP" required>
+        </div>
+
+        <div class="texte_checkbox checkbox-row">
+            <label for="responsable">Compte Responsable</label>
+            <input type="checkbox" id="responsable" name="responsable" value="true">
+            
+        </div>
+
+        <div class="nom_et_champ">
+            <button type="submit" class="submit">Confirmation</button>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
