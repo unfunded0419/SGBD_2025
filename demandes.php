@@ -47,7 +47,7 @@ die('Erreur' .$e->getMessage());
 <head>
     <meta charset="UTF-8">
     <title>ACCUEIL DE DEMANDES</title>
-    <link rel="stylesheet" href="accueil_style.css">
+    <link rel="stylesheet" href="demandes_style.css">
     <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
