@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../db_connexion.php';   // fichier qui contient la connexion PDO ou MySQLi
+require '../connexion.php';   // fichier qui contient la connexion PDO ou MySQLi
 
 // 1. Vérifier que l’utilisateur est connecté
 if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
