@@ -46,13 +46,16 @@ h1 {
 }
 .table .choix {
     display : flex; 
+    flex-direction : row; 
+    justify-content : space-evenly; 
     flex : 1;  
     flex-wrap : nowrap; 
 }
-.table .choix p {
-    font-size : 2rem; 
+.table .choix .choi {
+    font-size : 2rem;  
     text-align : left; 
-    margin-left : 10%; 
+    width : 100%; 
+    padding-left : 3%; 
 }
 .table .choix h2 {
     text-align : center;
