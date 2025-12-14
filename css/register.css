@@ -87,3 +87,15 @@ form p {
     align-items: center;
     font-weight : bold; 
 }
+.choix {
+display : flex; 
+flex-direction: row;
+justify-content:space-evenly; 
+font-size : 1.6rem; 
+}
+.choi {
+    display : flex; 
+    gap : 10px; 
+    width : 100%; 
+    justify-content : center; 
+}

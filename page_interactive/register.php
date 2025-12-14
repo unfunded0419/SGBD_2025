@@ -10,10 +10,17 @@ if (isset($_POST["submit"])) {
         $Email = filter_input(INPUT_POST, "Email", FILTER_SANITIZE_EMAIL); 
         $password = $_POST["MDP"]; 
         $hash = password_hash($password, PASSWORD_DEFAULT);
+        if ($_POST["Etudiant_Responsable"] == "Etudiant") {
         $sql = "INSERT INTO etudiant (E_Matricule, Nom, Prenom, E_mail, Mot_de_passe) VALUES ('$Matricule','$Nom', '$Prenom', '$Email', '$hash')"; 
         mysqli_query($conn, $sql);
         mysqli_close($conn);
         header ("Location: connexion.php");  
+        } else {
+        $sql = "INSERT INTO responsable_des_equipements (RE_Matricule, Nom, Prenom, E_mail, Mot_de_passe, Statut) VALUES ('$Matricule','$Nom', '$Prenom', '$Email', '$hash', 'en_attente')"; 
+        mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        header ("Location: connexion.php");  
+        }
         } else {
             $erreur_caractere = "Erreur rencontree au moment du traitement de votre matricule"; 
         }
@@ -27,7 +34,7 @@ if (isset($_POST["submit"])) {
         <head>
             <title> Inscription </title>
             <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../css/register.css?v=1.2">
+            <link rel = "stylesheet" href = "../css/register.css?v=1.1">
              <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -62,6 +69,16 @@ if (isset($_POST["submit"])) {
                 <div class = "align">
                 <label for = "MDP"> Mot de Passe : </label>
                 <input type = "password" id ="MDP" name = "MDP" required="required">
+                </div>
+                <div class = "choix">
+                    <div class = "choi">
+                <input type = "radio" id = "Etudiant" name = "Etudiant_Responsable" value="Etudiant" checked>
+                <label for = "Etudiant"> Etudiant </label> 
+                </div>
+                    <div class = "choi">
+                <input type = "radio" id = "Responsable" name = "Etudiant_Responsable" value="Responsable"> 
+                <label for  = "Responsable">Responsable</label>
+                </div>
                 </div>
                 <div class = "bouton">
                 <input type ="submit" name = "submit" value = "submit">
