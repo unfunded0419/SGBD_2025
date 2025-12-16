@@ -15,7 +15,7 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "../css/Stocks.css?v=1">
+    <link rel = "stylesheet" href = "../page_html/Stocks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -59,10 +59,9 @@ if (isset($_POST["submit"])) {
     <?php }?>
     </main>  
     <footer>
-                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
-                <p> - Faire une <a href = "../page_interactive/Demande.php"> demande </a></p>
-                <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
-                <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
+                <p> Revenir à la page <a href = "../page_interactive/Home_Projet.php"> d'acceuil</a> </p>
+                <p> Allez sur la page <a href = "../page_interactive/Demande.php"> de demande </a></p>
+                <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
     </footer>
 </body>
 </html>

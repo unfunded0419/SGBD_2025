@@ -1,69 +1,63 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title> Formulaire de demande </title>
-            <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../page_html/Demande.css">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        </head>
-        <body class = "elms-sans-text">
-            <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
-            
-            <div class = "formulaire">
-                <div class = "contenu">
-                    <h2> Demande du projet <?php echo $nom_projet; ?></h2>
-                    <hr>
-                    <?php
-                        if($nbre_lignes_liste_demandes == 0){
-                        echo "<h4>Aucune demande en cours</h4>";
-                        }else{
-                            while($ligne = mysqli_fetch_assoc($resultat_liste_demandes)){
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "../page_html/Demande.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Inventaire</title>
+</head>
+<h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
 
-                                $id_modele_demande = $ligne['ID_Modele_demande'];
-
-                                $requetesql_nom_modele = "SELECT * FROM modele WHERE modele.ID_Modele = '$id_modele_demande' ";
-                                $resultat_nom_modele  = mysqli_query($conn,$requetesql_nom_modele);
-                                $ligne_nom_modele = mysqli_fetch_assoc($resultat_nom_modele);
-                                $nom_modele = $ligne_nom_modele['Reference'];
-
-                                echo "<h4>";
-                                echo "ID de la demande : " . $ligne['ID_Emprunt']. " | " . " Modèle demandé : ". $nom_modele . " | " . "Statut :" . $ligne['Statut'];
-                                echo "<br>";
-                            }
-
+<div class="formulaire">
+    <div class="contenu">
+        <h2> Demande du projet <?php echo isset($nom_projet) ? htmlspecialchars($nom_projet) : ''; ?></h2>
+        <hr>
+        
+        <?php
+            if($nbre_lignes_liste_demandes == 0){
+                echo "<h4>Aucune demande en cours</h4>";
+            } elseif(isset($resultat_liste_demandes)) {
+                while($ligne = mysqli_fetch_assoc($resultat_liste_demandes)){
+                    $requetesql_nom_modele = "SELECT Reference FROM modele WHERE modele.ID_Modele = '$id_modele_demande' ";
+                    $resultat_nom_modele  = mysqli_query($conn, $requetesql_nom_modele);
+                    if($ligne_nom_modele = mysqli_fetch_assoc($resultat_nom_modele)) {
+                    $nom_modele = $ligne_nom_modele['Reference'];
+                    echo "<h4>";
+                    echo "ID : " . $ligne['ID_Emprunt']. " | " . " Modèle : ". htmlspecialchars($nom_modele) . " | " . "Statut : " . $ligne['Statut'];
+                    echo "</h4>";
                     } 
-                    ?>
+                }
+            } 
+        ?>
 
-                    <hr>
-                    <h2> Remplisser le formulaire suivant pour réaliser une demande : </h2>
+        <hr>
+        <h2> Remplissez le formulaire suivant pour réaliser une demande : </h2>
 
-                            <?php 
-                                if (!empty($erreur)) {
-                                echo "<p class='erreur'>$erreur</p>";
-                                }
-                            ?>
+        <?php 
+            if (!empty($erreur)) {
+                echo "<p class='erreur'>$erreur</p>";
+            }
+        ?>
 
-                    <form action = "../page_interactive/Demande.php" method = "post">
-                        <div class = "survey">
-                            <label for = "nom_article"> Nom de l'article  : </label> <br>
-                            <input type = "text" id = "nom_article" name = "nom_article" required = "required"> <br>
-                            <label for = "date_debut"> Date début  : </label> <br>
-                            <input type = "date" id = "date_debut" name = "date_debut" required = "required"> <br>
-                            <label for = "date_retour"> Date retour : </label> <br>
-                            <input type = "date" id = "date_retour" name = "date_retour" required = "required"> <br>
-                            <label for = "raison_emprunt"> Raison derrière l'emprunt : </label> <br> 
-                            <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea> <br> <br>
-                        </div>
-                        <input type = "submit" name = "submit" value = "Valider"> <br>
-                    </form>
-                </div>
+        <form action="../page_interactive/Demande.php" method="post">
+            <div class="survey">
+                <label for="nom_article"> Nom de l'article (Référence) : </label> <br>
+                <input type="text" id="nom_article" name="nom_article" required="required" value="<?php echo isset($_POST['nom_article']) ? htmlspecialchars($_POST['nom_article']) : ''; ?>"> <br>
+                
+                <label for="date_debut"> Date début : </label> <br>
+                <input type="date" id="date_debut" name="date_debut" required="required" value="<?php echo isset($_POST['date_debut']) ? $_POST['date_debut'] : ''; ?>"> <br>
+                
+                <label for="date_retour"> Date retour : </label> <br>
+                <input type="date" id="date_retour" name="date_retour" required="required" value="<?php echo isset($_POST['date_retour']) ? $_POST['date_retour'] : ''; ?>"> <br>
+                
+                <label for="raison_emprunt"> Raison derrière l'emprunt : </label> <br> 
+                <textarea id="raison_emprunt" name="raison_emprunt" required="required"><?php echo isset($_POST['raison_emprunt']) ? htmlspecialchars($_POST['raison_emprunt']) : ''; ?></textarea> <br> <br>
             </div>
-            <footer>
-                <p> Revenir à la page <a href = "../page_interactive/Home_Projet.php"> d'acceuil</a> </p>
-                <p> Allez sur la page <a href = "../page_interactive/Demande.php"> de demande </a></p>
-                <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
-            </footer>
-        </body>
-    </html>
+            
+            <input type="submit" name="submit" value="Valider"> <br>
+        </form>
+    </div>
+</div>
+</html>
