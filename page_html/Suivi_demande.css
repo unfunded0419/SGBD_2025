@@ -1,72 +1,101 @@
-html, body {
-    height : 100%; 
-    margin : 0; 
-    padding : 0; 
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
+
 body {
-    min-height : 100vh; 
-    display : flex; 
-    flex-direction : column; 
-    color : black; 
-    background-color : whitesmoke;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../image/Formulaire.jpg");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    color: white;
+    padding-bottom: 80px;
 }
-.elms-sans-text {
-  font-family : "Elms Sans", sans-serif;
-  font-optical-sizing : auto;
-  font-weight : normal;
-  font-style : normal;
+
+.formulaire {
+    width: 90%;
+    max-width: 900px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 40px;
+    margin-top: 40px;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
-main {
-    flex : 1; 
-}
+
 .Titre {
-    display : flex; 
-    flex-direction : row; 
-    justify-content : center; 
-    box-sizing : border-box; 
-    font-size : 2.5rem; 
+    text-align: center;
+    margin-bottom: 30px;
 }
+
+h1 {
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+}
+
 .Demande {
-    display : flex; 
-    flex-direction : column; 
-    justify-content : space-evenly; 
-    box-sizing : border-box; 
-    margin : 30px 5%; 
-    border : 5px solid black; 
-    border-radius : 20px; 
-    background-color : rgba(150,150,150,0.7);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s;
 }
+
+.Demande:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.01);
+}
+
 .ligne {
-    margin-left : 5%;
-    height : 2rem; 
-    font-size : 1.8rem; 
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    border-left: 3px solid rgba(255, 255, 255, 0.5);
 }
-footer {
-    flex-shrink : 0; 
-    display : flex; 
-    flex-direction : row;
-    justify-content : flex-start;
-    gap : 20px; 
-    background-color : rgba(150,150,150,0.7);  
-    font-size : 1.5rem; 
-}
-a:link {
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {
-    color : rgba(255,000,255,1);
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1);
-    font-weight : bold; 
-}
+
 .Nouveau {
-    display : flex; 
-    flex-direction : row; 
-    justify-content : center;
-    color : crimson; 
-    font-size : 2rem; 
-    margin-top : 30px; 
+    text-align: center;
+    color: #ff6b6b;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 30px;
+    text-shadow: 1px 1px 2px black;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+footer p { margin: 0; font-size: 14px; }
+
+a { text-decoration: none; color: rgb(158, 173, 192); font-weight: bold; transition: 0.3s; }
+a:hover { color: white; }

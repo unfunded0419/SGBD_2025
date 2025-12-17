@@ -25,7 +25,7 @@ h1 {
     margin-top: 40px;
     text-align: center;
     font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.772);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.406);
 }
 
 h3 {
@@ -34,33 +34,30 @@ h3 {
 }
 
 h3 a {
-    color: #ff6b6b;
+    color: rgb(158, 173, 192);
     text-decoration: none;
     font-size: 1rem;
-    border: 1px solid rgba(255, 107, 107, 0.5);
-    padding: 10px 20px;
+    border: 1px solid rgba(158, 173, 192, 0.5);
+    padding: 10px 30px;
     border-radius: 30px;
     background: rgba(0,0,0,0.2);
     transition: 0.3s;
 }
 
 h3 a:hover {
-    background: #ff6b6b;
+    background: rgb(158, 173, 192);
     color: white;
 }
 
 form {
     width: 90%;
     max-width: 600px;
-    margin: 0 auto;
-}
-
-body > form {
-    backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 30px;
+    margin: 20px auto;
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     display: flex;
     flex-direction: column;
@@ -83,11 +80,11 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.413);
     border-color: white;
 }
 
-button[name="creer"] {
+button[name="ajouter"] {
     width: 100%;
     background-color: whitesmoke;
     color: #333;
@@ -100,7 +97,7 @@ button[name="creer"] {
     transition: 0.3s;
 }
 
-button[name="creer"]:hover {
+button[name="ajouter"]:hover {
     background-color: rgb(158, 173, 192);
 }
 
@@ -113,65 +110,17 @@ hr {
 }
 
 h4 {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.742);
     width: 90%;
     max-width: 600px;
-    margin: 15px auto;
-    padding: 20px;
-    border-radius: 20px;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: normal;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-#acceder {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    transition: 0.3s;
     text-align: center;
-}
-
-#acceder:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-}
-
-h4 form {
-    width: auto;
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-}
-
-button[name="quitter"] {
-    background-color: rgba(220, 20, 60, 0.8);
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: 0.3s;
-    width: auto;
-    min-width: 120px;
-}
-
-button[name="quitter"]:hover {
-    background-color: crimson;
-    transform: scale(1.05);
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .erreur {

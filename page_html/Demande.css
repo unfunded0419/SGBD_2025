@@ -13,25 +13,23 @@ body {
     align-items: center;
     min-height: 100vh;
     
-    /* Retour à ton image originale ici */
+   
     background-image: url("../image/Formulaire.jpg");
     
     background-size: cover;       
     background-position: center;  
     background-repeat: no-repeat; 
-    background-attachment: fixed; /* L'image reste fixe quand on scrolle */
+    background-attachment: fixed; 
     color: white;
     padding-bottom: 60px;
 }
 
-/* --- Le reste du design reste identique pour l'effet moderne --- */
 
-/* Conteneur principal (style "Glassmorphism") */
 .formulaire {
     width: 90%;
     max-width: 800px;
-    backdrop-filter: blur(10px); /* Flou derrière la boite */
-    background: rgba(255, 255, 255, 0.15); /* Fond blanc transparent */
+    backdrop-filter: blur(10px); 
+    background: rgba(255, 255, 255, 0.15); 
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 40px;

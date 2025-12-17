@@ -1,107 +1,115 @@
-html, body {
-    height : 100%; 
-    margin : 0; 
-    padding : 0;  
-}
-body {
-    
-    min-height : 100vh; 
-    background-color : whitesmoke; 
-    color : black; 
-    display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
-    flex-direction: column;
-}
-.elms-sans-text {
-  font-family : "Elms Sans", sans-serif;
-  font-optical-sizing : auto;
-  font-weight : normal;
-  font-style : normal;
-}
-h2 {
-    margin-left : 5%; 
-    font-size : 2.5rem; 
-}
-form {
-    margin : 1rem 5%; 
-    display : flex; 
-    flex-direction : column; 
-    justify-content : space-evenly; 
-    box-sizing : border-box;  
-    background-color : rgba(150,150,150,0.7);
-    border-radius : 20px; 
-    border : 5px solid black; 
-}
-form .champ {
-    display : flex; 
-    flex-direction : row; 
-    justify-content : flex-start; 
-    gap : 20px; 
-    font-size : 2rem;
-    align-items : center; 
-    padding-left : 15%; 
-}
-form .boutton {
-    display : flex; 
-    flex-direction : row; 
-    justify-content : center;
-    margin-bottom : 20px; 
-}
-form .boutton input[type = "submit"] {
-    border-radius : 20px;  
-    font-size : 1rem; 
-    background-color : white; 
-}
-form .boutton input[type = "submit"]:hover {
-    background-color : whitesmoke; 
-}
-footer {
-    flex-shrink : 0; 
-    background-color : rgba(150,150,150,0.7);
-    width : 100%;   
-    font-size : 1.5rem; 
-    display : flex; 
-    flex-direction : row; 
-    justify-content :flex-start; 
-    gap : 20px; 
-}
-main {
-    flex : 1; 
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-a:link {
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {
-    color : rgba(255,000,255,1);
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1);
-    font-weight : bold; 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../image/Formulaire.jpg");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    color: white;
+    padding-bottom: 80px;
 }
 
 h1 {
-    font-size : 4rem;  
-    text-align : center; 
+    margin-top: 40px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
 }
-.Appareil {
-    display : flex; 
-    flex-direction : column; 
-    box-sizing : border-box; 
-    justify-content: space-evenly;
-    height : 15rem; 
-    margin : 1rem 5%; 
-    border : 5px solid black; 
-    border-radius : 20px;  
-    background-color : rgba(150,150,150,0.7);
-}
-.Appareil .contenu{
-    display : flex; 
-    align-items : center; 
-    height : 20%; 
-    font-size : 2rem;  
-    flex : 1;
-    padding-left : 10%; 
 
+h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: normal;
 }
+
+form {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.champ {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 15px;
+    font-size: 1.1rem;
+}
+
+.champ input {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.boutton {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+}
+
+input[type="submit"] {
+    background-color: whitesmoke;
+    color: black;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #ccc;
+}
+
+.Appareil {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.contenu {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+footer p { margin: 0; font-size: 14px; }
+a { text-decoration: none; color: rgb(158, 173, 192); font-weight: bold; }
+a:hover { color: white; }

@@ -3,14 +3,12 @@ session_start();
 if ($_SESSION["logged"]) {
     include "Connexion_DB.php"; 
     $id_projet = $_SESSION["id_projet"];  
+    // l'affichage de toutes les demandes en fonction du projet ne nécessite plus les join (affichage vide sinon)
     $sql = "SELECT emprunt.ID_Emprunt as ID_Emprunt, emprunt.Date_debut as Date_debut, emprunt.Date_fin_prevue as Date_fin_prevue,
-    emprunt.Raison_Emprunt as Raison, emprunt.Statut as Statut, modele.Reference as Reference
-    FROM emprunt
-    JOIN concerner ON emprunt.ID_Emprunt = concerner.ID_Emprunt
-    JOIN exemplaire ON concerner.ID_Exemplaire = exemplaire.ID_Exemplaire
-    JOIN modele ON exemplaire.ID_Modele = modele.ID_Modele
-    WHERE emprunt.ID_Projet = '$id_projet' "; // au lieu de mettre la condition sur E_matricule je la mets sur l'id du projet sur lequel on a cliqué précédemment (sinon on avait un probleme avec les étudiants dans plusieurs projets)
+    emprunt.Raison_Emprunt as Raison, emprunt.Statut as Statut, emprunt.ID_Modele_demande as Reference
+    FROM emprunt WHERE emprunt.ID_Projet = '$id_projet' "; // au lieu de mettre la condition sur E_matricule je la mets sur l'id du projet sur lequel on a cliqué précédemment (sinon on avait un probleme avec les étudiants dans plusieurs projets)
     $results = mysqli_query($conn, $sql);
+    
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +27,26 @@ if ($_SESSION["logged"]) {
     <h1>Historique des demandes</h1>
     </div>
         <?php if (mysqli_num_rows($results) > 0) {
-            foreach ($results as $result) { ?>
+            while ($ligne_results = mysqli_fetch_assoc($results) ) { // le for each ne m'affichait qu'une seule demande, en le remplaçant par le while et cette condition j'ai plus de problèmes 
+             // code degueu pour trouver le nom du modèle associé à l'id_modele_demande (j'avoue j'aurais pu faire un effort mais il est 1:17 du matin)
+            
+            $ref = $ligne_results['Reference'];
+
+            $sql = "SELECT * from modele where modele.ID_Modele = '$ref'";
+
+            $result_modele = mysqli_query($conn, $sql);
+            $ligne_modele = mysqli_fetch_assoc($result_modele);
+            $modele = $ligne_modele['Reference']; ?>
+
+
             <div class = "Demande">
-            <div class = "ligne"> ID Emprunt : <?php echo htmlspecialchars($result["ID_Emprunt"]); ?> </div>
-            <div class = "ligne"> Reference de l'article : <?php echo htmlspecialchars($result["Reference"]); ?> </div>
-            <div class = "ligne"> Date debut : <?php echo htmlspecialchars($result["Date_debut"]); ?> </div>
-            <div class = "ligne"> Date fin prevue : <?php echo htmlspecialchars($result["Date_fin_prevue"]); ?> </div>
-            <div class = "ligne"> Raison : <?php echo htmlspecialchars($result["Raison"]); ?> </div>
-            <div class = "ligne"> Statut : <?php echo htmlspecialchars($result["Statut"]); ?> </div>  
+            <div class = "ligne"> ID Emprunt : <?php echo htmlspecialchars($ligne_results["ID_Emprunt"]); ?> </div>
+            <div class = "ligne"> Reference de l'article : <?php echo htmlspecialchars($modele); ?> </div>
+            <div class = "ligne"> Date debut : <?php echo htmlspecialchars($ligne_results["Date_debut"]); ?> </div>
+            <div class = "ligne"> Date fin prevue : <?php echo htmlspecialchars($ligne_results["Date_fin_prevue"]); ?> </div>
+            <div class = "ligne"> Raison : <?php echo htmlspecialchars($ligne_results["Raison"]); ?> </div>
+            <div class = "ligne"> Statut : <?php echo htmlspecialchars($ligne_results["Statut"]); ?> </div> 
+            <br> 
             </div>
         <?php   }
          } else { ?>
@@ -44,7 +54,7 @@ if ($_SESSION["logged"]) {
         <?php } ?>
     </main>
     <footer>
-                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
+                <p> Page <a href = "../page_interactive/Home_Projet.php"> d'acceuil</a> </p>
                 <p> - Faire une <a href = "../page_interactive/Demande.php"> demande </a></p>
                 <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
                 <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
