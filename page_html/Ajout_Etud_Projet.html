@@ -10,7 +10,6 @@
     </head>
     <body>
         <h1>Projet #<?php echo $_SESSION['id_projet']; ?> - <?php echo $nomprojet['Nom']; ?>  </h1> <br>
-        <h3><a href = "../page_interactive/Home_Projet.php"> Retour </a></h3>
     <form action="../page_interactive/Ajout_Etud_Projet.php" method="post">
         
 
@@ -47,6 +46,10 @@
 
     
     </body>
-
+<footer>
+                <p> Revenir à la page <a href = "../page_interactive/Home_Projet.php"> d'acceuil</a> </p>
+                <p> Allez sur la page de consultation <a href = "../page_interactive/Stocks.php"> des stocks </a></p>
+                <p> Allez sur la page de <a href = "../page_interactive/Suivi_demande.php"> suivi des demandes </a></p>
+</footer>
 
 </html>
