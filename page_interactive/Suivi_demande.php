@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-if ($_SESSION["logged"]) {
+if ($_SESSION["logged"] && !$_SESSION["Responsable"]) {
     include "Connexion_DB.php"; 
     $Matricule = $_SESSION["Matricule"];  
     $sql = "SELECT emprunt.ID_Emprunt as ID_Emprunt, emprunt.Date_debut as Date_debut, emprunt.Date_fin_prevue as Date_fin_prevue,

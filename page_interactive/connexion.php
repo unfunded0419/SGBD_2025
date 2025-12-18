@@ -5,9 +5,27 @@
         $_MDP = $_POST["MDP"];  
         if (preg_match('/^\d{6}$/', $_Matricule) ) { /*permet de vérifier si $_Matricule est une chaîne de 6 entier // = limiteur du motf, ^ = début chaîne, $ = fin chaîne, \d = char est un entier, {6} = \d répété six fois */ 
             include 'Connexion_DB.php'; 
+            $sql = "SELECT * FROM responsable_des_equipements WHERE responsable_des_equipements.RE_Matricule = '$_Matricule' AND responsable_des_equipements.Statut = 'approuve'"; 
+            $result = mysqli_query($conn, $sql); 
+            if (mysqli_num_rows($result)>0){
+               $row = mysqli_fetch_assoc ($result); 
+               if (password_verify($_MDP, $row["Mot_de_passe"])) {
+                $_SESSION["Nom"] = $row["Nom"]; 
+                            $_SESSION["Prenom"] = $row["Prenom"]; 
+                            $_SESSION["Email"] = $row["E_mail"]; 
+                            $_SESSION["Matricule"] = $row["E_Matricule"];   
+                            $_SESSION["logged"] = true;
+                            $_SESSION["Responsable"] = true; 
+                            mysqli_close($conn);  
+                            header("Location: Home.php");  
+                            exit(); 
+               } else {
+                $erreur = "Mot de passe invalide"; 
+               }
+            }
             $sql = "SELECT * FROM etudiant WHERE etudiant.E_Matricule = '$_Matricule'"; 
             $result = mysqli_query($conn, $sql); 
-                if (mysqli_num_rows($result) > 0) {
+                if (mysqli_num_rows($result)>0) {
                     if($row = mysqli_fetch_assoc($result)) {
                         if (password_verify($_MDP, $row["Mot_de_passe"])) {/*nécessaire d'utiliser cette condition car $result retourne un array de donnée et la fonction empty ne vérifie que si une variable est vide pas le tableau*/ 
                             $_SESSION["Nom"] = $row["Nom"]; 
@@ -15,16 +33,19 @@
                             $_SESSION["Email"] = $row["E_mail"]; 
                             $_SESSION["Matricule"] = $row["E_Matricule"];   
                             $_SESSION["logged"] = true;
+                            $_SESSION["Responsable"] = false; 
                             mysqli_close($conn);  
                             header("Location: Home.php");  
                             exit(); 
                         }
                         else {
+                            mysqli_close($conn);  
                             $erreur = "Mot de passe invalide";
                         }   
                     }
                 }else {
-                    $erreur = "Etudiant non enregistré dans la DB"; 
+                    mysqli_close($conn);   
+                    $erreur = "Utilisateur non enregistré dans la DB"; 
                 }  
         } else { 
             $erreur = "Un matricule contient 6 chiffres";
@@ -36,7 +57,7 @@
     <head>
         <meta charset="utf-8">
         <title>Connexion - Université de Mons </title>
-        <link rel="stylesheet" href="../css/connexion.css?v=1.2">
+        <link rel="stylesheet" href="../css/connexion.css?v=1.1">
         <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
