@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 23 nov. 2025 à 17:16
+-- Généré le : jeu. 18 déc. 2025 à 19:04
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -89,8 +89,9 @@ CREATE TABLE `emprunt` (
 --
 
 INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Emprunt`, `Statut`, `Date_retour`, `Retard`, `Degradation_materiel`, `RE_Matricule`, `E_Matricule`, `ID_Projet`) VALUES
-(1, '2025-11-01', '2025-11-14', 'efefef', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '2025-11-15', '2025-11-30', 'fffee', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '2025-11-01', '2025-11-14', 'efefef', 'accepter', NULL, NULL, NULL, NULL, 233333, NULL),
+(2, '2025-11-15', '2025-11-30', 'fffee', 'accepter', NULL, NULL, NULL, NULL, 666666, NULL),
+(7, '2025-12-17', '2025-12-20', 'alors peut etre', 'en attente', NULL, NULL, NULL, 999999, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,8 +112,13 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`E_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`) VALUES
+(233333, 'Pope', 'Pascal', 'popepascal@gmail.com', '$2y$10$A1AdQYJUQbAHYEyHSdXE5udNXtycdP6JNyVba.Q80Jig7NzIAxdn.'),
 (240223, 'Clone', 'Moi', 'gwendehon4@gmail.com', '$2y$10$oDoqEfX49g6QEer9pvDjOuJkSroas7e.DywMQQppvhkpnEfJHEC4K'),
-(240227, 'De Hon', 'Gwenaël', 'gwendehon4@gmail.com', '$2y$10$pear8ytdYOV6KynrxBUuAujT66FiZfFf/wHA3gFKRo7CQMa3Bg0Q2');
+(240227, 'De Hon', 'Gwenaël', 'gwendehon4@gmail.com', '$2y$10$pear8ytdYOV6KynrxBUuAujT66FiZfFf/wHA3gFKRo7CQMa3Bg0Q2'),
+(255555, 'Langlois', 'Karmen', 'karmenlanglois@gmail.com', '$2y$10$CCJZl5M.SEUXEu2CN8FQLeOIHRrHLkIjOBbfEAaCjBbyLutOcihFG'),
+(555555, 'Mickel', 'Mikey', 'mickey@gmail.com', '$2y$10$ycH3FSI7K.IrJY8ksbZj6u1OoMk9B/gYaOK12eeYlf4hiIL8tVQx6'),
+(666666, 'lobster', 'gnom', 'gnomlobster@gmail.com', '$2y$10$Y5EQg8KO14A6Mpus6WWoJu/92o2Vohcfg8HDscFzxsEXpOMoH5aHG'),
+(777777, 'manini', 'papipi', 'papipi@gmail.com', '$2y$10$/J5lwF.ITuR6SUUDw2Ll6eUmass8PLapmSd8QQod6FTe1nz8mniLi');
 
 -- --------------------------------------------------------
 
@@ -220,8 +226,19 @@ CREATE TABLE `responsable_des_equipements` (
   `Nom` varchar(150) DEFAULT NULL,
   `Prenom` varchar(150) DEFAULT NULL,
   `E_mail` varchar(150) DEFAULT NULL,
-  `Mot_de_passe` varchar(200) DEFAULT NULL
+  `Mot_de_passe` varchar(200) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
+  `Statut` enum('En attente','Accepté','Refusé') NOT NULL DEFAULT 'En attente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `responsable_des_equipements`
+--
+
+INSERT INTO `responsable_des_equipements` (`RE_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`, `admin`, `Statut`) VALUES
+(555555, 'Marshall', 'Pedro', 'pedromarshall@gmail.com', '$2y$10$rfK4GXhLht4PTxeGxCt/nu7o4cInAuu2U0GBsSu6KSF6vQOiLcHYm', 0, 'En attente'),
+(888888, 'Smith', 'Will', 'willsmith@gmail.com', '$2y$10$eRVcrzg8AislAHBDA3WEreLCP8V4c8HEdOWxDCCjHCIYI1Y4ooc3O', 0, 'Accepté'),
+(999999, 'Luigi', 'Peperoni', 'luigipep@gmail.com', '$2y$10$/J5lwF.ITuR6SUUDw2Ll6eUmass8PLapmSd8QQod6FTe1nz8mniLi', 1, 'Accepté');
 
 --
 -- Index pour les tables déchargées
@@ -330,7 +347,7 @@ ALTER TABLE `cours`
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `exemplaire`

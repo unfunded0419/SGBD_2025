@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['pseudo'] = $admin['Nom'];
         $_SESSION['logged'] = true;
 
-        if ($admin['Admin'] == 1) {
+        if ($admin['admin'] == 1) {
             $_SESSION['role'] = 'admin'; 
         } elseif ($admin['Statut'] == "Accepté") {
             $_SESSION['role'] = 'resp'; 
