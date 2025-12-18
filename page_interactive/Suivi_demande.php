@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-if ($_SESSION["logged"]) {
+if ($_SESSION["connecté"]) {
     include "Connexion_DB.php"; 
     $id_projet = $_SESSION["id_projet"];  
     // l'affichage de toutes les demandes en fonction du projet ne nécessite plus les join (affichage vide sinon)

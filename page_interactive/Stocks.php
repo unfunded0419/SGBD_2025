@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-if ($_SESSION["logged"]) {
+if ($_SESSION["connecté"]) {
 include 'Connexion_DB.php'; 
 $sql = "SELECT DISTINCT categorie.Nom as Nom, modele.Reference as Reference, modele.Description as Description, SUM(CASE WHEN exemplaire.Etat = 'utilisable' AND exemplaire.Disponibilite = 'disponible' THEN 1 ELSE 0 END) as En_Stocks
 FROM modele
