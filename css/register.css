@@ -1,0 +1,101 @@
+html, body { /*A continuer je déteste le front-end*/
+    height : 100%; 
+    margin : 0; 
+    padding : 0; 
+}
+body {
+background-image: url("../image/Umons_background.jpg");
+background-repeat : no-repeat; 
+background-size : cover; 
+background-position : center; 
+display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
+flex-direction: column;
+color : white; 
+}
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+form {
+    position : absolute; 
+    top : 25%;
+    height : 50%; 
+    left : 10%; 
+    right : 10%; 
+    background-color : rgba(150,150,150, 0.8);  
+    border-radius : 20px; 
+    padding : 0% 5%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* ou space-between selon le rendu voulu */
+    box-sizing: border-box; /*box sizing permet de définir ce que le width des éléments*/ 
+}
+form .align h1 {
+    font-size : 2.5rem; 
+    width : 100%; 
+    text-align : center; 
+    font-weight : bold; 
+    position : relative; 
+}
+form .align {
+    height: 10%;
+    display: flex;
+    align-items: center;        /* alignement vertical parfait */
+    gap: 20px;                  /* espace entre label et input */
+    flex-wrap: nowrap;
+}
+form .align label {
+    font-size: 1.8rem;          /* équivalent ~30px, mais scalable */
+    width: 40%;
+    flex-shrink: 0;
+    text-align: left;
+}
+form .align input { 
+    flex: 1;                    /* prend tout l'espace restant */
+    height: 60%;
+    font-size: 1.6rem;
+    padding: 0 12px;
+    border: none;
+    border-radius: 8px;
+}
+form .bouton {
+    justify-content: center;
+    margin-top: 5%;             /* petit espace avant le bouton */
+    position : relative; 
+    left : 50%; 
+}
+
+form .bouton input[type="submit"] {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    font-size : 1.2rem; 
+}
+
+form .bouton input[type="submit"]:hover {
+    background-color : whitesmoke;  
+}
+form p {
+    height: 10%;
+    color: #ff6b6b;
+    font-size: 1.6rem;
+    margin: 0;
+    padding-left: 42%;           /* aligné avec les inputs */
+    display: flex;
+    align-items: center;
+    font-weight : bold; 
+}
+.choix {
+display : flex; 
+flex-direction: row;
+justify-content:space-evenly; 
+font-size : 1.6rem; 
+}
+.choi {
+    display : flex; 
+    gap : 10px; 
+    width : 100%; 
+    justify-content : center; 
+}

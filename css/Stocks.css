@@ -1,0 +1,112 @@
+html, body {
+    height : 100%; 
+    margin : 0; 
+    padding : 0;  
+}
+body {
+    background-image: url('../image/Umons_background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    min-height : 100vh; 
+    background-color : whitesmoke; 
+    color : white; 
+    display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
+    flex-direction: column;
+}
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+h2 {
+    margin-left : 5%; 
+    font-size : 2.5rem; 
+}
+form {
+    margin : 1rem 5%; 
+    display : flex; 
+    flex-direction : column; 
+    justify-content : space-evenly; 
+    box-sizing : border-box;  
+    background-color : rgba(150,150,150,0.7);
+    border-radius : 20px; 
+    border : 5px solid black; 
+}
+form .champ {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : flex-start; 
+    gap : 20px; 
+    font-size : 2rem;
+    align-items : center; 
+    padding-left : 15%; 
+}
+form .boutton {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : center;
+    margin-bottom : 20px; 
+}
+form .boutton input[type = "submit"] {
+    border-radius : 20px;  
+    font-size : 1rem; 
+    background-color : white; 
+}
+form .boutton input[type = "submit"]:hover {
+    background-color : whitesmoke; 
+}
+footer {
+    flex-shrink : 0; 
+    background-color : rgba(150,150,150,0.7);
+    width : 100%;   
+    font-size : 1.5rem; 
+    display : flex; 
+    flex-direction : row; 
+    justify-content :flex-start; 
+    gap : 20px; 
+}
+main {
+    flex : 1; 
+}
+
+a:link {
+    color : rgba(000,255,255,1); 
+    font-weight : bold; 
+}
+a:visited {
+    color : rgba(255,000,255,1);
+    font-weight : bold; 
+}
+a:hover {
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
+}
+
+h1 {
+    font-size : 4rem;  
+    text-align : center; 
+}
+.Appareil {
+    display : flex; 
+    flex-direction : column; 
+    box-sizing : border-box; 
+    justify-content: space-evenly;
+    height : 15rem; 
+    margin : 1rem 5%; 
+    border : 5px solid black; 
+    border-radius : 20px;  
+    background-color : rgba(150,150,150,0.7);
+}
+.Appareil .contenu{
+    display : flex; 
+    align-items : center; 
+    height : 20%; 
+    font-size : 2rem;  
+    flex : 1;
+    padding-left : 10%; 
+
+}

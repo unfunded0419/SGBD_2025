@@ -1,0 +1,78 @@
+html, body {
+    height : 100%; 
+    margin : 0; 
+    padding : 0; 
+}
+body {
+    background-image: url('../image/Umons_background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    min-height : 100vh; 
+    display : flex; 
+    flex-direction : column; 
+    color : black; 
+    
+}
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
+main {
+    flex : 1; 
+}
+.Titre {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : center; 
+    box-sizing : border-box; 
+    font-size : 2.5rem; 
+}
+.Demande {
+    display : flex; 
+    flex-direction : column; 
+    justify-content : space-evenly; 
+    box-sizing : border-box; 
+    margin : 30px 5%; 
+    border : 5px solid black; 
+    border-radius : 20px; 
+    background-color : rgba(150,150,150,0.7);
+}
+.ligne {
+    margin-left : 5%;
+    height : 2rem; 
+    font-size : 1.8rem; 
+}
+footer {
+    flex-shrink : 0; 
+    display : flex; 
+    flex-direction : row;
+    justify-content : flex-start;
+    gap : 20px; 
+    background-color : rgba(150,150,150,0.7);  
+    font-size : 1.5rem; 
+}
+a:link {
+    color : rgba(000,255,255,1); 
+    font-weight : bold; 
+}
+a:visited {
+    color : rgba(255,000,255,1);
+    font-weight : bold; 
+}
+a:hover {
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
+}
+.Nouveau {
+    display : flex; 
+    flex-direction : row; 
+    justify-content : center;
+    color : crimson; 
+    font-size : 2rem; 
+    margin-top : 30px; 
+}

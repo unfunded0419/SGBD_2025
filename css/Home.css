@@ -1,0 +1,88 @@
+/* Réinitialisation de base */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    /* on enlève les paramètres par défauts */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*lorsqu'on imposera une taille de boite, ça incluera les bords*/
+}
+
+body {
+    /* Image de fond */
+    background-image: url('../image/Umons_background.jpg'); /*on charge l'image*/   
+    background-size: cover; /* l'image couvre tout l'écran, peu importe la taille de l'écran */
+    background-position: center; /* on centre l'image */ 
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* l'image reste fixe, même si on doit scroller pour atteindre le bas de la page*/
+    
+    /* Centrage du contenu */
+    min-height: 100vh; /* Force la page à faire au minimum 100% de la hauteur de la fenêtre */
+    display: flex; /* on active le mode Flexbox */
+    justify-content: center; /* on centre horizontalement */
+    align-items: center; /* on centre verticalement */
+    font-family: 'Elms Sans', sans-serif; /* Votre police */
+    color: white; /* couleur de la police*/
+}
+
+/* Le conteneur principal (Effet verre) */
+.glass-container {
+    background: rgba(255, 255, 255, 0.183); /* Fond noir semi-transparent */
+    backdrop-filter: blur(12px);     /* Le flou derrière la boite */
+    -webkit-backdrop-filter: blur(12px); /* Idem, mais pour safari (IPhone, MacBook,...) */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8); /* Ombre portée */
+    
+    border-radius: 20px; /* on arrondi les angles */
+    padding: 40px;
+    width: 90%;
+    max-width: 500px; /* Largeur max comme sur le login */
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Conteneur des boutons */
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espace entre les boutons */
+}
+
+/* Style des liens transformés en boutons */
+.btn-glass {
+    display: block; /* on lui dit de se comporter comme un bloc pour qu'il prenne toute la largeur possible */
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1); /* Fond léger */
+    padding: 15px 20px;
+    border-radius: 30px; /* On arrondi les angles */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* on met de très fins bords */
+    transition: all 0.3s ease; /* si je change de couleur ou de position, ça prend 0.3s à se voir, ça rajoute du style eheh */
+    font-weight: 500;
+}
+
+/* Effet au survol de la souris */
+.btn-glass:hover { /* :hover veut dire "quand la souris passe dessus" */
+    background: rgba(255, 255, 255, 1); /* Devient blanc */
+    color: #333; /* Texte devient foncé */
+    transform: translateY(-3px); /* Les boites remontes de 3px */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Style spécifique pour le bouton Admin */
+.btn-admin {
+    border-color: rgba(245, 13, 13, 0.5); /* on a juste rajouter un bord rouge */
+}

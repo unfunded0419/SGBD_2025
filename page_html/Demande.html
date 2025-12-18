@@ -1,0 +1,31 @@
+
+            <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
+            
+            <form action = "../page_interactive/Demande.php" method = "post">
+                <div class = "survey">
+                    <h2> Remplisser le formulaire suivant : </h2>
+                    </div>
+                    <div class = "survey">
+                        <label for = "nom_article"> Nom de l'article  : </label>
+                        <input type = "text" id = "nom_article" name = "nom_article" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_debut"> Date début  : </label>
+                        <input type = "date" id = "date_debut" name = "date_debut" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_retour"> Date retour : </label>
+                        <input type = "date" id = "date_retour" name = "date_retour" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "projet"> Nom du projet : </label>
+                        <input type = "text" id = "projet" name = "projet" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "raison_emprunt"> Raison derrière l'emprunt : </label>
+                        <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea>
+                    </div>    
+                    <div class = "soumettre">
+                        <input type = "submit" name = "submit" value = "Valider"> 
+                    </div>
+            </form>
