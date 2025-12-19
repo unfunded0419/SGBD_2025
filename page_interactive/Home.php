@@ -46,6 +46,9 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                     <a href="#" class="btn-glass">
                         Gestion des demandes étduiantes (code Noa)
                     </a>
+                    <a href="../page_interactive/ajout_materiel.php" class="btn-glass">
+                        Ajout de matériel
+                    </a>
                 <?php endif; ?> 
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>

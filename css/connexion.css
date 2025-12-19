@@ -96,7 +96,7 @@ body {
 .boite-login .bouton-login:hover {
     background: rgba(255, 255, 255, 1); /* Devient blanc */
     transform: translateY(-3px); /* Les boites remontes de 3px */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Une ombre apparait */
 }
 
 .groupe_radio {

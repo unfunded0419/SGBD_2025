@@ -1,0 +1,116 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../image/Umons_background.jpg");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+    color: white;
+    display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
+}
+
+/* Style global pour la boite principale */
+.boite-register {
+    width: 600px; /* Un peu plus large pour être à l'aise */
+    margin: 20px auto;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.183);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Styles pour les messages de succès ou d'erreur */
+.message-ok {
+    color: green;
+    background-color: #dff0d8;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message-ko {
+    color: red;
+    background-color: #f2dede;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Les blocs gris qui regroupent les étapes (1, 2, 3) */
+.option-bloc {
+    border: 1px solid #ccc;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.183);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    color:#000000;
+}
+
+/* Les titres des étapes (ex: "1. Choix de la Catégorie") */
+.titre-section {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Le texte "- OU -" */
+.separation {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #000000; /* Orange pour bien séparer */
+}
+
+/* Style des champs input et select */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; /* Pour que le padding ne casse pas la largeur */
+}
+
+/* Le bouton de validation */
+.submit {
+    width: 30%;
+    padding: 12px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit:hover {
+    background-color: #27ae60;
+}
