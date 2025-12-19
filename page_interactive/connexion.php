@@ -14,24 +14,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     $admin = $result->fetch_assoc();
+    $j=0;
 
     if ($admin && password_verify($password, $admin['Mot_de_passe'])) 
     {
         session_regenerate_id(true); 
         $_SESSION['Matricule'] = $admin['RE_Matricule'];
         $_SESSION['pseudo'] = $admin['Nom'];
-        $_SESSION['logged'] = true;
 
         if ($admin['admin'] == 1) {
             $_SESSION['role'] = 'admin'; 
+            $_SESSION['logged'] = true;
+            header('Location: Home.php');
+            exit();
         } elseif ($admin['Statut'] == "Accepté") {
             $_SESSION['role'] = 'resp'; 
-        } else {
-            $_SESSION['role'] = 'membre'; 
+            $_SESSION['logged'] = true;
+            header('Location: Home.php');
+            exit();
+        } else{
+            $attente = "Validation en attente.";
+            $j=1;
         }
-
-        header('Location: Home.php');
-        exit();
+        
     }
     
     // --- ÉTAPE 2 : VÉRIFIER DANS LA TABLE ETUDIANT ---
@@ -55,7 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: Home.php');
             exit();
         } else {
-            $erreur = "Identifiants incorrects.";
+            if($j===0)
+            {
+                $erreur = "Identifiants incorrects.";
+            }
         }
         $stmt->close();
     }
@@ -81,6 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div> 
             <?php if(!empty($erreur)) {?>
             <p> <?php echo $erreur; ?>
+            <?php } ?>
+            <?php if(!empty($attente)) {?>
+            <p> <?php echo $attente; ?>
             <?php } ?>
         <div class="entree-login">
             <input type="password" name="MDP" placeholder="Mot de passe" required>

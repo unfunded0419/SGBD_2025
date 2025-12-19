@@ -68,7 +68,7 @@ $nombre_demandes = mysqli_num_rows($result);
         <?php endif; ?>
     </main>
     <br>
-        <a href="Home.php" class="table">Retour à l'accueil</a>
+        <p>Page <a href="Home.php">d'accueil</a></p>
     </br>
 </body>
 </html>

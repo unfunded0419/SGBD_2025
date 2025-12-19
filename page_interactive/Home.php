@@ -27,18 +27,20 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
             <h2>Université de Mons - Lots et Edge</h2>
 
             <div class="menu-options">
-                
-                <a href="../page_interactive/Demande.php" class="btn-glass">
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'membre') : ?>
+                    <a href="../page_interactive/Demande.php" class="btn-glass">
                     Faire une demande
-                </a>
+                    </a>
                 
-                <a href="../page_interactive/Stocks.php" class="btn-glass">
+                    <a href="../page_interactive/Stocks.php" class="btn-glass">
                     Consulter les stocks
-                </a>
+                    </a>
                 
-                <a href="../page_interactive/Suivi_demande.php" class="btn-glass">
+                    <a href="../page_interactive/Suivi_demande.php" class="btn-glass">
                     Suivi des demandes
-                </a>
+                    </a>
+                <?php endif; ?>
+                
 
                 <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'resp' || $_SESSION['role'] === 'admin')) : ?>
                     <a href="#" class="btn-glass">
