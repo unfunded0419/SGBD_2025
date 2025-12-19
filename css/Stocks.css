@@ -72,12 +72,15 @@ a:link {
     font-weight : bold; 
 }
 a:visited {
-    color : rgba(255,000,255,1);
+    color : rgba(000,255,255,1);
     font-weight : bold; 
 }
 a:hover {
     color : rgba(255,255,255,1);
     font-weight : bold; 
+}
+a {
+    text-decoration: none;
 }
 
 h1 {

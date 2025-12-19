@@ -17,12 +17,15 @@ a:link{
     font-weight : bold; 
 }
 a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
-    color : rgba(255,000,255,1); 
+    color : rgba(000,255,255,1); 
     font-weight : bold; 
 }
 a:hover {
     color : rgba(255,255,255,1); 
     font-weight : bold; 
+}
+a {
+    text-decoration: none;
 }
 .elms-sans-text {
   font-family : "Elms Sans", sans-serif;

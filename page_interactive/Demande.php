@@ -1,25 +1,17 @@
 
 <?php
 session_start();
-if ($_SESSION["logged"]) {
-
-?>    
-<!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.2">
-            <title>Formulaire de Demande </title>
-            <link rel = "stylesheet" href = "../css/Demande.css?v=1.1">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        </head>
-        <body class = "elms-sans-text">
-            <main>
-                <?php include '../page_html/Demande.html';  ?>
-            </main>
-<?php
+if (!$_SESSION["logged"] || $_SESSION["Responsable"]) {
+    header("Location: connexion.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
+} 
+include 'Connexion_DB.php';
+$erreur = ""; 
+$matricule = $_SESSION["Matricule"]; 
+$proj = "SELECT projet.Nom as Nom_proj, projet.ID_Projet as ID_Projet FROM projet JOIN participer ON projet.ID_Projet = participer.ID_Projet WHERE participer.E_Matricule = '$matricule'"; 
+$projets = mysqli_query($conn, $proj); 
+if (mysqli_num_rows($projets) == 0) {
+$erreur = "Veuillez d'abord créer un projet avant de réaliser une demande de matériel"; 
+} 
 if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur à bien remplit les champs pour les dates de manière logique , ensuite il vérifie si l'objet demandé se trouve dans la db et enfin seulement l'emprunt et la table concerner sont mise à jour*/
     $_Article = filter_input(INPUT_POST, "nom_article", FILTER_SANITIZE_SPECIAL_CHARS);  
     $today = date('Y-m-d'); 
@@ -28,18 +20,16 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                 if($_POST["date_retour"] >= $_date_debut) {
                     $_date_retour = $_POST["date_retour"]; 
                     $_Raison = filter_input(INPUT_POST, "raison_emprunt", FILTER_SANITIZE_SPECIAL_CHARS);
-                    include 'Connexion_DB.php';
-                    $sql = "SELECT exemplaire.ID_modele as ID_modele FROM exemplaire join modele on exemplaire.ID_Modele = modele.ID_modele where modele.Reference = '$_Article'"; 
+                    $sql = "SELECT modele.ID_modele as ID_modele FROM modele WHERE modele.Reference = '$_Article'"; 
                     $result = mysqli_query($conn, $sql);
                         if(mysqli_num_rows($result)>0) {
+                            foreach ($result as $row) {
+                            $modele = $row["ID_modele"]; 
                             $Matricule = $_SESSION["Matricule"]; 
-                            $sql = "INSERT INTO emprunt(Date_debut, Date_fin_prevue, Raison_Emprunt, E_Matricule, Statut) VALUES ('$_date_debut', '$_date_retour', '$_Raison', '$Matricule', 'en_attente')"; /*il faut encore ajouter le projet auquel l'emprunt est associé*/ 
-                                if(mysqli_query($conn, $sql)) {
-                                    $temp = mysqli_fetch_row($result)[0]; /*permet de récupérer la première ligne du tableau retourner par mysqli_query*/ 
-                                    $id_emprunt = mysqli_insert_id($conn);
-                                    $sql = "INSERT INTO concerner(ID_Emprunt, ID_Exemplaire) VALUES ('$id_emprunt', '$temp')"; /*dans concerner on reprend l'ID du premier exemplaire correspondant à l'objet rechercher à titre informatif l'assignation définitive de l'exemplaire se fera du côté de l'administrateur*/ 
-                                    mysqli_query($conn, $sql); 
-                                }
+                            $projet_choisi = $_POST["projet"]; 
+                            $sql = "INSERT INTO emprunt(Date_debut, Date_fin_prevue, Raison_Emprunt, E_Matricule, Statut, ID_Projet, ID_Modele_demande) VALUES ('$_date_debut', '$_date_retour', '$_Raison', '$Matricule', 'en_attente','$projet_choisi','$modele')"; /*il faut encore ajouter le projet auquel l'emprunt est associé*/ 
+                            mysqli_query($conn, $sql); 
+                            }
                         } else {
                             $erreur = "L'article recherché n'existe pas !"; 
                         }
@@ -50,20 +40,64 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
         } else {
         $erreur = "L'emprunt sera autorisé au plus tôt aujourd'hui !";   
         }
-}?>
-            <?php if(!empty($erreur)) { ?>
-                <div class = "erreur"> <p> <?php echo htmlspecialchars($erreur) ?> </p> </div>
-            <?php } ?>
+}
+?>   
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Formulaire de Demande </title>
+            <link rel = "stylesheet" href = "../css/Demande.css?v=1.4">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        </head>
+        <body class = "elms-sans-text">
+            <?php if(empty($erreur)) { ?>
+            <main>
+                 <h1> Vous souhaitez soumettre une nouvelle demande ! </h1> <br>
+            <form action = "../page_interactive/Demande.php" method = "post">
+                <div class = "survey">
+                    <h2> Remplisser le formulaire suivant : </h2>
+                    </div>
+                    <div class = "survey">
+                        <label for = "nom_article"> Nom de l'article  : </label>
+                        <input type = "text" id = "nom_article" name = "nom_article" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_debut"> Date début  : </label>
+                        <input type = "date" id = "date_debut" name = "date_debut" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for = "date_retour"> Date retour : </label>
+                        <input type = "date" id = "date_retour" name = "date_retour" required = "required">
+                    </div>
+                    <div class = "survey">
+                        <label for="projet"> Choisir un projet :</label> 
+                        <select name="projet" id="projet" required>
+                    <?php foreach ($projets as $projet) {?>
+                            <option value="<?php echo $projet["ID_Projet"] ?>"> <?php echo $projet["Nom_proj"] ?></option>
+                    <?php } ?>
+                    </select>
+                    </div>
+                    <div class = "survey">
+                        <label for = "raison_emprunt"> Raison derrière l'emprunt : </label>
+                        <textarea id = "raison_emprunt" name = "raison_emprunt" required = "required"></textarea>
+                    </div>    
+                    <div class = "soumettre">
+                        <input type = "submit" name = "submit" value = "Valider"> 
+                    </div>
+            </form>
+            </main>
             <footer>
                     <p> Page <a href = "../page_interactive/Home.php"> d'acceuil </a> </p>
                     <p> - Faire <a href = "../page_interactive/Demande.php"> une demande </a></p>
                     <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
                     <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
             </footer>
+        <?php } else { ?>
+        <div class = "erreur"> <p> <?php echo htmlspecialchars($erreur) ?> </p> </div>
+        <?php } ?>
         </body>
     </html>
-<?php
-} else {
-    header("Location: connexion.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
-}
-?>

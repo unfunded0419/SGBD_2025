@@ -4,7 +4,7 @@ html, body { /*Impose au body d'occuper toute la hauteur de la page => adaptatio
     padding : 0; 
 }
 body {
-   min-height : 100%; 
+   min-height : 100vh; 
    background-image : url("../image/Formulaire.jpg");  
    background-repeat: no-repeat;
    background-size : cover;  /*cover à utiliser et non 100%, 100% pour couvrir toute la hauteur de la page*/
@@ -17,12 +17,15 @@ a:link{
     font-weight : bold; 
 }
 a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
-    color : rgba(255,000,255,1); 
+    color : rgba(000,255,255,1); 
     font-weight : bold; 
 }
 a:hover {
     color : rgba(255,255,255,1); 
     font-weight : bold; 
+}
+a {
+    text-decoration: none;
 }
 .elms-sans-text { /*permet uniquement de modifier la police du texte*/
   font-family : "Elms Sans", sans-serif;
@@ -31,6 +34,7 @@ a:hover {
   font-style : normal;
 }
 footer { 
+    margin-top: auto;
     flex-shrink : 0; 
     background-color : black;
     width : 100%;   
@@ -50,21 +54,27 @@ h1 {
     flex-wrap : wrap; 
 }
 .erreur {
-    margin-left : 6%; 
-    margin-bottom : 5%;
+    position : absolute; 
+    left : 10%; 
+    right : 10%; 
+    top : 25%; 
+    height : 50%; 
     display : flex; 
-    flex-direction : row; 
+    flex-direction : column; 
+    justify-content: space-evenly;  
+    border-radius : 20px; 
+    background-color: rgba(155,155,155,0.7);
 }
 .erreur p{
-    color : rgba(200,0,0,1); 
-    border-radius : 20px;  
-    font-weight : bold; 
-    font-size : 1.5rem; 
+    text-align: center;
+    color : rgba(255,255,255); 
+    font-weight : bolder; 
+    font-size : 2rem; 
 }
 form { /*création de la box pour le formulaire*/
     position : absolute;
     left : 5%; 
-    right : 5%; 
+    right : 5%;
     top : 25%; 
     height : 50%; 
     background-color: rgba(150,150,150,0.5);
@@ -127,4 +137,20 @@ form .survey textarea {
     border-radius : 20px; 
     height : 60%;  
 }
+select {
+    font-size : 1.8rem; 
+    border-radius: 10px;
+}
 
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
