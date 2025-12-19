@@ -5,11 +5,7 @@ if ($_SESSION["logged"] && !$_SESSION["Responsable"]) {
     $Matricule = $_SESSION["Matricule"];  
     $sql = "SELECT emprunt.ID_Emprunt as ID_Emprunt, emprunt.Date_debut as Date_debut, emprunt.Date_fin_prevue as Date_fin_prevue,
     emprunt.Raison_Emprunt as Raison, emprunt.Statut as Statut, modele.Reference as Reference
-    FROM emprunt
-    JOIN concerner ON emprunt.ID_Emprunt = concerner.ID_Emprunt
-    JOIN exemplaire ON concerner.ID_Exemplaire = exemplaire.ID_Exemplaire
-    JOIN modele ON exemplaire.ID_Modele = modele.ID_Modele
-    WHERE emprunt.E_Matricule = '$Matricule' "; 
+    FROM emprunt, Modele WHERE emprunt.E_Matricule = '$Matricule' AND modele.ID_Modele = emprunt.ID_Modele_demande"; 
     $results = mysqli_query($conn, $sql);
     ?>
 <!DOCTYPE html>

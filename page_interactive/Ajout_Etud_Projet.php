@@ -67,7 +67,7 @@ if (isset($_POST['ajouter'])) {
                 <button type="submit" name="ajouter" >Ajouter</button>
                 <hr>
             </form>
-        
+            <h4>
             <h3>Participants : </h3> <br>
 
             <?php
@@ -77,9 +77,11 @@ if (isset($_POST['ajouter'])) {
                 while($ligne = mysqli_fetch_assoc($participants)){
                     echo "<h4>";
                     echo "Prénom : " . $ligne['Prenom']. "<br>" . " Nom : ". $ligne['Nom'] . "<br>" . " Matricule : " . $ligne['Etudiant_matricule'];
+                    echo "</h4>";
                 }
             } 
             ?>
+            </h4>
             <?php } } else { ?>
             <div class = "erreur">
         <p><?php echo $erreur; ?> </p>
