@@ -125,6 +125,7 @@ hr {
     margin-left : calc(50% - 300px);
     max-width: 600px;
     border-radius : 20px; 
+    margin-bottom: 10px;
 }
 h4 {
     background: rgba(0, 0, 0, 0.3);
@@ -187,9 +188,9 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 15px 30px;
     background-color: rgba(150,150,150,0.7);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin-top: auto;
 }
 footer a {
     text-decoration: none;

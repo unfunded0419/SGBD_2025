@@ -69,8 +69,8 @@ main {
 footer {
     flex-shrink: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    padding: 15px 30px;
     background-color: rgba(150,150,150,0.7);
     font-size: 1.5rem;
 }
