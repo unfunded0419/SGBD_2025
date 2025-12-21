@@ -91,10 +91,13 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
             </form>
             </main>
             <footer>
-                    <p> Page <a href = "../page_interactive/Home.php"> d'acceuil </a> </p>
-                    <p> - Faire <a href = "../page_interactive/Demande.php"> une demande </a></p>
-                    <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
-                    <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
+                    <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
+                    <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
+                    
             </footer>
         <?php } else { ?>
         <div class = "erreur"> <p> <?php echo htmlspecialchars($erreur) ?> </p> </div>

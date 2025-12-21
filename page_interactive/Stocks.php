@@ -15,7 +15,7 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "../css/Stocks.css?v=1.1">
+    <link rel = "stylesheet" href = "../css/Stocks.css?v=1.22">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -23,13 +23,13 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 <body class ="elms-sans-text">
 <main>    
-<h1> Liste du materiel : </h1>
-<h2>Filtrer les résultats suivant les catégories : </h2>
+    <h1> Liste du materiel : </h1>
     <form action = "Stocks.php" method = "post">
+        <h2>Filtrer les résultats suivant les catégories : </h2>
     <?php foreach ($reuse_result as $row) { ?>
         <div class = "champ">
-    <input type = "checkbox" name = "categories[]" value = "<?php echo htmlspecialchars($row["Nom"]);?>">  
-    <p> <?php echo htmlspecialchars ($row["Nom"]); ?> </p>
+    <input type = "checkbox" id = "<?php echo htmlspecialchars ($row["Nom"]); ?>" name = "categories[]" value = "<?php echo htmlspecialchars($row["Nom"]);?>">  
+    <label for = "<?php echo htmlspecialchars ($row["Nom"]); ?>"> <?php echo htmlspecialchars ($row["Nom"]); ?> </label>
         </div>  
     <?php }?>
     <div class = "boutton">
@@ -44,7 +44,8 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
-<h2> Etats des stocks : </h2>
+    <div class = "catalogue">
+    <h2> Etats des stocks : </h2>
     <?php foreach($reuse_result as $row) { ?>
             <?php foreach($categorie as $finder) {
                 if ($row["Nom"] == $finder) { ?>
@@ -57,12 +58,15 @@ if (isset($_POST["submit"])) {
               <?php  }
             } ?>
     <?php }?>
+    </div>
     </main>  
     <footer>
-                <p> Page <a href = "../page_interactive/Home.php"> d'acceuil</a> </p>
-                <p> - Faire une <a href = "../page_interactive/Demande.php"> demande </a></p>
-                <p> - Consulter <a href = "../page_interactive/Stocks.php"> les stocks </a></p>
-                <p> - Suivre les <a href = "../page_interactive/Suivi_demande.php"> demandes </a></p>
+                 <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
+                    <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
     </footer>
 </body>
 </html>

@@ -10,7 +10,6 @@
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
     background-image: url("../image/Umons_background.jpg");
     background-size: cover;       
@@ -18,7 +17,13 @@ body {
     background-repeat: no-repeat; 
     background-attachment: fixed;
     color: white;
-    padding-bottom: 50px;
+}
+main {
+    flex : 1; 
+    display : flex;
+    flex-direction: column;
+    overflow-y: hidden;  
+    
 }
 
 h1 {
@@ -111,7 +116,16 @@ hr {
     margin: 15px 0;
     width: 100%;
 }
-
+.liste {
+    flex : 1; 
+    display : flex; 
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow-y: auto;
+    margin-left : calc(50% - 300px);
+    max-width: 600px;
+    border-radius : 20px; 
+}
 h4 {
     background: rgba(0, 0, 0, 0.3);
     width: 90%;
@@ -126,25 +140,6 @@ h4 {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-}
-
-#acceder {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    transition: 0.3s;
-    text-align: center;
-}
-
-#acceder:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
 }
 
 h4 form {
@@ -175,10 +170,51 @@ button[name="quitter"]:hover {
 }
 
 .erreur {
-    color: #ff6b6b;
+    flex : 1; 
+    display : flex; 
+    flex-direction: column;
+    justify-content: center;
+    margin : 10% 10%; 
+    color: white; 
+    font-weight: bold;
     background: rgba(0,0,0,0.3);
-    padding: 10px;
+    font-size: 2rem;
     border-radius: 10px;
     text-align: center;
-    width: 100%;
+}
+footer {
+    flex-shrink: 0;           /* ne se réduit pas */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px 30px;
+    background-color: rgba(150,150,150,0.7);
+    font-size: 1.2rem;
+}
+footer a {
+    text-decoration: none;
+}
+footer a:link {
+    color : rgba(000,255,255,1); 
+    font-weight : bold; 
+}
+footer a:visited {
+    color : rgba(000,255,255,1);
+    font-weight : bold; 
+}
+footer a:hover {
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
+}
+.liste::-webkit-scrollbar {
+    width: 8px;
+}
+
+.liste::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.liste::-webkit-scrollbar-track {
+    background: transparent;
 }

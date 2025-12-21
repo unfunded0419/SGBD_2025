@@ -44,32 +44,32 @@ if (isset($_POST['quitter'])){
     <head>
         <title> Page d'accueil Etudiant </title>
         <meta charset = "utf-8">
-        <link rel = "stylesheet" href = "../css/Home_Etudiant.css">
+        <link rel = "stylesheet" href = "../css/Home_Etudiant.css?v=1.2">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class ="elms-sans-text">
+        <main>
         <h1> Page de l'étudiant #<?php echo $_SESSION["Matricule"]; ?>  </h1> <br>
-        
+         <?php 
+            if (!empty($erreur)) {
+            echo "<p class='erreur'>$erreur</p>";
+            } else { ?>     
     <form action="../page_interactive/Home_Etudiant.php" method="post">
         
 
         <hr>
         <h3>Créer un projet</h3> <br>
 
-        <?php 
-            if (!empty($erreur)) {
-            echo "<p class='erreur'>$erreur</p>";
-            }
-        ?>
         <label>Nom du projet :</label>
         <input type="text" name="nom_projet" title="Nom du projet" required>
         <button type="submit" name="creer" >Créer</button>
         <hr>
     </form>
     
-        <h3>Liste de vos projets : </h3> <br>
+        <h3> Liste de vos projets : </h3> <br>
+        <div class = "liste">
         <?php
         if($nbre_lignes_projet == 0){
          echo "<h4>Aucun projets en cours</h4>";
@@ -82,11 +82,20 @@ if (isset($_POST['quitter'])){
                 echo '<button type="submit" name="quitter">Quitter le projet</button>';
                 echo '</form>';
             }
-
         } 
-        
-        
         ?>
+        </div>
+        </main>
+        <?php } ?> 
+        <footer>
+                    <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
+                    <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
+                    
+        </footer>
     </body>
 </html>
 
