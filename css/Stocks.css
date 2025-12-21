@@ -7,6 +7,7 @@ body {
     background-image : url(../image/Umons_background.jpg); 
     background-color : whitesmoke; 
     background-repeat: no-repeat;
+    background-size : cover; 
     color : black; 
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
     flex-direction: column;
