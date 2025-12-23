@@ -57,7 +57,7 @@ if ($_SESSION["logged"] && !$_SESSION["Responsable"]) {
 <?php 
     mysqli_close($conn); 
 } else {
-    header("Location: Home.php");
+    header("Location: connexion.php");
     exit();  
 }
 

@@ -12,21 +12,7 @@ body {
     flex-direction: column;
 }
 
-a:link{
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1); 
-    font-weight : bold; 
-}
-a {
-    text-decoration: none;
-}
+
 .elms-sans-text {
   font-family : "Elms Sans", sans-serif;
   font-optical-sizing : auto;
@@ -37,31 +23,73 @@ h1 {
     text-align : center;
     font-size : 3rem;  
 }
-.table {
-    background-color : rgba(150,150,150,0.8); 
-    margin : 30px 5%;
-    border-radius : 20px; 
-    border : 5px solid black; 
-    display : flex; 
-    flex-direction : column; 
-    box-sizing : border-box; 
-    justify-content : space-evenly; 
-}
-.table .choix {
-    display : flex; 
-    flex-direction : row; 
-    justify-content : space-evenly; 
-    flex : 1;  
-    flex-wrap : nowrap; 
-}
-.table .choix .choi {
-    font-size : 2rem;  
-    text-align : left; 
-    width : 100%; 
-    padding-left : 3%; 
-}
-.table .choix h2 {
+h2 {
     text-align : center;
     font-size : 2.3rem;  
     width : 100%; 
 }
+/* Le conteneur principal (Effet verre) */
+.glass-container {
+    flex : 1; 
+    overflow-y : auto; 
+    background: rgba(255, 255, 255, 0.183); /* Fond noir semi-transparent */
+    backdrop-filter: blur(12px);     /* Le flou derrière la boite */
+    -webkit-backdrop-filter: blur(12px); /* Idem, mais pour safari (IPhone, MacBook,...) */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8); /* Ombre portée */
+    margin-left : calc(50% - 400px);
+    margin-bottom : 60px;  
+    border-radius: 20px; /* on arrondi les angles */
+    padding: 20px;
+    width: 90%;
+    max-width: 800px; /* Largeur max comme sur le login */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.glass-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.glass-container::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.glass-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Conteneur des boutons */
+
+
+/* Style des liens transformés en boutons */
+.btn-glass {
+    display: block; /* on lui dit de se comporter comme un bloc pour qu'il prenne toute la largeur possible */
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1); /* Fond léger */
+    padding: 15px 20px;
+    border-radius: 30px; /* On arrondi les angles */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* on met de très fins bords */
+    transition: all 0.3s ease; /* si je change de couleur ou de position, ça prend 0.3s à se voir, ça rajoute du style eheh */
+    font-weight: bold;
+    font-size : 1.5rem; 
+}
+
+/* Effet au survol de la souris */
+.btn-glass:hover { /* :hover veut dire "quand la souris passe dessus" */
+    background: rgba(255, 255, 255, 1); /* Devient blanc */
+    color: #333; /* Texte devient foncé */
+    transform: translateY(-3px); /* Les boites remontes de 3px */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Style spécifique pour le bouton Admin */
+.btn-admin {
+    border : 5px solid rgba(245, 13, 13, 0.5); /* on a juste rajouter un bord rouge */
+}
+.btn-deco {
+    background-color : rgba(200,50,50,0.3); 
+}
+

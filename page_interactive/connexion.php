@@ -12,12 +12,17 @@
             if (mysqli_num_rows($result)>0){
                $row = mysqli_fetch_assoc ($result); 
                if (password_verify($_MDP, $row["Mot_de_passe"])) {
-                $_SESSION["Nom"] = $row["Nom"]; 
+                            $_SESSION["Nom"] = $row["Nom"]; 
                             $_SESSION["Prenom"] = $row["Prenom"]; 
                             $_SESSION["Email"] = $row["E_mail"]; 
-                            $_SESSION["Matricule"] = $row["E_Matricule"];   
+                            $_SESSION["Matricule"] = $row["RE_Matricule"];   
                             $_SESSION["logged"] = true;
                             $_SESSION["Responsable"] = true; 
+                            if ($row["admin"] == 1) {
+                                $_SESSION["admin"] = true; 
+                            } else {
+                                $_SESSION["admin"] = false; 
+                            }
                             mysqli_close($conn);  
                             header("Location: Home.php");  
                             exit(); 

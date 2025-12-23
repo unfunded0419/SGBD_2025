@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (!$_SESSION["logged"] || $_SESSION["Responsable"]) {
-    header("Location: Home.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
+    header("Location: connexion.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
 } 
 include 'Connexion_DB.php';
 $erreur = ""; 

@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+$erreur = ""; 
 if (isset($_POST["submit"])) {
     if (strlen($_POST["Matricule"]) == 6) {
         $Matricule = filter_input(INPUT_POST, "Matricule", FILTER_VALIDATE_INT);
@@ -12,20 +13,28 @@ if (isset($_POST["submit"])) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         if ($_POST["Etudiant_Responsable"] == "Etudiant") {
         $sql = "INSERT INTO etudiant (E_Matricule, Nom, Prenom, E_mail, Mot_de_passe) VALUES ('$Matricule','$Nom', '$Prenom', '$Email', '$hash')"; 
+        try {
         mysqli_query($conn, $sql);
         mysqli_close($conn);
         header ("Location: connexion.php");  
+        } catch (mysqli_sql_exception $e) {
+            $erreur = "Duplication de matricule dans la base de données interdite"; 
+        }
         } else {
         $sql = "INSERT INTO responsable_des_equipements (RE_Matricule, Nom, Prenom, E_mail, Mot_de_passe, Statut) VALUES ('$Matricule','$Nom', '$Prenom', '$Email', '$hash', 'en_attente')"; 
+        try {
         mysqli_query($conn, $sql);
         mysqli_close($conn);
-        header ("Location: connexion.php");  
+        header ("Location: connexion.php");
+        } catch (mysqli_sql_exception $e) {
+            $erreur = "Duplication de matricule dans la base de données interdite"; 
+        } 
         }
         } else {
-            $erreur_caractere = "Erreur rencontree au moment du traitement de votre matricule"; 
+            $erreur = "Erreur rencontree au moment du traitement de votre matricule"; 
         }
     } else {
-       $erreur_nombre = "Un matricule est constitué d'exactement 6 chiffres"; 
+       $erreur = "Un matricule est constitué d'exactement 6 chiffres"; 
     }
 } 
 ?>
@@ -48,11 +57,8 @@ if (isset($_POST["submit"])) {
                 <label for = "Matricule"> Matricule  : </label>
                 <input type = "number"  id = "Matricule" name = "Matricule" required = "required">
                 </div>
-                <?php if(!empty($erreur_nombre)) { ?>
-                  <p> <?php echo $erreur_nombre ?> </p> 
-                <?php } ?>
-                <?php if(!empty($erreur_caractere)) { ?>
-                    <p> <?php echo $erreur_caractere ?> </p> 
+                <?php if(!empty($erreur)) { ?>
+                  <p> <?php echo $erreur ?> </p> 
                 <?php } ?>
                 <div class = "align">
                 <label for = "Nom"> Nom : </label>

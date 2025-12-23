@@ -3,43 +3,48 @@
     <head>
         <title> Page d'acceuil </title>
         <meta charset = "utf-8">
-        <link rel = "stylesheet" href = "../css/Home.css?v=1.1">
+        <link rel = "stylesheet" href = "../css/Home.css?v=1.5">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
     <body class = "elms-sans-text">
          <h1> Système de gestion des équipements Lots et Edge </h1> <br>
-         <div class = "table">
+         <?php if ($_SESSION["Responsable"] == false) { ?>
+         <div class = "glass-container">
             <div class = "choix">
             <h2>  Choisissez parmi les options suivantes : </h2>
             </div>
-         <div class = "choix">
-            <div class = "choi">
-         <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
+
+            
+         <a href = "../page_interactive/Demande.php" class = "btn-glass"> - Faire une demande </a>
+         <a href = "../page_interactive/Stocks.php" class = "btn-glass"> - Consulter les stocks </a>
+         <a href = "../page_interactive/Suivi_demande.php" class = "btn-glass"> - Suivi des demandes </a>
+         <a href = "../page_interactive/Ajout_Etud_Projet.php" class = "btn-glass"> - Ajouter des étudiants au projet</a>
+         <a href = "../page_interactive/Home_Etudiant.php" class = "btn-glass"> - Projets suivi </a>
+         <a href = "../page_interactive/Deconnexion.php" class = "btn-glass btn-deco"> - Déconnexion </a> 
+
          </div>
-         <div class = "choi">
-         <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+         <?php } else { ?>
+         <div class = "glass-container">
+            <div class = "choix">
+            <h2>  Choisissez parmi les options suivantes : </h2>
+            </div> 
+
+         <a href = "../page_interactive/Stocks.php" class = "btn-glass"> - Consulter les stocks </a>
+         
+         <a href = "../page_interactive/ajout_materiel.php" class = "btn-glass"> - Ajouter du materiel </a>
+         
+         <?php if ($_SESSION["admin"] == true) { ?>
+      
+         <a href = "../page_interactive/demande_resp.php" class = "btn-glass btn-admin"> - Demande responsable </a> 
+         
+         <?php } ?>
+
+         <a href = "../page_interactive/Deconnexion.php" class = "btn-glass btn-deco"> - Déconnexion </a> 
          </div>
          
-         </div>
-         <div class = "choix">
-            <div class = "choi">
-         <p><a href = "../page_interactive/Suivi_demande.php"> - Suivi des demandes </a></p>
-         </div>
-         <div class = "choi">
-         <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
-         </div>
-         </div>
-         <div class = "choix">
-            <div class = "choi">
-         <p> <a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a></p>
-         </div>  
-         <div class = "choi">
-         <p><a href = "../page_interactive/Deconnexion.php"> - Déconnexion </a> </p>
-         </div>
-         </div>
-         </div>
+         <?php } ?>
     </body>
 
 
