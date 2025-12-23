@@ -82,7 +82,3 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Style spécifique pour le bouton Admin */
-.btn-admin {
-    border-color: rgba(245, 13, 13, 0.5); /* on a juste rajouter un bord rouge */
-}

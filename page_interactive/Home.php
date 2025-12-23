@@ -52,7 +52,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                 <?php endif; ?> 
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
-                    <a href="../page_interactive/demande_resp.php" class="btn-glass btn-admin">
+                    <a href="../page_interactive/demande_resp.php" class="btn-glass">
                         Gestion des comptes Responsables
                     </a>
                 <?php endif; ?>

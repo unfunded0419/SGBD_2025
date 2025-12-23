@@ -155,5 +155,10 @@ $liste_modeles = mysqli_query($conn, "SELECT * FROM modele");
             <button type="submit" name="submit" class="submit">Enregistrer</button>
         </form>
     </div>
+    <footer>
+        -Page<a href = "../page_interactive/Home.php">d'acceuil </a>
+        -Gestion des<a href = #>demandes étudiantes </a>
+        -Gestion des<a href = "../page_interactive/demande_resp.php">comptes responsables</a>
+    </footer>
 </body>
 </html>
