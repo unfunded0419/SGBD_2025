@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     // --- ÉTAPE 1 : VÉRIFIER DANS LA TABLE RESPONSABLE (Version MySQLi) ---
     // On prépare la requête (sécurité)
 
-    if(!empty($_POST["Etudiant_Responsable"]))
+    if(!empty($_POST["Etudiant_Responsable"])) // si une session a été sélectionnée 
     {
         if ($_POST["Etudiant_Responsable"]==="Responsable") 
         {

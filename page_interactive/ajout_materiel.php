@@ -158,7 +158,9 @@ $liste_modeles = mysqli_query($conn, "SELECT * FROM modele");
     <footer>
         -Page<a href = "../page_interactive/Home.php">d'acceuil </a>
         -Gestion des<a href = #>demandes étudiantes </a>
-        -Gestion des<a href = "../page_interactive/demande_resp.php">comptes responsables</a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
+            <a href="../page_interactive/demande_resp.php">Gestion des comptes Responsables</a>
+        <?php endif; ?>
     </footer>
 </body>
 </html>
