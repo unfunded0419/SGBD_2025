@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SESSION["logged"] == false || $_SESSION["Responsable"] == true) {
-    header("Location: connexion.php");
+    header("Location: Home.php");
     exit();
 }
 
