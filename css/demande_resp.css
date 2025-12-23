@@ -18,7 +18,7 @@ body{
     flex-direction: column; /* INDISPENSABLE POUR QU'IL COEXISTE AVEC LE FOOTER */
     justify-content: center; /* on centre horizontalement */
     align-items: center; /* on centre verticalement */
-    font-family: 'Elms Sans', sans-serif; /* Votre police */
+    font-family: 'Elms Sans', sans-serif; /* Notre police */
     color:rgb(0, 0, 0);
 }
 

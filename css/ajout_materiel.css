@@ -99,7 +99,7 @@ select {
 }
 
 .submit:hover {
-    transform: translateY(-3px); /* Les boites remontes de 3px */
+    transform: translateY(-3px); /* Les boites remontent de 3px */
     background-color: white;
     color: black;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Une ombre apparait */
