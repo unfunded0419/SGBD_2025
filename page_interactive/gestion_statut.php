@@ -16,7 +16,7 @@ if (isset($_GET['matricule']) && isset($_GET['action'])) {
     // Petite sécurité pour être sûr que l'action est valide
     if ($action === 'Accepte' || $action === 'Refuse') {
         
-        // Si c'est "Accepte", on met "Accepté" (avec accent comme dans ta DB)
+        // Si c'est "Accepte", on met "Accepté" 
         // Si c'est "Refuse", on met "Refusé"
         $nouveau_statut = ($action === 'Accepte') ? 'Accepté' : 'Refusé';
 
