@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 23 nov. 2025 à 17:16
+-- Généré le : mar. 23 déc. 2025 à 04:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -40,7 +40,9 @@ CREATE TABLE `categorie` (
 INSERT INTO `categorie` (`ID_Categorie`, `Nom`, `Valeur_critique`) VALUES
 (1, 'Moteur', 5),
 (2, 'Processeur', 3),
-(3, 'Cable', 10);
+(3, 'Cable', 10),
+(4, 'nouveau', 5),
+(5, 'noubi', 5);
 
 -- --------------------------------------------------------
 
@@ -75,22 +77,26 @@ CREATE TABLE `emprunt` (
   `Date_debut` date DEFAULT NULL,
   `Date_fin_prevue` date DEFAULT NULL,
   `Raison_Emprunt` text DEFAULT NULL,
-  `Statut` varchar(150) DEFAULT NULL,
+  `Statut` enum('en_attente','refuse','approuve') DEFAULT NULL,
   `Date_retour` date DEFAULT NULL,
   `Retard` tinyint(1) DEFAULT NULL,
   `Degradation_materiel` tinyint(1) DEFAULT NULL,
   `RE_Matricule` int(11) DEFAULT NULL,
   `E_Matricule` int(11) DEFAULT NULL,
-  `ID_Projet` int(11) DEFAULT NULL
+  `ID_Projet` int(11) DEFAULT NULL,
+  `ID_Modele_demande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `emprunt`
 --
 
-INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Emprunt`, `Statut`, `Date_retour`, `Retard`, `Degradation_materiel`, `RE_Matricule`, `E_Matricule`, `ID_Projet`) VALUES
-(1, '2025-11-01', '2025-11-14', 'efefef', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '2025-11-15', '2025-11-30', 'fffee', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Emprunt`, `Statut`, `Date_retour`, `Retard`, `Degradation_materiel`, `RE_Matricule`, `E_Matricule`, `ID_Projet`, `ID_Modele_demande`) VALUES
+(31, '2025-12-20', '2025-12-21', 'oekdoed', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2),
+(32, '2025-12-20', '2025-12-21', 'oekdoe', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
+(33, '2025-12-21', '2025-12-22', 'fde', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
+(34, '2025-12-21', '2025-12-22', 'szsad', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
+(35, '2025-12-21', '2025-12-22', 'adsaa', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -111,8 +117,8 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`E_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`) VALUES
-(240223, 'Clone', 'Moi', 'gwendehon4@gmail.com', '$2y$10$oDoqEfX49g6QEer9pvDjOuJkSroas7e.DywMQQppvhkpnEfJHEC4K'),
-(240227, 'De Hon', 'Gwenaël', 'gwendehon4@gmail.com', '$2y$10$pear8ytdYOV6KynrxBUuAujT66FiZfFf/wHA3gFKRo7CQMa3Bg0Q2');
+(111111, 'E', 'F', 'gwendehon4@gmail.com', '$2y$10$JKrrXiprBYBRX2ulOQ2tiOLwI9ljw37dKzAH4kvM0fTqLa/IOJGZq'),
+(240227, 'E', 'F', 'gwendehon4@gmail.com', '$2y$10$MigwJ5h..YR1GaZ9vB1OS./qezy2BNggGeRO6sCJ/N3kGEA9s.afW');
 
 -- --------------------------------------------------------
 
@@ -140,7 +146,13 @@ INSERT INTO `exemplaire` (`ID_Exemplaire`, `Etat`, `Disponibilite`, `ID_Modele`,
 (2, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
 (3, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
 (4, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
-(5, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL);
+(5, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
+(6, 'utilisable', 'disponible', 1, NULL, NULL, '2025-12-23', 240227),
+(7, 'utilisable', 'disponible', 4, NULL, NULL, '2025-12-23', 240227),
+(8, 'utilisable', 'disponible', 4, NULL, NULL, '2025-12-23', 240227),
+(9, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
+(10, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
+(11, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227);
 
 -- --------------------------------------------------------
 
@@ -173,7 +185,9 @@ CREATE TABLE `modele` (
 INSERT INTO `modele` (`ID_Modele`, `Reference`, `Description`, `ID_Categorie`) VALUES
 (1, 'Veltor', 'Un moteur pour velo', 1),
 (2, 'CPUTORNADO', 'Une CPU qui dechire', 2),
-(3, 'CABLEMAG', 'Des cable enchantés', 3);
+(3, 'CABLEMAG', 'Des cable enchantés', 3),
+(4, 'Montont', 'Montent le matin verdoyant', 4),
+(5, 'galaxy', 'beautiful stars in the sky', 5);
 
 -- --------------------------------------------------------
 
@@ -186,6 +200,16 @@ CREATE TABLE `participer` (
   `E_Matricule` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `participer`
+--
+
+INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
+(9, 111111),
+(9, 240227),
+(10, 111111),
+(13, 240227);
+
 -- --------------------------------------------------------
 
 --
@@ -196,6 +220,17 @@ CREATE TABLE `projet` (
   `ID_Projet` int(11) NOT NULL,
   `Nom` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `projet`
+--
+
+INSERT INTO `projet` (`ID_Projet`, `Nom`) VALUES
+(9, 'projet_1'),
+(10, 'projet_2'),
+(11, 'ofeofh'),
+(12, 'feojf'),
+(13, 'new');
 
 -- --------------------------------------------------------
 
@@ -220,8 +255,18 @@ CREATE TABLE `responsable_des_equipements` (
   `Nom` varchar(150) DEFAULT NULL,
   `Prenom` varchar(150) DEFAULT NULL,
   `E_mail` varchar(150) DEFAULT NULL,
-  `Mot_de_passe` varchar(200) DEFAULT NULL
+  `Mot_de_passe` varchar(200) DEFAULT NULL,
+  `Statut` enum('en_attente','refuse','approuve') NOT NULL,
+  `admin` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `responsable_des_equipements`
+--
+
+INSERT INTO `responsable_des_equipements` (`RE_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`, `Statut`, `admin`) VALUES
+(111111, 'D', 'T', 'gwendehon4@gmail.com', '$2y$10$j1uQa5UFLXQ4GLoQaZcw2O5csUwWkmpgwer1EKyYqSH9CbOPkpFSm', 'approuve', 0),
+(240227, 'E', 'F', 'gwendehon4@gmail.com', '$2y$10$GXU8cxBWxCxSDoeEX3p1juvzWns9W98JfW..Y1oeOrGsU.1R.4URe', 'approuve', 1);
 
 --
 -- Index pour les tables déchargées
@@ -318,7 +363,7 @@ ALTER TABLE `responsable_des_equipements`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `ID_Categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `cours`
@@ -330,25 +375,25 @@ ALTER TABLE `cours`
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `exemplaire`
 --
 ALTER TABLE `exemplaire`
-  MODIFY `ID_Exemplaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Exemplaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `modele`
 --
 ALTER TABLE `modele`
-  MODIFY `ID_Modele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Modele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées
