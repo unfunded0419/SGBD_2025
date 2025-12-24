@@ -70,7 +70,6 @@ $nombre_demandes = mysqli_num_rows($result);
     <footer>
         -Page<a href = "../page_interactive/Home.php">d'acceuil </a>
         -Gestion des<a href = #>demandes étudiantes </a>
-        -Gestion des<a href = "../page_interactive/demande_resp.php">comptes responsables</a>
         -Ajout de<a href = "../page_interactive/ajout_materiel.php">matériel</a>
     </footer>
 </body>
