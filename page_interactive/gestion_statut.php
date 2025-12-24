@@ -13,17 +13,15 @@ if (isset($_GET['matricule']) && isset($_GET['action'])) {
     $matricule = $_GET['matricule'];
     $action = $_GET['action']; // Sera 'Accepte' ou 'Refuse'
 
-    // Petite sécurité pour être sûr que l'action est valide
-    if ($action === 'Accepte' || $action === 'Refuse') {
+    // Petite sécurité pour être sûr que l'action est valide 
+    if ($action === 'Accepté' || $action === 'Refusé') {
         
-        // Si c'est "Accepte", on met "Accepté" 
-        // Si c'est "Refuse", on met "Refusé"
-        $nouveau_statut = ($action === 'Accepte') ? 'Accepté' : 'Refusé';
-
         // 3. UPDATE DANS LA BASE DE DONNÉES
         $stmt = $conn->prepare("UPDATE responsable_des_equipements SET Statut = ? WHERE RE_Matricule = ?");
-        $stmt->bind_param("si", $nouveau_statut, $matricule);
-        
+        // bind_param() permet d'injecter mes variables dans les "?" 
+        // "ss" car le statut et le matricule (qui est en réalité une adresse mail) sont des string (varchar dans la db) et donc "s" pour chaque variable
+        $stmt->bind_param("ss", $action, $matricule); 
+
         if ($stmt->execute()) {
             // Succès : on retourne à la liste
             header("Location: demande_resp.php");

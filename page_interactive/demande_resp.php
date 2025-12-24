@@ -50,11 +50,14 @@ $nombre_demandes = mysqli_num_rows($result);
                                 </td>
                                 <td><?= htmlspecialchars($ligne['E_mail']) ?></td>     
                                 <td>
-                                    <a href="gestion_statut.php?matricule=<?= $ligne['RE_Matricule'] ?>&action=Accepte" class="btn-glass">
-                                        Valider
+                                <?php /* Pour "Valider", comme pour "Refuser", on envoie l'information à travers la variable "action",
+                                on prend le matricule de la personne qui fait la demande
+                                on part dans le code gestion_demande.php pour UPDATE */?>
+                                    <a href="gestion_statut.php?matricule=<?= $ligne['RE_Matricule'] ?>&action=Accepté" class="btn-glass">
+                                        Valider 
                                     </a>
-                                    
-                                    &nbsp; <a href="gestion_statut.php?matricule=<?= $ligne['RE_Matricule'] ?>&action=Refuse" class="btn-glass">
+                                
+                                    <a href="gestion_statut.php?matricule=<?= $ligne['RE_Matricule'] ?>&action=Refusé" class="btn-glass">
                                         Refuser
                                     </a>
                                 </td>
@@ -63,7 +66,7 @@ $nombre_demandes = mysqli_num_rows($result);
                     </tbody>
                 </table>
             </section>
-        <?php else: ?>
+        <?php else: /* s'il n'y a pas de demande en attente, on affiche ceci */?>
             <p>Aucune demande à traiter pour le moment.</p>
         <?php endif; ?>
     </main>

@@ -25,6 +25,7 @@ body {
 
 /* Style global pour la boite principale */
 .boite-register {
+    margin-bottom: 20px;
     width: 600px; /* Un peu plus large pour être à l'aise */
     margin: auto;
     padding: 30px;
@@ -57,7 +58,7 @@ h1 {
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #444;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #ddd; /* la petite bordure en dessous du titre de l'étape du form */
     padding-bottom: 5px;
 }
 
@@ -86,6 +87,7 @@ select {
     display: flex;
     width: 30%;
     margin: 15px auto;
+    margin-bottom: 5px;
     padding: 12px;
     background: rgba(0, 0, 0, 0.183);
     color: white;

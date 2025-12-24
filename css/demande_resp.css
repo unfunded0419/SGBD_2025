@@ -13,6 +13,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed; /* l'image reste fixe, même si on doit scroller pour atteindre le bas de la page*/
 
+    margin-top: 20px;
     min-height: 100vh;
     display:flex;
     flex-direction: column; /* INDISPENSABLE POUR QU'IL COEXISTE AVEC LE FOOTER */
@@ -38,10 +39,7 @@ main.table{
     overflow: hidden;
     display:flex;
     flex-direction: column;
-    /*padding: 40px;
-    width: 90%;
-    max-width: 800px; 
-    text-align: center;*/
+    text-align: center;
 }
  
 .table_header{
@@ -116,6 +114,8 @@ h1{
     border: 2px solid rgba(255, 255, 255, 0.1); /* on met de très fins bords */
     transition: all 0.3s ease; /* si je change de couleur ou de position, ça prend 0.3s à se voir, ça rajoute du style eheh */
     font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .btn-glass:hover { /* :hover veut dire "quand la souris passe dessus" */
@@ -124,6 +124,7 @@ h1{
     transform: translateY(-3px); /* Les boites remontes de 3px */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
+
 
 footer {
     background-color : rgba(150,150,150,0.7);
@@ -142,5 +143,4 @@ footer a{
 
 a:hover{
     color : rgba(255,255,255,1);
-    font-weight : bold; 
 }
