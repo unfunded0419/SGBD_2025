@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
     <div class = "catalogue">
-    <h2> Etats des stocks : </h2>
+    <h2> Etats des stocks : </h2> <?php /*duplication nécessaire suite à l'utilisation d'un select*/  ?>
     <?php if (empty($categorie)) { ?>
          <?php foreach($reuse_result as $row) { ?>
             <div class = "Appareil">
