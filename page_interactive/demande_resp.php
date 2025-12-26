@@ -2,7 +2,7 @@
 session_start();
 
 // 1. VÉRIFICATION SÉCURITÉ
-if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true || $_SESSION['role'] !== 'admin') {
+if ($_SESSION['logged'] == false || $_SESSION["Responsable"] == false || $_SESSION['admin'] == false) {
     header("Location: connexion.php"); 
     exit();
 }

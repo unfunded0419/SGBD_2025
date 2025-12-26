@@ -3,7 +3,7 @@ session_start();
 include 'Connexion_DB.php';
 
 // 1. SÉCURITÉ : Seul l'admin peut faire ça
-if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
+if ($_SESSION['logged'] == false || $_SESSION['admin'] == false || $_SESSION["Responsable"] == false) {
     die("Accès interdit.");
 }
 
