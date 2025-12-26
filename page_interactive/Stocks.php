@@ -28,6 +28,7 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <h2>Filtrer les résultats suivant les catégories : </h2>
         <div class = "champ"> 
         <select name = "categorie">
+            <option value = "">Aucun</option> 
         <?php foreach ($reuse_result as $row) { ?>
             <option value = "<?php echo htmlspecialchars($row["Nom"]);?>"> <?php echo htmlspecialchars ($row["Nom"]); ?> </option>  
     <?php }?>
@@ -38,13 +39,22 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
     </div>
     </form>
 <?php
-$categorie = array_column($reuse_result,'Nom'); 
 if (isset($_POST["submit"])) {
         $categorie = $_POST["categorie"];
 }
 ?>
     <div class = "catalogue">
     <h2> Etats des stocks : </h2>
+    <?php if (empty($categorie)) { ?>
+         <?php foreach($reuse_result as $row) { ?>
+            <div class = "Appareil">
+                <div class = "contenu">Categorie : <?php echo htmlspecialchars($row["Nom"]); ?> </div>
+                <div class = "contenu">Nom produit : <?php echo htmlspecialchars($row["Reference"]); ?>  </div>
+                <div class = "contenu">Description : <?php echo htmlspecialchars($row["Description"]); ?>  </div>
+                <div class = "contenu">Quantite disponible en stock : <?php echo ($row["En_Stocks"]); ?> </div>
+            </div>
+    <?php }?>
+    <?php } else { ?>
     <?php foreach($reuse_result as $row) { ?>
             <?php   if ($row["Nom"] == $categorie) { ?>
             <div class = "Appareil">
@@ -54,7 +64,7 @@ if (isset($_POST["submit"])) {
                 <div class = "contenu">Quantite disponible en stock : <?php echo ($row["En_Stocks"]); ?> </div>
             </div>
               <?php  } ?>
-    <?php }?>
+    <?php } }?>
     </div>
     </main>  
     <footer>
