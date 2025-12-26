@@ -15,12 +15,16 @@ body{
 
     min-height: 100vh;
     display:flex;
+    flex-direction:column; /* INDISPENSABLE POUR QU'IL COEXISTE AVEC LE FOOTER */
     justify-content: center; /* on centre horizontalement */
     align-items: center; /* on centre verticalement */
-    font-family: 'Elms Sans', sans-serif; /* Votre police */
+    font-family: 'Elms Sans', sans-serif; /* Notre police */
     color:rgb(0, 0, 0);
 }
-
+h1 {
+    width : 100%; 
+    text-align: center;
+}
 table, th, td{
     padding:2rem;
     border-collapse: collapse;
@@ -34,13 +38,11 @@ main.table{
     -webkit-backdrop-filter: blur(12px); /* Idem, mais pour safari (IPhone, MacBook,...) */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8); /* Ombre portée */   
     border-radius: 20px; /* on arrondi les angles */
-    overflow: hidden;
+    overflow: auto;
     display:flex;
     flex-direction: column;
-    /*padding: 40px;
-    width: 90%;
-    max-width: 800px; 
-    text-align: center;*/
+    text-align : center; 
+    margin-top : 15px; 
 }
  
 .table_header{
@@ -58,11 +60,9 @@ main.table{
 .table_body{
     width:95%;
     max-height: calc(89% - .8rem);
-
     margin: .8rem auto;
     background-color: rgba(255, 255, 255, 0.183); /* Fond noir semi-transparent */
     border-radius: 20px;
-
     flex:auto;
     min-height: auto;
     overflow:auto;
@@ -127,3 +127,34 @@ h1{
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+footer {
+    background-color : rgba(150,150,150,0.7);
+    padding: 10px 20px;
+    width : 100%;   
+    font-size : 1.2rem; 
+    display : flex; 
+    gap : 20px; 
+    margin-top: auto;
+}
+
+footer a{
+    color:#000000;
+    text-decoration: none;
+}
+
+a:hover{
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
+}
+.table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.table::-webkit-scrollbar-track {
+    background: transparent;
+}

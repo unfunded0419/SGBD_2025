@@ -96,9 +96,10 @@ $liste_modeles = mysqli_query($conn, "SELECT * FROM modele");
 <head>
     <title>Ajout Matériel</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/ajout_materiel.css">
+    <link rel="stylesheet" href="../css/ajout_materiel.css?v=1.2">
 </head>
 <body>
+    <main>
     <div class="boite-register">
         <h1>Ajouter du Matériel</h1>
 
@@ -155,5 +156,16 @@ $liste_modeles = mysqli_query($conn, "SELECT * FROM modele");
             <button type="submit" name="submit" class="submit">Enregistrer</button>
         </form>
     </div>
+    </main>
+    <footer>
+        <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/ajout_materiel.php"> - Ajouter materiel </a></p>
+                    <p><a href = "../page_interactive/Reparation.php"> - Réparer materiel </a></p>
+                    <p><a href = "../page_interactive/Valider_demande.php"> - Gérer Demande </a></p>
+        <?php if ($_SESSION["admin"] == true) { ?>
+                    <p><a href = "../page_interactive/demande_resp.php"> - Gérer Responsable </a></p>
+        <?php } ?>
+    </footer>
 </body>
 </html>

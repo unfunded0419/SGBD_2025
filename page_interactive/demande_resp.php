@@ -21,7 +21,7 @@ $nombre_demandes = mysqli_num_rows($result);
     <meta charset="UTF-8">
     <title>Validation des Responsables</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <?php /* ne pas dézoomer si on est sur smartphone, sinon tout paraitra rikiki */?>
-    <link rel="stylesheet" href="../css/demande_resp.css">
+    <link rel="stylesheet" href="../css/demande_resp.css?v=1.2">
 </head>
 <body>
     <main class="table">
@@ -50,6 +50,9 @@ $nombre_demandes = mysqli_num_rows($result);
                                 </td>
                                 <td><?= htmlspecialchars($ligne['E_mail']) ?></td>     
                                 <td>
+                                    <?php /* Pour "Valider", comme pour "Refuser", on envoie l'information à travers la variable "action",
+                                    on prend le matricule de la personne qui fait la demande
+                                    on part dans le code gestion_demande.php pour UPDATE */?>
                                     <a href="gestion_statut.php?matricule=<?= $ligne['RE_Matricule'] ?>&action=Accepte" class="btn-glass">
                                         Valider
                                     </a>
@@ -63,12 +66,20 @@ $nombre_demandes = mysqli_num_rows($result);
                     </tbody>
                 </table>
             </section>
-        <?php else: ?>
+        <?php else: /* s'il n'y a pas de demande en attente, on affiche ceci */?>
             <p>Aucune demande à traiter pour le moment.</p>
         <?php endif; ?>
     </main>
-    <br>
-        <p>Page <a href="Home.php">d'accueil</a></p>
-    </br>
+    <footer>
+                    <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/ajout_materiel.php"> - Ajouter materiel </a></p>
+                    <p><a href = "../page_interactive/Reparation.php"> - Réparer materiel </a></p>
+                    <p><a href = "../page_interactive/Valider_demande.php"> - Gérer Demande </a></p>
+                    <?php if ($_SESSION["admin"] == true) { ?>
+                        <p><a href = "../page_interactive/demande_resp.php"> - Gérer Responsable </a></p>
+                    <?php } ?>
+    </footer>
+   
 </body>
 </html>

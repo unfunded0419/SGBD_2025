@@ -20,12 +20,14 @@ body {
     background-repeat: no-repeat; 
     color: white;
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
+    flex-direction: column;
 }
-
+main {
+    flex : 1;
+}
 /* Style global pour la boite principale */
 .boite-register {
     width: 600px; /* Un peu plus large pour être à l'aise */
-    margin: 20px auto;
     padding: 30px;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.183);
@@ -83,7 +85,7 @@ h1 {
     text-align: center;
     font-weight: bold;
     margin: 5px 0;
-    color: #000000; /* Orange pour bien séparer */
+    color: #000000; 
 }
 
 /* Style des champs input et select */
@@ -100,17 +102,44 @@ select {
 
 /* Le bouton de validation */
 .submit {
+    display: flex;
     width: 30%;
+    margin: 15px auto;
+    margin-bottom: 5px;
     padding: 12px;
-    background-color: #2ecc71;
+    background: rgba(0, 0, 0, 0.183);
     color: white;
     border: none;
     border-radius: 15px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
 .submit:hover {
-    background-color: #27ae60;
+    transform: translateY(-3px); /* Les boites remontent de 3px */
+    background-color: white;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Une ombre apparait */
+}
+footer {
+    background-color : rgba(150,150,150,0.7);
+    padding: 10px 20px;
+    width : 100%;   
+    font-size : 1.2rem; 
+    display : flex; 
+    gap : 20px; 
+    margin-top: auto;
+}
+
+footer a{
+    color:#000000;
+    text-decoration: none;
+}
+
+a:hover{
+    color : rgba(255,255,255,1);
+    font-weight : bold; 
 }
