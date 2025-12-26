@@ -68,12 +68,23 @@ if (isset($_POST["submit"])) {
     </div>
     </main>  
     <footer>
+        <?php if ($_SESSION["Responsable"] == false) { ?>  <?php /* Etant donne que les etudiants et les responsables ont accès à cette page, il faut créer deux footers différents */ ?>
                  <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
                     <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
                     <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
                     <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
                     <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
                     <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
+        <?php } else { ?>
+                    <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/ajout_materiel.php"> - Ajouter materiel </a></p>
+                    <p><a href = "../page_interactive/Reparation.php"> - Réparer materiel </a></p>
+                    <p><a href = "../page_interactive/Valider_demande.php"> - Gérer Demande </a></p>
+                    <?php if ($_SESSION["admin"] == true) { ?>
+                        <p><a href = "../page_interactive/demande_resp.php"> - Gérer Responsable </a></p>
+                    <?php } ?>
+            <?php } ?>
     </footer>
 </body>
 </html>
