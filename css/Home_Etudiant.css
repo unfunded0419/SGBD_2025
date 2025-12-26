@@ -23,7 +23,6 @@ main {
     display : flex;
     flex-direction: column;
     overflow-y: hidden;  
-    
 }
 
 h1 {
@@ -59,7 +58,24 @@ form {
     max-width: 600px;
     margin: 0 auto;
 }
+#acceder {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: 0.3s;
+    text-align: center;
+}
 
+#acceder:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
 body > form {
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.15);

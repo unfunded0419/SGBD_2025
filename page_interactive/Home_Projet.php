@@ -1,0 +1,17 @@
+<?php
+session_start(); 
+if (!isset($_SESSION["logged"]) || $_SESSION["Responsable"] != false) {
+    header("Location: connexion.php");
+    exit();
+}
+
+// je stock l'id du projet sur lequel j'ai cliqué (et que j'ai transféré via l'URL) dans le cookie de connexion
+// Comme ça sur les page suivante je pourrai utiliser l'id comme un paramètre ( créer des demandes, ajouter des participants au projet etc etc ...)
+if(isset($_GET['id_projet'])){
+$_SESSION['ID_Projet'] = (int)$_GET['id_projet']; 
+header ("Location: Home.php"); 
+}
+elseif(!isset($_SESSION["id_projet"])){
+header("Location: Home_Etudiant.php");
+}
+?>

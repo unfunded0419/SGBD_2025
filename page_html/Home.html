@@ -16,12 +16,12 @@
             <h2>  Choisissez parmi les options suivantes : </h2>
             </div>
 
-            
+            <?php echo $_SESSION["ID_Projet"] ?>
          <a href = "../page_interactive/Demande.php" class = "btn-glass"> - Faire une demande </a>
          <a href = "../page_interactive/Stocks.php" class = "btn-glass"> - Consulter les stocks </a>
          <a href = "../page_interactive/Suivi_demande.php" class = "btn-glass"> - Suivi des demandes </a>
          <a href = "../page_interactive/Ajout_Etud_Projet.php" class = "btn-glass"> - Ajouter des étudiants au projet</a>
-         <a href = "../page_interactive/Home_Etudiant.php" class = "btn-glass"> - Projets suivi </a>
+         <a href = "../page_interactive/Home_Etudiant.php" class = "btn-glass"> - Retour </a>
          <a href = "../page_interactive/Deconnexion.php" class = "btn-glass btn-deco"> - Déconnexion </a> 
 
          </div>
@@ -34,6 +34,8 @@
          <a href = "../page_interactive/Stocks.php" class = "btn-glass"> - Consulter les stocks </a>
          
          <a href = "../page_interactive/ajout_materiel.php" class = "btn-glass"> - Ajouter du materiel </a>
+
+         <a href = "../page_interactive/Reparation.php" class = "btn-glass"> - Reparer materiel </a>
          
          <?php if ($_SESSION["admin"] == true) { ?>
       

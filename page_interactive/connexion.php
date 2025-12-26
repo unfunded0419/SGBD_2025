@@ -46,7 +46,7 @@
                             $_SESSION["logged"] = true;
                             $_SESSION["Responsable"] = false; 
                             mysqli_close($conn);  
-                            header("Location: Home.php");  
+                            header("Location: Home_Etudiant.php");  
                             exit(); 
                         }
                         else {

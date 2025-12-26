@@ -1,11 +1,12 @@
 <?php
 session_start(); 
-if ($_SESSION["logged"] && !$_SESSION["Responsable"]) {
+if ($_SESSION["logged"] && !$_SESSION["Responsable"] && !empty($_SESSION["ID_Projet"])) {
     include "Connexion_DB.php"; 
     $Matricule = $_SESSION["Matricule"];  
+    $idProjet = $_SESSION["ID_Projet"]; 
     $sql = "SELECT emprunt.ID_Emprunt as ID_Emprunt, emprunt.Date_debut as Date_debut, emprunt.Date_fin_prevue as Date_fin_prevue,
     emprunt.Raison_Emprunt as Raison, emprunt.Statut as Statut, modele.Reference as Reference, projet.Nom as Projet_Nom
-    FROM emprunt, modele, projet WHERE projet.ID_Projet = emprunt.ID_Projet AND emprunt.E_Matricule = '$Matricule' AND modele.ID_Modele = emprunt.ID_Modele_demande"; 
+    FROM emprunt, modele, projet WHERE projet.ID_Projet = '$idProjet' AND '$idProjet' = emprunt.ID_Projet AND emprunt.E_Matricule = '$Matricule' AND modele.ID_Modele = emprunt.ID_Modele_demande"; 
     $results = mysqli_query($conn, $sql);
     ?>
 <!DOCTYPE html>

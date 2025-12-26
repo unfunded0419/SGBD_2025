@@ -68,7 +68,7 @@ form .boutton {
 }
 form .boutton input[type = "submit"] {
     border-radius : 20px;  
-    font-size : 1rem; 
+    font-size : 1.5rem; 
     background-color : white; 
 }
 form .boutton input[type = "submit"]:hover {
@@ -85,6 +85,14 @@ form .boutton input[type = "submit"]:hover {
     border-radius: 20px;
     border: 5px solid black;
     background-color: rgba(150,150,150,0.7);
+}
+select {
+    border-radius: 20px;
+    font-size: 1.5rem;
+    border : 3px solid black; 
+}
+select:hover {
+    background-color : whitesmoke; 
 }
 .Appareil {
     display : flex; 

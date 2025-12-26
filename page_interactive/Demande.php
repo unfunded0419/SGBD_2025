@@ -1,17 +1,16 @@
 
 <?php
 session_start();
-if (!$_SESSION["logged"] || $_SESSION["Responsable"]) {
+if (!$_SESSION["logged"] || $_SESSION["Responsable"] || empty($_SESSION["ID_Projet"])) {
     header("Location: connexion.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
 } 
 include 'Connexion_DB.php';
 $erreur = ""; 
 $matricule = $_SESSION["Matricule"]; 
-$proj = "SELECT projet.Nom as Nom_proj, projet.ID_Projet as ID_Projet FROM projet JOIN participer ON projet.ID_Projet = participer.ID_Projet WHERE participer.E_Matricule = '$matricule'"; 
+$idprojet = $_SESSION["ID_Projet"]; 
+$proj = "SELECT projet.Nom as Nom_proj FROM projet WHERE projet.ID_Projet = '$idprojet'"; 
 $projets = mysqli_query($conn, $proj); 
-if (mysqli_num_rows($projets) == 0) {
-$erreur = "Veuillez d'abord créer un projet avant de réaliser une demande de matériel"; 
-} 
+
 if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur à bien remplit les champs pour les dates de manière logique , ensuite il vérifie si l'objet demandé se trouve dans la db et enfin seulement l'emprunt et la table concerner sont mise à jour*/
     $_Article = filter_input(INPUT_POST, "nom_article", FILTER_SANITIZE_SPECIAL_CHARS);  
     $today = date('Y-m-d'); 
@@ -26,8 +25,7 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                             foreach ($result as $row) {
                             $modele = $row["ID_modele"]; 
                             $Matricule = $_SESSION["Matricule"]; 
-                            $projet_choisi = $_POST["projet"]; 
-                            $sql = "INSERT INTO emprunt(Date_debut, Date_fin_prevue, Raison_Emprunt, E_Matricule, Statut, ID_Projet, ID_Modele_demande) VALUES ('$_date_debut', '$_date_retour', '$_Raison', '$Matricule', 'en_attente','$projet_choisi','$modele')"; /*il faut encore ajouter le projet auquel l'emprunt est associé*/ 
+                            $sql = "INSERT INTO emprunt(Date_debut, Date_fin_prevue, Raison_Emprunt, E_Matricule, Statut, ID_Projet, ID_Modele_demande) VALUES ('$_date_debut', '$_date_retour', '$_Raison', '$Matricule', 'en_attente','$idprojet','$modele')"; /*il faut encore ajouter le projet auquel l'emprunt est associé*/ 
                             mysqli_query($conn, $sql); 
                             }
                         } else {
@@ -48,7 +46,7 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Formulaire de Demande </title>
-            <link rel = "stylesheet" href = "../css/Demande.css?v=1.4">
+            <link rel = "stylesheet" href = "../css/Demande.css?v=1.5">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -73,13 +71,15 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                         <label for = "date_retour"> Date retour : </label>
                         <input type = "date" id = "date_retour" name = "date_retour" required = "required">
                     </div>
-                    <div class = "survey">
-                        <label for="projet"> Choisir un projet :</label> 
-                        <select name="projet" id="projet" required>
-                    <?php foreach ($projets as $projet) {?>
-                            <option value="<?php echo $projet["ID_Projet"] ?>"> <?php echo $projet["Nom_proj"] ?></option>
+                    <div class = "Projet">
+                        <div class = "debut">
+                        <p>Projet concerné : </p>
+                        </div> 
+                        <?php foreach ($projets as $projet) {?>
+                            <div class = "fin">
+                            <p> <?php echo $projet["Nom_proj"] ?> </p>
+                            </div> 
                     <?php } ?>
-                    </select>
                     </div>
                     <div class = "survey">
                         <label for = "raison_emprunt"> Raison derrière l'emprunt : </label>

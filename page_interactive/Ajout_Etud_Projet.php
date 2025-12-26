@@ -1,23 +1,19 @@
 <?php
 session_start();
 
-if ($_SESSION["logged"] == false || $_SESSION["Responsable"] == true) {
+if ($_SESSION["logged"] == false || $_SESSION["Responsable"] == true || empty($_SESSION["ID_Projet"])) {
     header("Location: connexion.php");
     exit();
 }
 
 include 'Connexion_DB.php';
 $erreur = ""; 
-
+$idprojet = $_SESSION["ID_Projet"]; 
 $matricule = $_SESSION["Matricule"]; 
-$sql = "SELECT projet.ID_Projet as ID_Projet, projet.Nom as Nom_projet  FROM projet JOIN participer WHERE '$matricule' = participer.E_Matricule AND projet.ID_Projet = participer.ID_Projet"; 
+$sql = "SELECT projet.Nom as Nom_projet  FROM projet WHERE projet.ID_Projet = '$idprojet'"; 
 $result = mysqli_query($conn, $sql); 
-if (mysqli_num_rows($result) != 0) {
 $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC); 
-} else {
-    $erreur = "Veuillez vous inscrire à un projet pour commencer"; 
-    mysqli_close($conn);     
-}
+
 if (isset($_POST['ajouter'])) {
 
     $matricule_a_ajouter = $_POST["Matricule"];
@@ -25,10 +21,14 @@ if (isset($_POST['ajouter'])) {
     $detective = "SELECT etudiant.E_Matricule FROM etudiant WHERE '$matricule_a_ajouter' = etudiant.E_Matricule"; 
     $detection = mysqli_query($conn, $detective);  
     if (mysqli_num_rows($detection) == 0) {
-        $erreur = "L'etudiant de matricule $matricule_a_ajouter n'existe pas"; 
+        $erreur = "L'étudiant de matricule {$matricule_a_ajouter} n'existe pas"; 
     } else {
     $par = "INSERT INTO participer(ID_Projet, E_Matricule) VALUES ('$projet', '$matricule_a_ajouter')"; 
-    mysqli_query($conn, $par); 
+    try {
+    mysqli_query($conn, $par);
+    } catch (mysqli_sql_exception) {
+        $erreur = "L'étudiant de matricule {$matricule_a_ajouter} participe déjà au projet";
+    } 
     }
     } 
 ?>
@@ -39,7 +39,6 @@ if (isset($_POST['ajouter'])) {
         <link rel = "stylesheet" href = "../css/Ajout_Etud_Projet.css?v=1.4">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        
     </head>
     <body>
         
@@ -49,7 +48,6 @@ if (isset($_POST['ajouter'])) {
     <?php  foreach ($reuse_result as $row) { ?>
         <div class = "projet">
         <?php
-        $idprojet = $row["ID_Projet"]; 
         $sql2 = "SELECT Etudiant.E_Matricule as Etudiant_matricule, Etudiant.Prenom as Prenom, Etudiant.Nom as Nom
         FROM participer, etudiant WHERE '$idprojet' = participer.ID_Projet AND participer.E_Matricule = etudiant.E_Matricule"; 
         $participants = mysqli_query($conn, $sql2); 
@@ -66,7 +64,7 @@ if (isset($_POST['ajouter'])) {
                 ?>
                 <label for = "Matricule">Matricule :</label>
                 <input type="text" id = "Matricule" name="Matricule" pattern = "\d{6}" title="matricule (6 chiffres)" required>
-                <input type = "hidden" name = "ID_Projet" value = "<?php echo $row["ID_Projet"]; ?>">
+                <input type = "hidden" name = "ID_Projet" value = "<?php echo $idprojet; ?>">
                 <button type="submit" name="ajouter" >Ajouter</button>
                 <hr>
             </form>
