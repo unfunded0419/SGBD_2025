@@ -11,7 +11,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["Responsable"] == false) {
 include 'Connexion_DB.php'; 
 
 $message = "";
-
+$matricule = $_SESSION["Matricule"]; 
 
 if (isset($_POST['reparer_selection']) && !empty($_POST['exemplaires_ids'])) {
     $ids = $_POST['exemplaires_ids']; // je récup l'id des exemplaires coché
@@ -21,7 +21,10 @@ if (isset($_POST['reparer_selection']) && !empty($_POST['exemplaires_ids'])) {
     
     $compteur = 0;
     foreach ($ids as $id) {
+        $date_reparation = date('Y-m-d');  /*ajd est le jour auquel la réparation a été validée*/
         $requete_reparation = "UPDATE exemplaire SET Etat = 'utilisable' WHERE ID_Exemplaire = '$id'" ;
+        mysqli_query($conn,$requete_reparation);
+        $requete_reparation = "INSERT INTO reparer(RE_Matricule, ID_Exemplaire, Date_Reparation) VALUES ('$matricule', '$id', '$date_reparation')"; /* création d'une nouvelle instance réparation dans la table réparer */ 
         mysqli_query($conn,$requete_reparation);
         $compteur++;
     }
