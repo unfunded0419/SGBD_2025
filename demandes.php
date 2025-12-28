@@ -4,12 +4,132 @@ try{
     ini_set('display_errors', 1);
     $base = new PDO('mysql:host=localhost;port=8888;dbname=db_IOT','root','root');
 
+    $erreurs = [];
+
     if(!empty($_POST['statut'])){
-        foreach($_POST['statut'] as $id=>$nouveauStatut){
-            $sql2 = "UPDATE emprunt SET statut = '$nouveauStatut' WHERE ID_Emprunt = $id";
-            $resulat = $base->exec($sql2);
+
+        $func_old = $base->prepare("SELECT Statut FROM emprunt WHERE ID_Emprunt = :id");
+
+        $func_modele = $base->prepare("
+            SELECT ex.ID_Modele
+            FROM concerner c
+            JOIN exemplaire ex ON ex.ID_Exemplaire = c.ID_Exemplaire
+            WHERE c.ID_Emprunt = :id
+            LIMIT 1
+        ");
+
+        $func_ex_actuel = $base->prepare("
+            SELECT ID_Exemplaire
+            FROM concerner
+            WHERE ID_Emprunt = :id
+            LIMIT 1
+        ");
+
+        $func_ex_dispo = $base->prepare("
+            SELECT ID_Exemplaire
+            FROM exemplaire
+            WHERE ID_Modele = :idModele
+              AND Disponibilite = 'disponible'
+            LIMIT 1
+        ");
+
+        $func_set_indispo = $base->prepare("
+            UPDATE exemplaire
+            SET Disponibilite = 'indisponible'
+            WHERE ID_Exemplaire = :idEx
+              AND Disponibilite = 'disponible'
+        ");
+
+        $func_set_dispo = $base->prepare("
+            UPDATE exemplaire
+            SET Disponibilite = 'disponible'
+            WHERE ID_Exemplaire = :idEx
+              AND Disponibilite = 'indisponible'
+        ");
+
+        $func_update_statut = $base->prepare("
+            UPDATE emprunt
+            SET Statut = :statut
+            WHERE ID_Emprunt = :id
+        ");
+
+        $func_update_concerner = $base->prepare("
+            UPDATE concerner
+            SET ID_Exemplaire = :idEx
+            WHERE ID_Emprunt = :id
+            LIMIT 1
+        ");
+
+        foreach($_POST['statut'] as $idem=>$nouveauStatut){
+
+            $idem = (int)$idem;
+            $nouveauStatut = trim($nouveauStatut);
+
+            $func_old->execute([':id' => $idem]);
+            $ancienStatut = $func_old->fetchColumn();
+            if($ancienStatut === false) continue;
+
+            if($ancienStatut === $nouveauStatut) continue;
+
+            $base->beginTransaction();
+            try{
+
+                if($ancienStatut !== 'valide' && $nouveauStatut === 'valide'){
+
+                    $func_modele->execute([':id' => $idem]);
+                    $idModele = $func_modele->fetchColumn();
+                    if(empty($idModele)){
+                        $erreurs[] = "Emprunt $idem : modele introuvable";
+                        $base->rollBack();
+                        continue;
+                    }
+
+                    $func_ex_dispo->execute([':idModele' => $idModele]);
+                    $idExDispo = $func_ex_dispo->fetchColumn();
+                    if(empty($idExDispo)){
+                        $erreurs[] = "Emprunt $idem : aucun exemplaire disponible";
+                        $base->rollBack();
+                        continue;
+                    }
+
+                    $func_set_indispo->execute([':idEx' => $idExDispo]);
+                    if($func_set_indispo->rowCount() === 0){
+                        $erreurs[] = "Emprunt $idem : exemplaire plus disponible";
+                        $base->rollBack();
+                        continue;
+                    }
+
+                    $func_update_concerner->execute([':idEx' => $idExDispo, ':id' => $idem]);
+                    $func_update_statut->execute([':statut' => 'valide', ':id' => $idem]);
+
+                    $base->commit();
+                    continue;
+                }
+
+                if($ancienStatut === 'valide' && $nouveauStatut !== 'valide'){
+
+                    $func_ex_actuel->execute([':id' => $idem]);
+                    $idExActuel = $func_ex_actuel->fetchColumn();
+                    if(!empty($idExActuel)){
+                        $func_set_dispo->execute([':idEx' => $idExActuel]);
+                    }
+
+                    $func_update_statut->execute([':statut' => $nouveauStatut, ':id' => $idem]);
+
+                    $base->commit();
+                    continue;
+                }
+
+                $func_update_statut->execute([':statut' => $nouveauStatut, ':id' => $idem]);
+                $base->commit();
+
+            }catch(Exception $e){
+                if($base->inTransaction()) $base->rollBack();
+                throw $e;
+            }
         }
     }
+
 
     $filtre = $_GET['filtre'] ?? 'en_attente';
     if($filtre === 'en_attente'){
@@ -47,12 +167,20 @@ die('Erreur' .$e->getMessage());
 <head>
     <meta charset="UTF-8">
     <title>ACCUEIL DE DEMANDES</title>
-    <link rel="stylesheet" href="demandes_style.css">
+    <link href='demandes_style.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class = "boite-login">
         <h1>ACCUEIL DE DEMANDES</h1></br>
+
+        <?php if(!empty($erreurs)): ?>
+            <div class="erreur">
+                <?php foreach($erreurs as $m): ?>
+                    <p><?= htmlspecialchars($m) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
         <div class="filtre-container">
             <div class = "filtre-bouton">
