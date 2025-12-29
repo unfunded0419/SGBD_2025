@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 23 déc. 2025 à 04:48
+-- Généré le : lun. 29 déc. 2025 à 05:31
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -55,6 +55,14 @@ CREATE TABLE `concerner` (
   `ID_Exemplaire` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `concerner`
+--
+
+INSERT INTO `concerner` (`ID_Emprunt`, `ID_Exemplaire`) VALUES
+(31, 3),
+(32, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -92,11 +100,14 @@ CREATE TABLE `emprunt` (
 --
 
 INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Emprunt`, `Statut`, `Date_retour`, `Retard`, `Degradation_materiel`, `RE_Matricule`, `E_Matricule`, `ID_Projet`, `ID_Modele_demande`) VALUES
-(31, '2025-12-20', '2025-12-21', 'oekdoed', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2),
-(32, '2025-12-20', '2025-12-21', 'oekdoe', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
+(31, '2025-12-20', '2025-12-21', 'oekdoed', 'approuve', '2025-12-29', 1, 1, 240227, 240227, 10, 2),
+(32, '2025-12-20', '2025-12-21', 'oekdoe', 'approuve', '2025-12-29', 1, 0, 240227, 240227, 9, 2),
 (33, '2025-12-21', '2025-12-22', 'fde', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
 (34, '2025-12-21', '2025-12-22', 'szsad', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
-(35, '2025-12-21', '2025-12-22', 'adsaa', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2);
+(35, '2025-12-21', '2025-12-22', 'adsaa', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2),
+(36, '2025-12-26', '2025-12-27', 'dse', 'en_attente', NULL, NULL, NULL, NULL, 111111, 10, 2),
+(37, '2025-12-26', '2025-12-27', 'dsaq', 'en_attente', NULL, NULL, NULL, NULL, 111111, 10, 2),
+(38, '2025-12-26', '2025-12-28', 'Pas de raison', 'en_attente', NULL, NULL, NULL, NULL, 240227, 17, 4);
 
 -- --------------------------------------------------------
 
@@ -118,6 +129,7 @@ CREATE TABLE `etudiant` (
 
 INSERT INTO `etudiant` (`E_Matricule`, `Nom`, `Prenom`, `E_mail`, `Mot_de_passe`) VALUES
 (111111, 'E', 'F', 'gwendehon4@gmail.com', '$2y$10$JKrrXiprBYBRX2ulOQ2tiOLwI9ljw37dKzAH4kvM0fTqLa/IOJGZq'),
+(222222, 'D', 'e', 'gwendehon4@gmail.com', '$2y$10$0H0XI1GwknGbGqcPpL4an.8hXi0/wWNP8CfzbuL1Qi9G285QmyIsG'),
 (240227, 'E', 'F', 'gwendehon4@gmail.com', '$2y$10$MigwJ5h..YR1GaZ9vB1OS./qezy2BNggGeRO6sCJ/N3kGEA9s.afW');
 
 -- --------------------------------------------------------
@@ -144,7 +156,7 @@ CREATE TABLE `exemplaire` (
 INSERT INTO `exemplaire` (`ID_Exemplaire`, `Etat`, `Disponibilite`, `ID_Modele`, `Date_Retrait`, `RE_Matricule_Retrait`, `Date_ajout`, `RE_Matricule_Ajout`) VALUES
 (1, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
 (2, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
-(3, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
+(3, 'endommage', 'indisponible', 2, NULL, NULL, NULL, NULL),
 (4, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
 (5, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
 (6, 'utilisable', 'disponible', 1, NULL, NULL, '2025-12-23', 240227),
@@ -208,7 +220,12 @@ INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
 (9, 111111),
 (9, 240227),
 (10, 111111),
-(13, 240227);
+(10, 240227),
+(13, 240227),
+(15, 240227),
+(16, 240227),
+(17, 111111),
+(17, 240227);
 
 -- --------------------------------------------------------
 
@@ -230,7 +247,10 @@ INSERT INTO `projet` (`ID_Projet`, `Nom`) VALUES
 (10, 'projet_2'),
 (11, 'ofeofh'),
 (12, 'feojf'),
-(13, 'new');
+(13, 'new'),
+(15, 'nouveau_proj'),
+(16, 'encore'),
+(17, 'autre');
 
 -- --------------------------------------------------------
 
@@ -243,6 +263,14 @@ CREATE TABLE `reparer` (
   `ID_Exemplaire` int(11) NOT NULL,
   `Date_Reparation` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reparer`
+--
+
+INSERT INTO `reparer` (`RE_Matricule`, `ID_Exemplaire`, `Date_Reparation`) VALUES
+(240227, 9, '2025-12-26'),
+(240227, 11, '2025-12-26');
 
 -- --------------------------------------------------------
 
@@ -375,7 +403,7 @@ ALTER TABLE `cours`
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `exemplaire`
@@ -393,7 +421,7 @@ ALTER TABLE `modele`
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Contraintes pour les tables déchargées
