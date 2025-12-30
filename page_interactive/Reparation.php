@@ -48,7 +48,7 @@ if (isset($_POST['reparer_selection'])) {
 $requete_sql_affichage = "SELECT exemplaire.ID_Exemplaire, modele.Reference, exemplaire.Etat 
         FROM exemplaire 
         JOIN modele ON exemplaire.ID_Modele = modele.ID_Modele 
-        WHERE exemplaire.Etat = 'endommage' AND exemplaire.RE_Matricule_Retrait IS NULL";
+        WHERE exemplaire.Etat = 'endommage' AND exemplaire.RE_Matricule_Retrait IS NULL";/* permet de n'afficher les pièces d'équipements endommagé qu'à la condition qu'elle n'ait pas encore été retirée*/
 
 $resultat = mysqli_query($conn, $requete_sql_affichage);
 ?>
@@ -83,9 +83,9 @@ $resultat = mysqli_query($conn, $requete_sql_affichage);
                     </thead>
                     <tbody>';
 
-        while ($row = mysqli_fetch_assoc($resultat)) {
+        while ($row = mysqli_fetch_assoc($resultat)) { /* modification de la checkbox en un select de manière à pouvoir traiter le choix entre réparation et Retrait d'un équipement endommagé */
             echo '<tr>
-                    <td><select name="Reparation_ou_retrait[' . $row['ID_Exemplaire'] . ']">
+                    <td><select name="Reparation_ou_retrait[' . $row['ID_Exemplaire'] . ']"> 
                     <option value="">Choisir</option>
                     <option value="Reparer">Réparer</option>
                     <option value="Retirer">Retirer</option>

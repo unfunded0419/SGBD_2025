@@ -16,19 +16,42 @@ $nbre_lignes_projet = mysqli_num_rows($resultat_projet);
 
 if (isset($_POST['creer'])) {
 
-    $nomprojet = $_POST["nom_projet"];
+    $creer_cours = $conn->prepare("INSERT INTO cours(Nom) VALUES (?)"); 
+    $chercher_cours = $conn->prepare("SELECT cours.ID_Cours as ID_Cours From cours Where cours.Nom = ? LIMIT 1"); 
+
+    $nomprojet = filter_input(INPUT_POST, "nom_projet", FILTER_SANITIZE_SPECIAL_CHARS);
+    $nomcours = filter_input(INPUT_POST, "cours", FILTER_SANITIZE_SPECIAL_CHARS);
+
     $requetesql_check = "SELECT * FROM projet WHERE Nom = '$nomprojet'";
     $resultat = mysqli_query($conn,$requetesql_check);
+    $chercher_cours->bind_param("s", $nomcours); 
+    $chercher_cours->execute(); 
+    $cours = $chercher_cours->get_result();
+    
 
-    if(mysqli_num_rows($resultat) == 0){  
-        $requetesql = "INSERT INTO projet(Nom) VALUES ('$nomprojet')";
+    if(mysqli_num_rows($resultat) == 0 && $cours->num_rows == 0 ){  /* Nouveau code permettant de créer le cours
+         auquel le projet est rattaché s'il n'existe pas encore dans la db plus création du projet  */
+        $creer_cours->bind_param("s", $nomcours); 
+        $creer_cours->execute(); 
+        $id = mysqli_insert_id($conn); 
+        $requetesql = "INSERT INTO projet(Nom, ID_Cours) VALUES ('$nomprojet', '$id')";
         mysqli_query($conn,$requetesql);
         $id = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
         $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id','$matricule')";
         mysqli_query($conn,$requetesql_participer);
 
         header("Location: Home_Etudiant.php");
-    }else{
+    }else if (mysqli_num_rows($resultat) == 0){ /* Code initial permettant d'ajouter un projet pour un cours existant déjà */
+        foreach ($cours as $cour) {
+            $idcour = $cour["ID_Cours"]; 
+        $requetesql = "INSERT INTO projet(Nom, ID_Cours) VALUES ('$nomprojet', '$idcour')";
+        mysqli_query($conn,$requetesql);
+        $id = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
+        $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id','$matricule')";
+        mysqli_query($conn,$requetesql_participer);
+        header("Location: Home_Etudiant.php");
+        }
+    } else {
         $erreur = "Nom de projet déjà utilisé";
     }
     
@@ -63,8 +86,10 @@ if (isset($_POST['quitter'])){
             <form action="../page_interactive/Home_Etudiant.php" method="post">
                 <hr>
                 <h3>Créer un projet</h3><br>
-                <label>Nom du projet :</label>
-                <input type="text" name="nom_projet" title="Nom du projet" required>
+                <label for = "nom_projet">Nom du projet :</label>
+                <input type="text" id = "nom_projet" name="nom_projet" title="Nom du projet" required>
+                <label for = "cours">Cours associé au projet :</label>
+                <input type ="text" id = "cours" name="cours" required>
                 <button type="submit" name="creer">Créer</button>
                 <hr>
             </form>
