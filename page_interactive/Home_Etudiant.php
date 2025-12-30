@@ -27,7 +27,8 @@ if (isset($_POST['creer'])) {
     $chercher_cours->bind_param("s", $nomcours); 
     $chercher_cours->execute(); 
     $cours = $chercher_cours->get_result();
-    
+    $row = $cours->fetch_assoc(); 
+    $idcour = $row["ID_Cours"]; 
 
     if(mysqli_num_rows($resultat) == 0 && $cours->num_rows == 0 ){  /* Nouveau code permettant de créer le cours
          auquel le projet est rattaché s'il n'existe pas encore dans la db plus création du projet  */
@@ -42,15 +43,13 @@ if (isset($_POST['creer'])) {
 
         header("Location: Home_Etudiant.php");
     }else if (mysqli_num_rows($resultat) == 0){ /* Code initial permettant d'ajouter un projet pour un cours existant déjà */
-        foreach ($cours as $cour) {
-            $idcour = $cour["ID_Cours"]; 
         $requetesql = "INSERT INTO projet(Nom, ID_Cours) VALUES ('$nomprojet', '$idcour')";
         mysqli_query($conn,$requetesql);
         $id = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
         $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id','$matricule')";
         mysqli_query($conn,$requetesql_participer);
         header("Location: Home_Etudiant.php");
-        }
+        
     } else {
         $erreur = "Nom de projet déjà utilisé";
     }
