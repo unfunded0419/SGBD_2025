@@ -13,23 +13,34 @@ include 'Connexion_DB.php';
 $message = "";
 $matricule = $_SESSION["Matricule"]; 
 
-if (isset($_POST['reparer_selection']) && !empty($_POST['exemplaires_ids'])) {
-    $ids = $_POST['exemplaires_ids']; // je récup l'id des exemplaires coché
+if (isset($_POST['reparer_selection'])) {
+     // je récup l'id des exemplaires coché
+    $update_reparation = $conn->prepare("INSERT INTO reparer(RE_Matricule, ID_Exemplaire, Date_Reparation) VALUES (?, ?, ?)"); 
+    $update_emprunt_repair = $conn->prepare("UPDATE exemplaire SET Etat = 'utilisable', Disponibilite = 'disponible' WHERE ID_Exemplaire = ?"); 
+    $update_emprunt_withdraw = $conn->prepare("UPDATE exemplaire SET Disponibilite = 'indisponible', Date_Retrait = ?, RE_Matricule_Retrait = ?  WHERE ID_Exemplaire = ?"); 
     
-    
-    
-    
+    $date_reparation = date('Y-m-d');  /*ajd est le jour auquel la réparation a été validée*/
+
     $compteur = 0;
-    foreach ($ids as $id) {
-        $date_reparation = date('Y-m-d');  /*ajd est le jour auquel la réparation a été validée*/
-        $requete_reparation = "UPDATE exemplaire SET Etat = 'utilisable' WHERE ID_Exemplaire = '$id'" ;
-        mysqli_query($conn,$requete_reparation);
-        $requete_reparation = "INSERT INTO reparer(RE_Matricule, ID_Exemplaire, Date_Reparation) VALUES ('$matricule', '$id', '$date_reparation')"; /* création d'une nouvelle instance réparation dans la table réparer */ 
-        mysqli_query($conn,$requete_reparation);
-        $compteur++;
+    foreach($_POST['Reparation_ou_retrait'] as $id_exemplaire => $choix) { /* Modification importantes afin de permettre 
+        un traitement alternatif entre réparer un équipement endommagé ou de le retirer des réserves*/
+        
+        $id_exemplaire = (int)$id_exemplaire; 
+        if ($choix =="Reparer" ) {
+            $update_reparation->bind_param("iis", $matricule, $id_exemplaire, $date_reparation); 
+            $update_reparation->execute(); 
+            $update_emprunt_repair->bind_param("i", $id_exemplaire); 
+            $update_emprunt_repair->execute(); 
+            $compteur++;
+        } else if ($choix == "Retirer") {
+            $update_emprunt_withdraw->bind_param("sii", $date_reparation, $matricule, $id_exemplaire); 
+            $update_emprunt_withdraw->execute(); 
+            $compteur++;
+        }
     }
     
-    $message = "Succès : $compteur exemplaire(s) ont été remis en état 'utilisable !";
+    
+    $message = "Succès : $compteur exemplaire(s) ont été traité(s)";
     
 }
 
@@ -37,7 +48,7 @@ if (isset($_POST['reparer_selection']) && !empty($_POST['exemplaires_ids'])) {
 $requete_sql_affichage = "SELECT exemplaire.ID_Exemplaire, modele.Reference, exemplaire.Etat 
         FROM exemplaire 
         JOIN modele ON exemplaire.ID_Modele = modele.ID_Modele 
-        WHERE exemplaire.Etat = 'endommage'";
+        WHERE exemplaire.Etat = 'endommage' AND exemplaire.RE_Matricule_Retrait IS NULL";
 
 $resultat = mysqli_query($conn, $requete_sql_affichage);
 ?>
@@ -74,7 +85,12 @@ $resultat = mysqli_query($conn, $requete_sql_affichage);
 
         while ($row = mysqli_fetch_assoc($resultat)) {
             echo '<tr>
-                    <td><input type="checkbox" name="exemplaires_ids[]" value="' . $row['ID_Exemplaire'] . '"></td>
+                    <td><select name="Reparation_ou_retrait[' . $row['ID_Exemplaire'] . ']">
+                    <option value="">Choisir</option>
+                    <option value="Reparer">Réparer</option>
+                    <option value="Retirer">Retirer</option>
+                    </select><td>
+                    
                     <td>#' . $row['ID_Exemplaire'] . '</td>
                     <td>' . htmlspecialchars($row['Reference']) . '</td>
                     <td style="color: #ff4d4d; font-weight: bold;"> Endommagé </td>
