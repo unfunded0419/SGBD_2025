@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 30 déc. 2025 à 06:38
+-- Généré le : jeu. 01 jan. 2026 à 18:20
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -60,8 +60,9 @@ CREATE TABLE `concerner` (
 --
 
 INSERT INTO `concerner` (`ID_Emprunt`, `ID_Exemplaire`) VALUES
-(31, 3),
-(32, 5);
+(39, 5),
+(40, 12),
+(42, 13);
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,8 @@ CREATE TABLE `cours` (
 --
 
 INSERT INTO `cours` (`ID_Cours`, `Nom`) VALUES
-(1, 'thermique');
+(2, 'thermique'),
+(3, 'Chateau');
 
 -- --------------------------------------------------------
 
@@ -107,14 +109,10 @@ CREATE TABLE `emprunt` (
 --
 
 INSERT INTO `emprunt` (`ID_Emprunt`, `Date_debut`, `Date_fin_prevue`, `Raison_Emprunt`, `Statut`, `Date_retour`, `Retard`, `Degradation_materiel`, `RE_Matricule`, `E_Matricule`, `ID_Projet`, `ID_Modele_demande`) VALUES
-(31, '2025-12-20', '2025-12-21', 'oekdoed', 'approuve', '2025-12-29', 1, 1, 240227, 240227, 10, 2),
-(32, '2025-12-20', '2025-12-21', 'oekdoe', 'approuve', '2025-12-29', 1, 0, 240227, 240227, 9, 2),
-(33, '2025-12-21', '2025-12-22', 'fde', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
-(34, '2025-12-21', '2025-12-22', 'szsad', 'en_attente', NULL, NULL, NULL, NULL, 240227, 9, 2),
-(35, '2025-12-21', '2025-12-22', 'adsaa', 'en_attente', NULL, NULL, NULL, NULL, 240227, 10, 2),
-(36, '2025-12-26', '2025-12-27', 'dse', 'en_attente', NULL, NULL, NULL, NULL, 111111, 10, 2),
-(37, '2025-12-26', '2025-12-27', 'dsaq', 'en_attente', NULL, NULL, NULL, NULL, 111111, 10, 2),
-(38, '2025-12-26', '2025-12-28', 'Pas de raison', 'en_attente', NULL, NULL, NULL, NULL, 240227, 17, 4);
+(39, '2026-01-01', '2026-01-08', 'pas de raison', 'approuve', NULL, NULL, NULL, 240227, 240227, 22, 2),
+(40, '2026-01-01', '2026-01-10', 'pas de raison&#13;&#10;ok', 'approuve', NULL, NULL, NULL, 240227, 240227, 22, 6),
+(41, '2026-01-01', '2026-01-11', 'Allez', 'en_attente', NULL, NULL, NULL, NULL, 240227, 22, 6),
+(42, '2026-01-01', '2026-01-11', 'iefjiefj', 'approuve', NULL, NULL, NULL, 240227, 240227, 24, 6);
 
 -- --------------------------------------------------------
 
@@ -165,15 +163,15 @@ INSERT INTO `exemplaire` (`ID_Exemplaire`, `Etat`, `Disponibilite`, `ID_Modele`,
 (2, 'utilisable', 'indisponible', 1, NULL, NULL, NULL, NULL),
 (3, 'utilisable', 'indisponible', 2, NULL, NULL, NULL, NULL),
 (4, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
-(5, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
+(5, 'utilisable', 'indisponible', 2, NULL, NULL, NULL, NULL),
 (6, 'utilisable', 'disponible', 1, NULL, NULL, '2025-12-23', 240227),
 (7, 'utilisable', 'disponible', 4, NULL, NULL, '2025-12-23', 240227),
 (8, 'utilisable', 'disponible', 4, NULL, NULL, '2025-12-23', 240227),
 (9, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
 (10, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
 (11, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
-(12, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
-(13, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(12, 'utilisable', 'indisponible', 6, NULL, NULL, '2025-12-30', 240227),
+(13, 'utilisable', 'indisponible', 6, NULL, NULL, '2025-12-30', 240227),
 (14, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
 (15, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
 (16, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
@@ -193,6 +191,15 @@ CREATE TABLE `lier` (
   `ID_Cours` int(11) NOT NULL,
   `ID_Projet` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `lier`
+--
+
+INSERT INTO `lier` (`ID_Cours`, `ID_Projet`) VALUES
+(2, 22),
+(2, 23),
+(3, 24);
 
 -- --------------------------------------------------------
 
@@ -235,18 +242,11 @@ CREATE TABLE `participer` (
 --
 
 INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
-(9, 111111),
-(9, 240227),
-(10, 111111),
-(10, 240227),
-(13, 240227),
-(15, 240227),
-(16, 240227),
-(17, 111111),
-(17, 240227),
-(18, 240227),
-(19, 240227),
-(21, 240227);
+(22, 111111),
+(22, 240227),
+(23, 240227),
+(24, 222222),
+(24, 240227);
 
 -- --------------------------------------------------------
 
@@ -256,26 +256,17 @@ INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
 
 CREATE TABLE `projet` (
   `ID_Projet` int(11) NOT NULL,
-  `Nom` varchar(150) DEFAULT NULL,
-  `ID_Cours` int(11) DEFAULT NULL
+  `Nom` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `projet`
 --
 
-INSERT INTO `projet` (`ID_Projet`, `Nom`, `ID_Cours`) VALUES
-(9, 'projet_1', NULL),
-(10, 'projet_2', NULL),
-(11, 'ofeofh', NULL),
-(12, 'feojf', NULL),
-(13, 'new', NULL),
-(15, 'nouveau_proj', NULL),
-(16, 'encore', NULL),
-(17, 'autre', NULL),
-(18, 'Projet du cours de thermique', 1),
-(19, 'Projet convection', 1),
-(21, 'Projet Rayonnement', 1);
+INSERT INTO `projet` (`ID_Projet`, `Nom`) VALUES
+(22, 'Projet Rayonnement'),
+(23, 'Projet MOXI'),
+(24, 'Autre');
 
 -- --------------------------------------------------------
 
@@ -288,19 +279,6 @@ CREATE TABLE `reparer` (
   `ID_Exemplaire` int(11) NOT NULL,
   `Date_Reparation` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `reparer`
---
-
-INSERT INTO `reparer` (`RE_Matricule`, `ID_Exemplaire`, `Date_Reparation`) VALUES
-(240227, 1, '2025-12-30'),
-(240227, 2, '2025-12-30'),
-(240227, 3, '2025-12-30'),
-(240227, 9, '2025-12-26'),
-(240227, 11, '2025-12-26'),
-(240227, 18, '2025-12-30'),
-(240227, 19, '2025-12-30');
 
 -- --------------------------------------------------------
 
@@ -398,8 +376,7 @@ ALTER TABLE `participer`
 -- Index pour la table `projet`
 --
 ALTER TABLE `projet`
-  ADD PRIMARY KEY (`ID_Projet`),
-  ADD KEY `fk_projet_cours` (`ID_Cours`);
+  ADD PRIMARY KEY (`ID_Projet`);
 
 --
 -- Index pour la table `reparer`
@@ -428,13 +405,13 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `cours`
 --
 ALTER TABLE `cours`
-  MODIFY `ID_Cours` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Cours` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID_Emprunt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT pour la table `exemplaire`
@@ -452,7 +429,7 @@ ALTER TABLE `modele`
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Contraintes pour les tables déchargées
@@ -500,12 +477,6 @@ ALTER TABLE `modele`
 ALTER TABLE `participer`
   ADD CONSTRAINT `participer_ibfk_1` FOREIGN KEY (`ID_Projet`) REFERENCES `projet` (`ID_Projet`),
   ADD CONSTRAINT `participer_ibfk_2` FOREIGN KEY (`E_Matricule`) REFERENCES `etudiant` (`E_Matricule`);
-
---
--- Contraintes pour la table `projet`
---
-ALTER TABLE `projet`
-  ADD CONSTRAINT `fk_projet_cours` FOREIGN KEY (`ID_Cours`) REFERENCES `cours` (`ID_Cours`);
 
 --
 -- Contraintes pour la table `reparer`
