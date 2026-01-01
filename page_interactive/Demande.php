@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Formulaire de Demande </title>
-            <link rel = "stylesheet" href = "../css/Demande.css?v=1.5">
+            <link rel = "stylesheet" href = "../css/Demande.css?v=1.6">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -106,7 +106,8 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                     <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
                     <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
                     <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
-                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Changer de projet  </a> </p>
+                    <p><a href = "../page_interactive/Visualisation_projet_etudiant.php"> - Etat du projet </a> </p>
                     
             </footer>
         <?php } else { ?>

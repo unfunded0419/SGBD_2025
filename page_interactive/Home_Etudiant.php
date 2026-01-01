@@ -72,7 +72,7 @@ if (isset($_POST['quitter'])){
     <head>
         <title> Page d'accueil Etudiant </title>
         <meta charset = "utf-8">
-        <link rel = "stylesheet" href = "../css/Home_Etudiant.css?v=1.3">
+        <link rel = "stylesheet" href = "../css/Home_Etudiant.css?v=1.4">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -119,6 +119,17 @@ if (isset($_POST['quitter'])){
             </div>
         <?php endif; ?>
     </main>
+    <?php if (!empty($_SESSION["ID_Projet"])) {?>
+    <footer>
+        <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+                    <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
+                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
+                    <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
+                    <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Changer de projet  </a> </p>
+                    <p><a href = "../page_interactive/Visualisation_projet_etudiant.php"> - Etat du projet </a> </p>
+    </footer>
+    <?php } ?>
 </body>
 </html>
 

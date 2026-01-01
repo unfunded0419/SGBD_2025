@@ -85,7 +85,7 @@ $cours_nom = $rows[0]['Cours_nom'] ?? 'Cours inconnu';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisation du projet</title>
-    <link rel="stylesheet" href="../css/Visualisation_projet_etudiant.css?v=1.4">
+    <link rel="stylesheet" href="../css/Visualisation_projet_etudiant.css?v=1.6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -108,13 +108,13 @@ $cours_nom = $rows[0]['Cours_nom'] ?? 'Cours inconnu';
                 <p>Matricule : <?php echo htmlspecialchars($etudiant['matricule']); ?></p>
 
                 <?php if (!empty($etudiant['emprunts'])){ ?>
-                    <h3>Matériel emprunté en cours :</h3>
+                    <p>Matériel emprunté en cours :</p>
                         <?php foreach ($etudiant['emprunts'] as $emprunt){ ?>
                               <div class = "equipement">
                                 Référence : <?php echo htmlspecialchars($emprunt['reference']); ?> 
                                 (Exemplaire n°<?php echo htmlspecialchars($emprunt['id_exemplaire']); ?>)<br>
                                 Emprunté le : <?php echo date("Y-m-d", strtotime($emprunt['date_debut'])); ?><br>
-                                À rendre avant le : <?php echo date("Y-m-d", strtotime($emprunt['date_fin'])); ?> <br>
+                                À rendre avant le : <?php echo date("Y-m-d", strtotime($emprunt['date_fin'])); ?>
                               </div>
                         <?php } ?>
                 <?php } else { ?>
@@ -130,8 +130,8 @@ $cours_nom = $rows[0]['Cours_nom'] ?? 'Cours inconnu';
                     <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
                     <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
                     <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
-                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
-                    
+                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Changer de projet  </a> </p>
+                    <p><a href = "../page_interactive/Visualisation_projet_etudiant.php"> - Etat du projet </a> </p>     
     </footer>
 </body>
 </html>

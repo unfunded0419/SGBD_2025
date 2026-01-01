@@ -12,21 +12,7 @@ body {
    display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
    flex-direction: column;
 }
-a:link{
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {  /* attention à l'ordre dans lequel les différents éléments sont écris*/
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1); 
-    font-weight : bold; 
-}
-a {
-    text-decoration: none;
-}
+
 .elms-sans-text { /*permet uniquement de modifier la police du texte*/
   font-family : "Elms Sans", sans-serif;
   font-optical-sizing : auto;
@@ -36,13 +22,23 @@ a {
 footer { 
     margin-top: auto;
     flex-shrink : 0; 
-    background-color : black;
+    background-color: rgba(150,150,150,0.7);
     width : 100%;   
-    font-size : 1.5rem; 
+    font-size : 1.45rem; 
     display : flex; 
     flex-direction : row; 
     justify-content :flex-start;  
     gap : 20px; 
+}
+a {
+text-decoration: none;  
+color : black; 
+font-weight : bold;
+}
+
+a:hover {
+    color : rgba(255,255,255,1); 
+    font-weight : bold; 
 }
 main {
     flex : 1; 

@@ -65,15 +65,28 @@ main {
     font-size: 1.8rem;
 }
 
-/* FOOTER */
-footer {
-    flex-shrink: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+footer { 
+    margin-top: auto;
+    flex-shrink : 0; 
     background-color: rgba(150,150,150,0.7);
-    font-size: 1.5rem;
+    width : 100%;   
+    font-size : 1.45rem; 
+    display : flex; 
+    flex-direction : row; 
+    justify-content :flex-start;  
+    gap : 20px; 
 }
+footer a {
+text-decoration: none;  
+color : black; 
+font-weight : bold; 
+}
+
+footer a:hover {
+    color : rgba(255,255,255,1); 
+    font-weight : bold; 
+}
+
 
 .elms-sans-text {
   font-family : "Elms Sans", sans-serif;
@@ -82,21 +95,7 @@ footer {
   font-style : normal;
 }
 
-a:link {
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {
-    color : rgba(000,255,255,1);
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1);
-    font-weight : bold; 
-}
-a {
-    text-decoration: none;
-}
+
 .Nouveau {
     display : flex; 
     flex-direction : row; 

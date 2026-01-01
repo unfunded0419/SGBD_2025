@@ -138,7 +138,7 @@ foreach ($rows as $row) {
                     <p>Matériel emprunté en cours :</p>
                         <?php foreach ($etudiant['emprunts'] as $emprunt) { ?>
                             <div class = "equipement">  
-                            Référence : <?php echo htmlspecialchars($emprunt['reference']); ?> 
+                                Référence : <?php echo htmlspecialchars($emprunt['reference']); ?> 
                                 (Exemplaire n°<?php echo htmlspecialchars($emprunt['id_exemplaire']); ?>) <br>
                                 Emprunté le : <?php echo date("Y-m-d", strtotime($emprunt['date_debut'])); ?><br>
                                 À rendre avant le : <?php echo date("Y-m-d", strtotime($emprunt['date_fin'])); ?>
