@@ -1,5 +1,12 @@
 <?php
 session_start(); 
+
+if (!isset($_SESSION["logged"]) || $_SESSION["Responsable"] == false) {
+    header("Location: connexion.php");
+    exit();
+}
+
+
 try{
     error_reporting(E_ALL);
     ini_set('display_errors', 1);

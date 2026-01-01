@@ -1,5 +1,11 @@
 <?php
 session_start(); 
+
+if (!isset($_SESSION["logged"]) || $_SESSION["Responsable"] == false) {
+    header("Location: connexion.php");
+    exit();
+}
+
 $RE_Matricule = $_SESSION["Matricule"]; 
 try{
     error_reporting(E_ALL);
