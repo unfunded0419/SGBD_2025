@@ -5,6 +5,8 @@ if (!$_SESSION["logged"] || $_SESSION["Responsable"] || empty($_SESSION["ID_Proj
     header("Location: connexion.php"); /*attention on doit écrire Location: absolument les espaces ne sont pas autorisé*/ 
 } 
 include 'Connexion_DB.php';
+
+
 $erreur = ""; 
 $matricule = $_SESSION["Matricule"]; 
 $idprojet = $_SESSION["ID_Projet"]; 

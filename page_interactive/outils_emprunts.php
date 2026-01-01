@@ -101,7 +101,7 @@ try{
 <head>
     <meta charset="UTF-8">
     <title>OUTILS EMPRUNTÉS</title>
-    <link href="../css/outils_empruntes_style.css?v=1.3" rel="stylesheet">
+    <link href="../css/outils_empruntes_style.css?v=1.4" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">

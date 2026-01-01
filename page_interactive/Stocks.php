@@ -10,6 +10,8 @@ GROUP BY categorie.Nom, modele.Reference
 Order BY categorie.Nom"; 
 $result = mysqli_query($conn, $sql); 
 $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+$chercher = "SELECT categorie.Nom as Nom FROM categorie"; 
+$filtres = mysqli_query($conn, $chercher);
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <div class = "champ"> 
         <select name = "categorie">
             <option value = "">Aucun</option> 
-        <?php foreach ($reuse_result as $row) { ?>
+        <?php foreach ($filtres as $row) { ?>
             <option value = "<?php echo htmlspecialchars($row["Nom"]);?>"> <?php echo htmlspecialchars ($row["Nom"]); ?> </option>  
     <?php }?>
     </select>

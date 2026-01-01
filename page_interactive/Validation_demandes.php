@@ -186,7 +186,7 @@ die('Erreur' .$e->getMessage());
 <head>
     <meta charset="UTF-8">
     <title>ACCUEIL DE DEMANDES</title>
-    <link href='../css/Validation_demandes.css?v=1.5' rel='stylesheet'>
+    <link href='../css/Validation_demandes.css?v=1.4' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">

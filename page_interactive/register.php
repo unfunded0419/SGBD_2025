@@ -43,13 +43,19 @@ if (isset($_POST["submit"])) {
         <head>
             <title> Inscription </title>
             <meta charset = "utf-8">
-            <link rel = "stylesheet" href = "../css/register.css?v=1.2">
+            <link rel = "stylesheet" href = "../css/register.css?v=1.3">
              <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         </head>
         <body class = "elms-sans-text">
-            <form action = "../page_interactive/register.php" method = "post">  
+        
+        <?php if(!empty($erreur)) { ?>
+            <div class = "error">  
+                  <p> <?php echo $erreur ?> </p> 
+                  </div>  
+                <?php } else {?>    
+        <form action = "../page_interactive/register.php" method = "post">  
                 <div class = "align">
                     <h1> Remplissez le formulaire suivant </h1>
                 </div>
@@ -57,9 +63,7 @@ if (isset($_POST["submit"])) {
                 <label for = "Matricule"> Matricule  : </label>
                 <input type = "number"  id = "Matricule" name = "Matricule" required = "required">
                 </div>
-                <?php if(!empty($erreur)) { ?>
-                  <p> <?php echo $erreur ?> </p> 
-                <?php } ?>
+                
                 <div class = "align">
                 <label for = "Nom"> Nom : </label>
                 <input type = "text" id ="Nom" name = "Nom" required = "required">
@@ -90,5 +94,6 @@ if (isset($_POST["submit"])) {
                 <input type ="submit" name = "submit" value = "submit">
                 </div>
             </form>
+            <?php } ?>
         </body>
     </html>
