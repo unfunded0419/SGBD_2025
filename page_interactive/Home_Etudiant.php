@@ -18,6 +18,7 @@ if (isset($_POST['creer'])) {
 
     $creer_cours = $conn->prepare("INSERT INTO cours(Nom) VALUES (?)"); 
     $chercher_cours = $conn->prepare("SELECT cours.ID_Cours as ID_Cours From cours Where cours.Nom = ? LIMIT 1"); 
+    $lier_insertion = $conn->prepare("INSERT INTO lier(ID_Cours,ID_Projet) VALUES (?,?)"); 
 
     $nomprojet = filter_input(INPUT_POST, "nom_projet", FILTER_SANITIZE_SPECIAL_CHARS);
     $nomcours = filter_input(INPUT_POST, "cours", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -28,26 +29,29 @@ if (isset($_POST['creer'])) {
     $chercher_cours->execute(); 
     $cours = $chercher_cours->get_result();
     $row = $cours->fetch_assoc(); 
-    $idcour = $row["ID_Cours"]; 
+    $id_cours = $row["ID_Cours"]; 
 
     if(mysqli_num_rows($resultat) == 0 && $cours->num_rows == 0 ){  /* Nouveau code permettant de créer le cours
          auquel le projet est rattaché s'il n'existe pas encore dans la db plus création du projet  */
         $creer_cours->bind_param("s", $nomcours); 
         $creer_cours->execute(); 
-        $id = mysqli_insert_id($conn); 
-        $requetesql = "INSERT INTO projet(Nom, ID_Cours) VALUES ('$nomprojet', '$id')";
+        $id_cours = mysqli_insert_id($conn); /* je récupère l'id du cours nouvellement créé */
+        $requetesql = "INSERT INTO projet(Nom) VALUES ('$nomprojet')";
         mysqli_query($conn,$requetesql);
-        $id = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
-        $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id','$matricule')";
+        $id_projet = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
+        $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id_projet','$matricule')";
         mysqli_query($conn,$requetesql_participer);
-
+        $lier_insertion->bind_param("ii", $id_cours, $id_projet); 
+        $lier_insertion->execute(); 
         header("Location: Home_Etudiant.php");
     }else if (mysqli_num_rows($resultat) == 0){ /* Code initial permettant d'ajouter un projet pour un cours existant déjà */
-        $requetesql = "INSERT INTO projet(Nom, ID_Cours) VALUES ('$nomprojet', '$idcour')";
+        $requetesql = "INSERT INTO projet(Nom) VALUES ('$nomprojet')";
         mysqli_query($conn,$requetesql);
-        $id = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
-        $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id','$matricule')";
+        $id_projet = mysqli_insert_id($conn); // je récupére la valeur de  l'autoincrement que la db à fait 
+        $requetesql_participer = "INSERT INTO participer(ID_Projet,E_Matricule) VALUES ('$id_projet','$matricule')";
         mysqli_query($conn,$requetesql_participer);
+        $lier_insertion->bind_param("ii", $id_cours, $id_projet); 
+        $lier_insertion->execute(); 
         header("Location: Home_Etudiant.php");
         
     } else {
@@ -115,15 +119,6 @@ if (isset($_POST['quitter'])){
             </div>
         <?php endif; ?>
     </main>
-
-    <footer>
-       <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
-                    <p><a href = "../page_interactive/Demande.php"> - Faire une demande </a></p>
-                    <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
-                    <p><a href = "../page_interactive/Suivi_demande.php"> - Suivre les demandes </a></p>
-                    <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
-                    <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
-    </footer>
 </body>
 </html>
 

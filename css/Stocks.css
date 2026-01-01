@@ -112,36 +112,28 @@ select:hover {
     flex : 1;
     padding-left: 2%;
 }
-footer {
-    flex-shrink: 0;           /* ne se réduit pas */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+footer { 
+    margin-top: auto;
+    flex-shrink : 0; 
     background-color: rgba(150,150,150,0.7);
-    font-size: 1.5rem;
-}
-footer a {
-    text-decoration: none;
-    color: black;
-}
-
-
-
-a:link {
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-a:visited {
-    color : rgba(000,255,255,1);
-    font-weight : bold; 
-}
-a:hover {
-    color : rgba(255,255,255,1);
-    font-weight : bold; 
+    width : 100%;   
+    font-size : 1.5rem; 
+    display : flex; 
+    flex-direction : row; 
+    justify-content :flex-start;  
+    gap : 20px; 
 }
 a {
-    text-decoration: none;
+text-decoration: none;  
+color : black; 
+font-weight : bold; 
 }
+
+a:hover {
+    color : rgba(255,255,255,1); 
+    font-weight : bold; 
+}
+
 form::-webkit-scrollbar {
     width: 8px;
 }

@@ -15,7 +15,7 @@ $reuse_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "../css/Stocks.css?v=1.2">
+    <link rel = "stylesheet" href = "../css/Stocks.css?v=1.3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -76,14 +76,16 @@ if (isset($_POST["submit"])) {
                     <p><a href = "../page_interactive/Ajout_Etud_Projet.php"> - Ajouter des étudiants au projet</a></p>
                     <p><a href = "../page_interactive/Home_Etudiant.php"> - Projets suivi </a> </p>
         <?php } else { ?>
-                    <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
+        <p><a href = "../page_interactive/Home.php"> Page d'acceuil </a> </p>
                     <p><a href = "../page_interactive/Stocks.php"> - Consulter les stocks </a></p>
                     <p><a href = "../page_interactive/ajout_materiel.php"> - Ajouter materiel </a></p>
                     <p><a href = "../page_interactive/Reparation.php"> - Réparer materiel </a></p>
-                    <p><a href = "../page_interactive/Valider_demande.php"> - Gérer Demande </a></p>
-                    <?php if ($_SESSION["admin"] == true) { ?>
-                        <p><a href = "../page_interactive/demande_resp.php"> - Gérer Responsable </a></p>
-                    <?php } ?>
+                    <p><a href = "../page_interactive/Validation_demandes.php"> - Gérer demandes </a></p>
+                    <p><a href = "../page_interactive/outils_emprunts.php"> - Gérer retours </a></p>
+                    <p><a href = "../page_interactive/Visualisation_projet_responsable.php"> - Visualiser projets </a></p>
+        <?php if ($_SESSION["admin"] == true) { ?>
+                    <p><a href = "../page_interactive/demande_resp.php"> - Gérer responsable </a></p>
+        <?php } ?>
             <?php } ?>
     </footer>
 </body>

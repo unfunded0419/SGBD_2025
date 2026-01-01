@@ -22,7 +22,8 @@ main {
     flex : 1; 
     display : flex;
     flex-direction: column;
-    overflow-y: hidden;  
+    overflow-y: hidden; 
+    padding-bottom: 40px; 
 }
 
 h1 {
@@ -199,30 +200,8 @@ button[name="quitter"]:hover {
     border-radius: 10px;
     text-align: center;
 }
-footer {
-    flex-shrink: 0;           /* ne se réduit pas */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    background-color: rgba(150,150,150,0.7);
-    font-size: 1.5rem;
-    margin-top: auto;
-}
-footer a {
-    text-decoration: none;
-}
-footer a:link {
-    color : rgba(000,255,255,1); 
-    font-weight : bold; 
-}
-footer a:visited {
-    color : rgba(000,255,255,1);
-    font-weight : bold; 
-}
-footer a:hover {
-    color : rgba(255,255,255,1);
-    font-weight : bold; 
-}
+
+
 .liste::-webkit-scrollbar {
     width: 8px;
 }

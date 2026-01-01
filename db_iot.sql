@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 29 déc. 2025 à 05:31
+-- Généré le : mar. 30 déc. 2025 à 06:38
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -73,6 +73,13 @@ CREATE TABLE `cours` (
   `ID_Cours` int(11) NOT NULL,
   `Nom` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `cours`
+--
+
+INSERT INTO `cours` (`ID_Cours`, `Nom`) VALUES
+(1, 'thermique');
 
 -- --------------------------------------------------------
 
@@ -155,8 +162,8 @@ CREATE TABLE `exemplaire` (
 
 INSERT INTO `exemplaire` (`ID_Exemplaire`, `Etat`, `Disponibilite`, `ID_Modele`, `Date_Retrait`, `RE_Matricule_Retrait`, `Date_ajout`, `RE_Matricule_Ajout`) VALUES
 (1, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
-(2, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
-(3, 'endommage', 'indisponible', 2, NULL, NULL, NULL, NULL),
+(2, 'utilisable', 'indisponible', 1, NULL, NULL, NULL, NULL),
+(3, 'utilisable', 'indisponible', 2, NULL, NULL, NULL, NULL),
 (4, 'utilisable', 'disponible', 1, NULL, NULL, NULL, NULL),
 (5, 'utilisable', 'disponible', 2, NULL, NULL, NULL, NULL),
 (6, 'utilisable', 'disponible', 1, NULL, NULL, '2025-12-23', 240227),
@@ -164,7 +171,17 @@ INSERT INTO `exemplaire` (`ID_Exemplaire`, `Etat`, `Disponibilite`, `ID_Modele`,
 (8, 'utilisable', 'disponible', 4, NULL, NULL, '2025-12-23', 240227),
 (9, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
 (10, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
-(11, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227);
+(11, 'utilisable', 'disponible', 5, NULL, NULL, '2025-12-23', 240227),
+(12, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(13, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(14, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(15, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(16, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(17, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(18, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(19, 'utilisable', 'disponible', 6, NULL, NULL, '2025-12-30', 240227),
+(20, 'endommage', 'indisponible', 6, '2025-12-30', 240227, '2025-12-30', 240227),
+(21, 'endommage', 'indisponible', 6, '2025-12-30', 240227, '2025-12-30', 240227);
 
 -- --------------------------------------------------------
 
@@ -199,7 +216,8 @@ INSERT INTO `modele` (`ID_Modele`, `Reference`, `Description`, `ID_Categorie`) V
 (2, 'CPUTORNADO', 'Une CPU qui dechire', 2),
 (3, 'CABLEMAG', 'Des cable enchantés', 3),
 (4, 'Montont', 'Montent le matin verdoyant', 4),
-(5, 'galaxy', 'beautiful stars in the sky', 5);
+(5, 'galaxy', 'beautiful stars in the sky', 5),
+(6, 'Test', 'testons', 1);
 
 -- --------------------------------------------------------
 
@@ -225,7 +243,10 @@ INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
 (15, 240227),
 (16, 240227),
 (17, 111111),
-(17, 240227);
+(17, 240227),
+(18, 240227),
+(19, 240227),
+(21, 240227);
 
 -- --------------------------------------------------------
 
@@ -235,22 +256,26 @@ INSERT INTO `participer` (`ID_Projet`, `E_Matricule`) VALUES
 
 CREATE TABLE `projet` (
   `ID_Projet` int(11) NOT NULL,
-  `Nom` varchar(150) DEFAULT NULL
+  `Nom` varchar(150) DEFAULT NULL,
+  `ID_Cours` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `projet`
 --
 
-INSERT INTO `projet` (`ID_Projet`, `Nom`) VALUES
-(9, 'projet_1'),
-(10, 'projet_2'),
-(11, 'ofeofh'),
-(12, 'feojf'),
-(13, 'new'),
-(15, 'nouveau_proj'),
-(16, 'encore'),
-(17, 'autre');
+INSERT INTO `projet` (`ID_Projet`, `Nom`, `ID_Cours`) VALUES
+(9, 'projet_1', NULL),
+(10, 'projet_2', NULL),
+(11, 'ofeofh', NULL),
+(12, 'feojf', NULL),
+(13, 'new', NULL),
+(15, 'nouveau_proj', NULL),
+(16, 'encore', NULL),
+(17, 'autre', NULL),
+(18, 'Projet du cours de thermique', 1),
+(19, 'Projet convection', 1),
+(21, 'Projet Rayonnement', 1);
 
 -- --------------------------------------------------------
 
@@ -269,8 +294,13 @@ CREATE TABLE `reparer` (
 --
 
 INSERT INTO `reparer` (`RE_Matricule`, `ID_Exemplaire`, `Date_Reparation`) VALUES
+(240227, 1, '2025-12-30'),
+(240227, 2, '2025-12-30'),
+(240227, 3, '2025-12-30'),
 (240227, 9, '2025-12-26'),
-(240227, 11, '2025-12-26');
+(240227, 11, '2025-12-26'),
+(240227, 18, '2025-12-30'),
+(240227, 19, '2025-12-30');
 
 -- --------------------------------------------------------
 
@@ -368,7 +398,8 @@ ALTER TABLE `participer`
 -- Index pour la table `projet`
 --
 ALTER TABLE `projet`
-  ADD PRIMARY KEY (`ID_Projet`);
+  ADD PRIMARY KEY (`ID_Projet`),
+  ADD KEY `fk_projet_cours` (`ID_Cours`);
 
 --
 -- Index pour la table `reparer`
@@ -397,7 +428,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `cours`
 --
 ALTER TABLE `cours`
-  MODIFY `ID_Cours` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Cours` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `emprunt`
@@ -409,19 +440,19 @@ ALTER TABLE `emprunt`
 -- AUTO_INCREMENT pour la table `exemplaire`
 --
 ALTER TABLE `exemplaire`
-  MODIFY `ID_Exemplaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_Exemplaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `modele`
 --
 ALTER TABLE `modele`
-  MODIFY `ID_Modele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Modele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID_Projet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Contraintes pour les tables déchargées
@@ -469,6 +500,12 @@ ALTER TABLE `modele`
 ALTER TABLE `participer`
   ADD CONSTRAINT `participer_ibfk_1` FOREIGN KEY (`ID_Projet`) REFERENCES `projet` (`ID_Projet`),
   ADD CONSTRAINT `participer_ibfk_2` FOREIGN KEY (`E_Matricule`) REFERENCES `etudiant` (`E_Matricule`);
+
+--
+-- Contraintes pour la table `projet`
+--
+ALTER TABLE `projet`
+  ADD CONSTRAINT `fk_projet_cours` FOREIGN KEY (`ID_Cours`) REFERENCES `cours` (`ID_Cours`);
 
 --
 -- Contraintes pour la table `reparer`

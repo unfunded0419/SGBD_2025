@@ -7,10 +7,11 @@ body {
 background-image: url("../image/Umons_background.jpg");
 background-repeat : no-repeat; 
 background-size : cover; 
-background-position : center; 
+min-height: 100%;
 display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
 flex-direction: column;
 color : white; 
+overflow-x: hidden;
 }
 .elms-sans-text {
   font-family : "Elms Sans", sans-serif;
@@ -19,12 +20,9 @@ color : white;
   font-style : normal;
 }
 form {
-    position : absolute; 
-    top : 25%;
-    height : 50%; 
-    left : 10%; 
-    right : 10%; 
-    background-color : rgba(150,150,150, 0.8);  
+    flex : 1; 
+    margin : 10%; 
+    background-color : rgba(150,150,150, 0.7);  
     border-radius : 20px; 
     padding : 0% 5%; 
     display: flex;

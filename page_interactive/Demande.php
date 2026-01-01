@@ -8,7 +8,7 @@ include 'Connexion_DB.php';
 $erreur = ""; 
 $matricule = $_SESSION["Matricule"]; 
 $idprojet = $_SESSION["ID_Projet"]; 
-$proj = "SELECT projet.Nom as Nom_proj FROM projet WHERE projet.ID_Projet = '$idprojet'"; 
+$proj = "SELECT projet.Nom as Nom_proj, cours.Nom as Nom_cours FROM projet JOIN lier ON projet.ID_Projet = lier.ID_Projet JOIN cours ON cours.ID_Cours = lier.ID_Cours WHERE projet.ID_Projet = '$idprojet'"; 
 $projets = mysqli_query($conn, $proj); 
 
 if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur à bien remplit les champs pour les dates de manière logique , ensuite il vérifie si l'objet demandé se trouve dans la db et enfin seulement l'emprunt et la table concerner sont mise à jour*/
@@ -78,6 +78,16 @@ if (isset($_POST["submit"])) { /* code déguelasse vérifiant si l'utilisateur �
                         <?php foreach ($projets as $projet) {?>
                             <div class = "fin">
                             <p> <?php echo $projet["Nom_proj"] ?> </p>
+                            </div> 
+                    <?php } ?>
+                     </div>
+                     <div class = "Projet">
+                    <div class = "debut">
+                        <p>Cours concerné : </p>
+                        </div> 
+                        <?php foreach ($projets as $projet) {?>
+                            <div class = "fin">
+                            <p> <?php echo $projet["Nom_cours"] ?> </p>
                             </div> 
                     <?php } ?>
                     </div>

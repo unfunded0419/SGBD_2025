@@ -2,11 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
+body, html{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    height : 100%; 
 
 }
 
@@ -22,17 +21,32 @@ body {
     display : flex; /*utile pour pouvoir pousser le footer en bas de page en conjonction avec flex-direction*/
     flex-direction: column;
 }
+.elms-sans-text {
+  font-family : "Elms Sans", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : normal;
+  font-style : normal;
+}
 main {
     flex : 1;
+    display : flex; 
+    flex-direction: column;
+    overflow-y: auto;
 }
 /* Style global pour la boite principale */
 .boite-register {
+    flex : 1; 
+    display : flex; 
+    flex-direction: column;
     width: 600px; /* Un peu plus large pour être à l'aise */
     padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.183);
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    
 }
 
 h1 {
@@ -124,22 +138,36 @@ select {
     color: black;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Une ombre apparait */
 }
-footer {
-    background-color : rgba(150,150,150,0.7);
-    padding: 10px 20px;
-    width : 100%;   
-    font-size : 1.2rem; 
-    display : flex; 
-    gap : 20px; 
+footer { 
     margin-top: auto;
+    flex-shrink : 0; 
+    background-color: rgba(150,150,150,0.7);
+    width : 100%;   
+    font-size : 1.45rem; 
+    display : flex; 
+    flex-direction : row; 
+    justify-content :flex-start;  
+    gap : 20px; 
+}
+footer a {
+text-decoration: none;  
+color : black; 
+font-weight : bold; 
 }
 
-footer a{
-    color:#000000;
-    text-decoration: none;
-}
-
-a:hover{
-    color : rgba(255,255,255,1);
+footer a:hover {
+    color : rgba(255,255,255,1); 
     font-weight : bold; 
+}
+main::-webkit-scrollbar {
+    width: 8px;
+}
+
+main::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+main::-webkit-scrollbar-track {
+    background: transparent;
 }
